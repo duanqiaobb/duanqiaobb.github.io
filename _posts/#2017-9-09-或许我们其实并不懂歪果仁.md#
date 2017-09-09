@@ -1,20 +1,18 @@
-#+OPTIONS: toc:nil
+# 或许我们其实不懂歪果仁的烦恼
 
-* 或许我们其实不懂歪果仁的烦恼
- 
-#+begin_verse
+<p class="verse">
 
-@@html:&ensp;&ensp;@@这首英文诗，原来是在百度百家号上面看的，看到挺有意思的就去查了下, 没想到真的有这首诗。</br>
-@@html:&ensp;&ensp;@@真的有趣啊，想我们初中，和高中学英文的那种纠结和痛苦，那时，真的回想，要是我是个外国人多好，那样就不要每天操蛋的学习英文了。</br>
-@@html:&ensp;&ensp;@@现在想想,看来那时还是太年轻，没有明白外国人真正的烦恼，"中国有美食的省份太多，记都记不住啦，好烦！"(偷笑...), 还居然专门写了首诗，原谅我忍不住笑了。
-#+end_verse
+&ensp;&ensp;这首英文诗，原来是在百度百家号上面看的，看到挺有意思的就去查了下, 没想到真的有这首诗。  
+&ensp;&ensp;真的有趣啊，想我们初中，和高中学英文的那种纠结和痛苦，那时，真的回想，要是我是个外国人多好，那样就不要每天操蛋的学习英文了。  
+&ensp;&ensp;现在想想,看来那时还是太年轻，没有明白外国人真正的烦恼，"中国有美食的省份太多，记都记不住啦，好烦！"(偷笑&#x2026;), 还居然专门写了首诗，原谅我忍不住笑了。
+</p>
 
-** 原诗
 
-*Have they run out of provinces yet?*
+## 原诗
 
-#+begin_src example
+**Have they run out of provinces yet?**
 
+```example
 If they haven’t, we’ve reason to fret. 
 Long ago, there was just Cantonese. 
 (Long ago, we were easy to please.) 
@@ -44,15 +42,14 @@ When we never were faced with the threat
 Of more provinces we hadn’t met.
 Is there one tucked away near Tibet?
 Have they run out of provinces yet?
+```
 
-#+end_src
 
-** 翻译
+## 翻译
 
-*他们的省份到底有完没完？*
+**他们的省份到底有完没完？**
 
-#+begin_src example
-
+```example
 他们的省份到底有完没完？ 
 如果还没完，我们就有理由心烦。
 老早以前只有广东菜。 
@@ -84,23 +81,18 @@ Have they run out of provinces yet?
 他们的省份到底有完没完？ 
 
 作者 / [美国] 卡尔文·特里林 
-翻译 / 唐晓丽 
+翻译 / 唐晓丽
+```
 
-#+end_src
+<p class="verse">
 
-#+begin_verse
-
-@@html:&ensp;&ensp;@@ 这首诗，作者以俏皮的语气吐槽中国的美食身份太多。不知，中国历代吃货前辈，看到现在的中国美食成为中国文化的主要的出口载体，不知作何感想。估计哭笑不得吧，哈哈。</br>
-@@html:&ensp;&ensp;@@ 其实从媒体，和互联网上的各种报道和文章，我们都能感觉到祖国变得越来越伟大，文化出口越来越多，很多外国人仰慕中国文化而来到中国。其实，我们也不能应该忘了那些，在国外的拼尽全力的宣传，和改善我们国家在世界上以前形象的学子，和各界爱国人士。他们为中国贡献自己的一份力量，同时也希望中国美食担当起文化出口这副越来越重的重担。
-#+end_verse
-
+&ensp;&ensp; 这首诗，作者以俏皮的语气吐槽中国的美食身份太多。不知，中国历代吃货前辈，看到现在的中国美食成为中国文化的主要的出口载体，不知作何感想。估计哭笑不得吧，哈哈。  
+&Ensp;&ensp; 其实从媒体，和互联网上的各种报道和文章，我们都能感觉到祖国变得越来越伟大，文化出口越来越多，很多外国人仰慕中国文化而来到中国。其实，我们也不能应该忘了那些，在国外的拼尽全力的宣传，和改善我们国家在世界上以前形象的学子，和各界爱国人士。他们为中国贡献自己的一份力量，同时也希望中国美食担当起文化出口这副越来越重的重担。
+</p>
 
 
-* 引用
+# 引用
 
-+ [[http://www.newyorker.com/magazine/2016/04/04/have-they-run-out-of-provinces-yet-by-calvin-trillin][Have they run out of provinces yet?(原诗词链接,还有朗读)]]
+-   [Have they run out of provinces yet?(原诗词链接,还有朗读)](http://www.newyorker.com/magazine/2016/04/04/have-they-run-out-of-provinces-yet-by-calvin-trillin)
 
-+ [[http://www.bedtimepoem.com/?p=7755][他们的省份到底有完没完？(翻译链接)]]
-
-
-
+-   [他们的省份到底有完没完？(翻译链接)](http://www.bedtimepoem.com/?p=7755)
