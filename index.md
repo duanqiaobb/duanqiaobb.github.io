@@ -4,5 +4,6 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
 ---
-
-Hello world
+{% for post in site.posts %}
+{{ post.date | date_to_string }} » <a href="{{post.url}}">{{ post.title }}</a>
+{% endfor %}
