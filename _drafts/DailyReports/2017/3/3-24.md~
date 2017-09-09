@@ -1,0 +1,313 @@
+#### <div style="color:#369">今日计划</div>
+
++ 了解C++里面的lamda表达式
++ 学习C++的面向对象的知识
++ 学习有道口语两课
+
+
+#### <div style="color:#369">今日成果和收获</div>
+
++ C++中的类
+&ensp;&ensp;假定我们有这样一个类
+
+```cpp
+#include <string>
+
+struct Sales_data {
+//new members: operations on Sales_data objects
+std::string isbn() const { return bookNo; }
+Sales_data& combine(const Sales_data&);
+double avg_price() const;
+// data members unchanged
+std::string bookNo;
+unsigned units_sold = 0;
+double revenue = 0.0;
+};
+
+```
+
+
+**类成员声明**
+
+&ensp;&ensp;C++中的类成员声明必须在类中。
+
+**类成员定义**
+
+&ensp;&ensp;C++中类方法既可以定义在类中，也可以在类外定义。但是成员变量必须在类中定义。同时类成员在类外面定义，需要指定范围操作符，比如`类名::方法名`，在方法中也可以像在类中定义方法一样使用累的成员变量。
+
+```cpp
+    
+    double Sales_data::avg_price() const {
+	  if(units_sold)
+	     return revenue/units_sold;
+	  else
+	     return 0;
+	}
+```
+
+**类中`this`指针**
+
+&ensp;&ensp;`this`是类中指向对象的`const`指针，`this`可以用在类方法中来访问类中的成员变量，同时因为`this`是一个`const`，所以不可以对`this`进行重新赋值等修改操作。
+
+&ensp;&ensp;在类中方法中使用类中的成员变量，既可以使用`this`关键字来访问，也可以不使用。如果不使用`this`关键字访问类中的成员变量，也会默认使用`this`来访问类中的成员变量。
+
+&ensp;&ensp; `this`是在调用类中的方法的时候初始化的。
+
+``` cpp
+    
+	class_name.function_name(&class_name)
+
+```
+
+**`const`成员方法**
+
+&ensp;&ensp;`const`成员方法的形式:
+
+```cpp
+
+   return_type function_name() const { 
+    
+	   function_body;
+   }
+
+```
+&ensp;&ensp;`const`关键字在这主要是用来修改默认的`this`的类型。默认情况下，`this`的类型是一个指向非`const`类类型的`const`指针。尽管`this`是隐含在类中的，但是它也遵循正常的初始化规则，这就意味着我们不能将`this`绑定道一个`const`对象上。所以我们通过在函数的参数列表后面添加`const`关键字来改变默认的`this`的类型为指向`const`类型的`const`指针。这样我们就能将`this`绑定到一个`const`对象上面。但是，我们只能访问对象的`const`成员方法，无法访问普通方法。
+
+&ensp;&ensp;我们可以认为`const`成员方法是这样，来理解
+
+```cpp
+  
+  return_type function_name(const type *const this) {
+     
+	 return this->isbn;
+  }
+
+```
+
+
+`
+**`const`和指针**
+
++ 指向`const`类型的指针
+
+&ensp;&ensp;我们可以像定义一个引用一样定义一个指向`const`或者`noconst`类型的指针。一个指向`const`类型的指针可以像一个指向`const`类型的引用一样，不能用来修改指针指向的对象。我们只能将一个`const`对象的地址存储在一个指向`const`的指针里面
+。
+
+```cpp
+   const double pi = 3.14; //pi是一个const 类型,它的值不能被改变
+   double *ptr = &pi;  // 不能，const指针不能赋值给非const指针
+   const double *cptr = &pi;  //可以
+   *cptr = 42; //不可以
+   
+```
+&ensp;&ensp;一个指针的类型必须和它所指向的对象的类型一致。除了，一个指向`const`的指针可以指向一个`noconst`对象之外。
+
+```cpp
+
+  const double pi = 3.14;
+  const double *cptr = &pi;
+  double dval = 3.14; //dval变量的值能够改变
+  cptr = &dval;  //可以，但是不能通过cptr指针来改变deval的值
+ 
+```
+
+
++ `const`类型的指针
+
+&ensp;&ensp;与引用不同，指针是一个对象。所以, 我们可以像其他对象一样定义一个`const`指针. 与其他的`const`对象相同，一个`const`指针必须要被初始化，并且一旦被初始化之后，它的值不能被修改。
+
+```cpp
+   
+   int errNumb = 0;
+   int  *const curErr = &errNumb; // 一个const指针也可以被初始化为一个非const指针.
+   const double pi = 3.14159;
+   const double *const pip = &pi; // pip是一个指向一个const对象的const指针。
+
+```
+
+&ensp;&ensp;一个`const`指针并不关心我们是否对被指向的对象的成员，或者值做改变。我们是否能对被指向的对象的内容做改变取决与指针指向的对象是否是`const`类型。
+
+```cpp
+
+int errNumb = 0;
+int  *const curErr = &errNumb; // 一个const指针也可以被初始化为一个非const指针.
+const double pi = 3.14159;
+const double *const pip = &pi; // pip是一个指向一个const对象的const指针。
+
+*pip = 2.72;  //不可以，pip指向变量是`const`
+
+
+if (*curErr) {
+   
+   errorHandler();
+   *curErr = 0; // 可以，curErr指向的是一个非const引用，我们可以重置其指向对象的值
+}
+
+
+```
+
+**`top level const` 和 ``low level const`**
+
+&ensp;&ensp; 一个指针是一个能够指向其他不同对象的对象。所以我们可以用两个`top-level const` 和`low level const`分别来表示 一个指针是一个`const`和一个指针可以指向的对象是`const`。`top-level const`可以用来修饰基本类型(int, double, 等等), 类，或者指针。而，`low-level const`则用来修饰组合类型的基本类型，比如指针，引用。只有指针类型可以同时拥有`top-level const`和`low-level const`。
+
+
+```cpp
+  
+   int i = 0;
+   int *const p1 = &i; // top level const
+   const int ci = 42; //low level const
+   const int *p2 = &ci; //可以，因为const是low-level
+   const int *const p3 = p2; //最左边的是low-level const 和最右边的是top-level const
+
+```
+&ensp;&ensp;`top-level const`和`low-level const`的区别是，当我们复制一个对象的时候，`top-level const`会被忽略。我们可以将一个非`const`对象转换为`const`对象，反之不行。
+
+``` cpp
+   int i = 0;
+   int *const p1 = &i;
+   const int ci = 42; 
+   const int *p2 = &ci;   
+   const int *const p3 = p2; 
+   
+   int *p = p3; //不行
+   p2 = p3; 可以
+   p2 = &i;  //可以
+   int &r = ci; // 不可以
+   const int &r2 = i; //可以
+
+```
+
+**类构造器**
+
+&ensp;&ensp; C++中通过定义构造器来初始化类中的数据成员。类构造器每当一个类类型被建立的时候就运行。
+
+*类构造器的定义*
+
+&ensp;&ensp;构造器方法的名字和类的名字一样，并且没有返回类型。构造器方法不能是一个`const`成员方法。当我们创建一个新的类类型的`const`对象的时候，在构造器完成对象初始化之前，对象并不承认它的常量性。所以，构造器在构造对象期间可以修改`const`对象。
+
+&ensp;&ensp;如果没有定义构造器方法，那么默认的构造器方法将会被使用来初始化类。一般情况下默认的构造器初始化类成员变量的顺序为:
+
++ 如果变量在类中有初始化表达式，那么就使用初始化表达式来对类成员进行初始化。
++ 反之，就使用默认的构造器方法初始化。
+
+``` cpp
+
+struct Sales_data {
+
+  //constructors
+  Sales_data() = default;
+  Sales_data(const std::string &s): bookNo(s) {
+  };
+  Sales_data(const std::string &s, unsigned n, double p): bookNo(s), units_sold(n), revenue(p*n) {
+  };
+  Sales_data(std::istream &);
+  //new members: operations on Sales_data objects
+  std::string isbn() const { return bookNo; }
+  Sales_data& combine(const Sales_data&);
+  double avg_price() const;
+  // data members unchanged
+  std::string bookNo;
+  unsigned units_sold = 0;
+  double revenue = 0.0;
+};
+
+Sales_data::Sales_data(std::istream &is) {
+   
+   read(is, *this);
+}
+
+```
+&ensp;&ensp;代码中的`default`是从`c++11`引入的新特性，表示默认构造器方法，`Sales_data() = default`表示定义函数的构造器方法。这样的用法既可以用在类中也可以用在类外，如果用在类中，则表示默认构造器方法是内联方法，如果定义在类外，就表示默认构造器方法不是内联方法。
+
+
+*构造器方法初始化列表*
+
+&esnp;&ensp;构造器方法初始化列表定义在参数列表之后构造器方法体之前。构造器方法初始化列表用来对类成员变量进行初始化。
+
+```cpp
+   
+   Sales_data(const std::string &s): bookNo(s) {}
+   Sales_data(const std::string &s, unsigned n, double p): bookNo(s), units_sold(n), revenue(p*n) {
+   }
+
+```
+
+&ensp;&ensp;构造器方法的参数列表的`:`之后是构造器方法的初始化列表。初始化成员的形式为`要初始化变量名(要初始化的值)`，多个初始化成员需要用`,`隔开。
+&ensp;&ensp;如果成员变量没有在初始化列表中显式的初始化，那么就会使用默认的构造器方法进行初始化。那么，上面代码中的：
+
+```cpp
+    
+	Sales_data(const std::string &s): bookNo(s) {}
+
+```
+其实就相当与:
+
+```cpp
+    
+	Sales_data(const std::string &s): bookNo(s), units_sold(0), revenue(0) {
+	}
+
+```
+&ensp;&ensp; 成员变量的初始化执行在构造方法体执行之前。 
+
+**类复制、赋值和析构**
+
+&ensp;&ensp;类的赋值可以直接通过赋值符号`=`与其他基本类型一样进行赋值
+
+```cpp
+    
+	total = trans;
+	
+```
+
+
+&ensp;&ensp;如果我们没有定义一些`copy`,`assignment`和`desctruction`操作，编译器会默认为我们生成这些操作。但是，编译器生成的这些操作，并不能很好的处理一些位于类外的资源。比如，一些管理动态内存的类，不能依靠编译器生成的操作。处理这种情况，是使用`vector`和`string`来管理必要的存储。或者直接将这些资源存储为类中的成员数据。
+
+**看了16页《一本书读懂24种互联网思维》**
+
++ 痛点思维
+
+1.分类和组合是效率解决问题的最有效的方法
+
+2.分析需求的时候，反其道而行之往往能达到意想不到的效果
+
+3.对产品要时刻保持怀疑和质疑的想法。
+
+4.需求分析的重点和难点是如何得到用户的隐性需求。
+
+
++ 简约思维
+
+1.简约思维就是做减法
+
+2.简约并不是功能上的简约，更是思想上，行为上的简约。同时也是资源分配上的一种方式。
+
+
+
+#### <div style="color:#369">明日计划</div> 
+
++ 完成C++的属性的学习
++ 完成一节有道口语课
++ 学习c++的面向对象的知识
++ Move constructors in C++
+
+
+#### <div style="color:#369">todo</div>
++ 详细了解cpp中的function->return type的用法
++ 写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
++ 了解C++中的异常的使用
++ 在emacs或者vim中实现一个小的智能程序
++ 写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)
++ 在vim移植emacs的org-mode(针对markdown)
++ 命令行的qq聊天(vim-plugin,emacs-plugin)
++ 探究真正意义上的人工智能
++ 学习黑客的思维
++ 写个备份Gentoo Linux的脚本(Live版本,iso格式)
++ 写个像Grammerly的功能的软件
++ 写方面绑定手机的各种账号更换
++ 看王垠的40行代码
++ 学习scheme语言
++ 学习C++中的incline特性
++ 详细看《Chapter 13. Copy contral》
++ 详细看《 Chapter 12. Dynamic Memory》
++ 详细看《13.1.4（p. 504）》

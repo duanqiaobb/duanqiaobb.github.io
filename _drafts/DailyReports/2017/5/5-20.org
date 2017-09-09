@@ -1,0 +1,24 @@
+* 今日计划
++ 完成未添加盲源分离的算法实现
+
+* 今日收获
+
+  
+** Opencv中的 ~Mat~ 数据结构
+
+@@&ensp;&ensp;@@ ~Mat~ 类代表 ~n~ 维单通道或者多通道的数组。它可以用来存储实数或者复数值的矢量和矩阵，灰度图或者彩色图像， 三维图像，向量场，点云，张量，直方图（尽管，高维直方图存储在稀疏矩阵中更好）。 数组 ~M~ 的数据布局是由数组 ~M.step[]~ 定义的，
+所以, $(i_0,...,i_{M,dims-1})$ ，其中 $0 \leq i_k < M.size[k]$ 的地址通过如下方式计算：
+
+\begin{equation}
+addr(M_{i_0,....,i_{M,dims-1}})= M.data + M.step[1]*i_i+....+M.step[M.dims-1]*i_{M,dims-1}
+\end{equation}
+
+比如二维数组：
+\begin{equation}
+addr(M_{i,j}) = M.data + M.step[0]*i + M.step[1]*j
+\end{equation}
+
+@@html:&ensp;&ensp;@@ 注意:  ~M.step[i] >= M.step[i+1]~  (实际上 ~M.step[i] >= M.step[i+1]*M.size[i+1]~ ） , 这意味着二维矩阵是按照列行来存储的，三维矩阵是按照平面来存储的。 ~M.step[M.dims-1]～ 是最小的并且经常等于元素大小 ~M.elemSize()~ 。
+所以, ~Mat~ 中的数据布局和 ~CvMat,IplImage~ ，以及Opencv 1.x 中的  ~CvMatND~ 类型完全兼容。 它同时也兼容表中工具套件和SDK中的大多数的稠密矩阵类型，比如 ~Nump~ 库中的 ~ndarray~ , Win32 中的 ~bitmaps~ 以及其他一些使用 ~steps(步幅)~ 来计算一个像素的
+地址。为了兼容,Opencv可能为用户分配的数据创建一个 ~Mat~ 头，然后使用 Opencv中的函数进行原位处理。
+

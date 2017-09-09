@@ -1,0 +1,362 @@
+#### <div style="color:#369">今日计划</div>
+
+
++ 看完class一章
++ 完成web界面的搭建
++ 有道口语一课
++ 看盲源分离和神经网络方面的知识,以及查找其他代替方法
+
+
+
+
+#### <div style="color:#369">今日收获</div>
+
+**C++类中的友元变量**
+
+&ensp;&ensp;在C++中其他类或者其他类中的成员方法也可以作为友元变量
+
+**定义在类中的友元方法，默认为行内方法**
+
+&ensp;&ensp;`friend`修饰符只影响访问并没有进行函数声明
+
+&ensp;&ensp; 类和非成员函数并不需要在声明为友元之前提前声明。但是我们如果要在声明友元的类中或者类外使用友元类或者方法，我们就必须在类外提前声明方法或者类
+
+&ensp;&ensp; 如果使用类成员方法为友元，那么类必须提前定义。
+
+``` cpp
+
+#include <iostream>
+
+using namespace std;
+
+
+struct X {
+  friend void f() {
+      //友元方法可以在类中定义
+  }
+  X() { f(); } // 友元方法没有提前声明，错误
+  void g();
+  void h();
+};
+
+void X::g() { return f(); } // 友元方法没有提前声明，错误
+
+void f():
+void X::h() { return f(); } // 友元方法已经声明，可以使用
+
+```
+
+**访问类中的类型**
+
+&ensp;&ensp;访问类中的类型使用的是`作用域操作符`(`::`)`
+
+
+```cpp
+   
+   class Screen  {
+
+
+public:
+  typedef string::size_type pos;
+
+};
+
+Screen::pos ht = 24, wd = 80;
+
+```
+
+**访问类中的成员**
+
+&ensp;&ensp;访问类中的成员可以通过对象实例，对象引用，对象指针访问
+
+```cpp
+class Screen  {
+
+public:
+  typedef string::size_type pos;
+  
+  Screen() = default;
+  Screen(pos ht, pos wd, char c): height(ht),width(wd),contents(ht *wd, c) {}
+
+private:
+  pos height = 0, width = 0;
+  pos cursor = 0;
+
+  string contents;
+  mutable size_t access_ctr;
+
+};
+
+Screen scr (ht, wd, ' ');
+
+Screen *p = &scr;
+char c = scr.get(); //通过对象访问
+c = p->get(); //通过指针访问
+
+```
+
+**名称查找和类范围**
+
+&ensp;&ensp; C++中的命名查找顺序
+
+1. 查找使用名称的代码块中的声明，声明在使用前有效
+
+2. 如果名称没有找到，那么整个程序的作用域范围中查找，声明在使用前有效
+
+3. 如果没有找到声明，程序就报错
+
+&ensp;&ensp;类成员方法中的命名查找
+
+1. 成员声明被首先编译
+
+2. 在类中所有的声明被编译之后，类成员方法才被编译。
+
+&ensp;&ensp;所以，我们可以在类的成员方法中使用类中的任何一个成员。但是，这种规则只局限与类成员方法体中，对方法体的返回类型和参数列表，类成员变量，仍然使用第一种规则。
+
+```cpp
+   
+   typedef double Money;
+   string bal;
+   class Account {
+     public: 
+	    Money balance() { return bal; }
+	 private:
+	    Money bal;
+   
+   };
+
+```
+
+&ensp;&ensp;当编译器`balance`方法的声明的时候，它会在`Account`类中查找`Money`的声明。编译器只认为在使用`Money`变量之前的声明有效。因为，没有找到匹配的成员,编译器将会在整个程序的作用域中进行查找。它将会找到在类前定义的`Money`类型。然后`Money`类型将会用做为`balance`方法的返回类型和类中`bal`变量成员的类型。由这里来看，`balance`成员方法的返回值为`Money`类型，而不是`string`类型，说明在类成员方法体会在整个类可见之后被处理。
+
+
+**类型名重定义**
+
+&ensp;&ensp;一般来说，即使一个类型已经在一个内部域中使用，在一个内部的作用域中可以重新定义一个外部定义域中的类型名称。但是，在一个类中，如果一个成员使用了类外作用域中的类型，那么类不能重新定义一个类型名称。
+
+```cpp
+  
+   typedef double Money;
+   class Account {
+     public:
+	       Money balance() { return bal; }
+	 private:
+	       typedef double Money; // 编译器会报错
+		   Money bal;
+   }
+
+```
+
+``` shell
+
+TypeNamesLookup.cpp:12:18: error: declaration of ‘typedef double Account::Money’ [-fpermissive]
+   typedef double Money;
+                     ^~~~~
+					 TypeNamesLookup.cpp:4:16: error: changes meaning of ‘Money’ from ‘typedef double Money’ [-fpermissive]
+					  typedef double Money;
+					                  ^~~~~
+									  
+```
+
+&ensp;&ensp;但是在gcc中这种错误可以通过`-fpermissive`进行抑制。
+
+**建议**
+
+> 一般类型名最好定义在类之前。
+
+**类成员定义中的代码块名称查找**
+
+&ensp;&ensp;类成员定义中的代码块名称查找规则：
+
+1. 在成员方法中查找名称的声明，声明在使用之间有效。
+
+2. 如果在成员方法中不能找到，那么就在类中进行查找，声明在类中任何位置都有效。
+
+3. 如果在类中没有找到，那么就在整个程序作用域中进行查找，声明在使用之前有效。
+
+
+
+```cpp
+ 
+#include <iostream>
+
+using namespace std;
+
+int height;
+class Screen {
+
+public:
+  typedef string::size_type pos;
+  void dummy_fcn(pos height) {
+    cursor = width * height;
+  }
+
+private:
+  pos cursor = 0;
+  pos height = 0,width = 0;
+};
+
+```
+&ensp;&ensp;这里，编译器会首先在`dummy_fcn`成员函数中进行查找，找到函数参数列表中声明的`height`。
+
+
+**类构造器**
+
+
+&ensp;&ensp;类成员的初始化，类的成员变量可以通过构造器初始化也可以通过传入构造器中的参数进行赋值初始化。
+
+``` cpp
+  //赋值初始化
+  Sales_data::Sales_data( const string &s, unsigned cnt, double price)
+  {
+      bookNo = s;
+	  units_sold = cnt;
+	  revenue = cnt * price;
+  }
+
+ 
+```
+
+``` cpp
+   //构造器初始化
+   Sales_data::Sales_data(const string &s, unsigend cnt, double price): bookNo(s), units_sold(cnt), revenue(cnt*price) {
+   
+   }
+
+```
+
+&ensp;&ensp;但是如果是`const`或者引用类型的成员，没有默认构造器的类，必须使用构造器初始化。
+
+``` cpp
+  
+    class ConstRef {
+     
+	 public: 
+	     ConstRef(int ii);
+	 private:
+	     int i;
+		 const int ci;
+		 int &ri;
+	};
+	
+	ConstRef::ConstRef(int ii)
+	{
+	   i = ii; //可以
+	   ci = ii; //错误
+	   ri = i; //错误
+	}
+
+```
+&ensp;&ensp;只能通过构造器初始化。
+
+
+``` cpp
+
+   ConstRef::ConstRef(int ii):ii(ii), ci(ii),ri(i) {}
+
+```
+
+
+&ensp;&ensp;构造器初始化的时候，初始化列表的顺序并不决定初始化成员的顺序，初始化成员的顺序和类中成员定义的顺序一致。
+
+``` cpp
+   
+    class X {
+	   
+	   int i;
+	   int j;
+   public:
+       X(int val): j(val),i(j) {}
+	
+	}
+
+```
+&ensp;&ensp;这里由于是`i`先初始化，而用来初始化`i`的`j`未定义，`i`为`undefined`
+&ensp;&ensp;默认参数和构造器
+
+``` cpp
+   
+     class Sales_data {
+      
+	  public:
+	     Sales_data(std::string s=""): bookNo(s) {
+		 }
+		 
+		 Sales_data(std::string s, unsigned cnt, double rev):
+		 bookNo(s), units_sold(cnt), revenue(rev*cnt) {}
+		 Sales_data(std::istream &is) { read(is, *this);}
+	 }
+
+```
+
+&ensp;&ensp;如果一个构造器为所有的参数都提供了默认参数，那么就是定义了默认的构造器。
+
+
+**委派构造器**
+
+&ensp;&ensp;一个构造器使用其他构造器来完成初始化操作叫做委派构造器。
+
+
+``` cpp
+   
+#include <iostream>
+#include <string>
+
+using namespace std;
+class Sales_data {
+
+public:
+  //非委派构造器
+  Sales_data(string s, unsigned cnt, double price):
+    bookNo(s), units_sold(cnt), revenue(cnt*price) {
+     
+  }
+  //委派构造器
+  Sales_data():Sales_data("", 0, 0){}
+  Sales_data(string s): Sales_data(s, 0 , 0) {}
+  Sales_data(istream &is):Sales_data()
+  {}
+
+private:
+  string bookNo;
+  unsigned units_sold;
+  double revenue;
+  
+};
+
+```
+&ensp;&ensp;当一个委派构造器将初始化工作委派给另外一个构造器，那么另外一个构造器的初始化工作和方法体会执行在委派构造器的方法之前。
+
+
+**完成web环境的搭建**
+
+**看C++书籍到"Constructor revisited"**
+
+
+
+#### <div style="color:#369">todo</div>
++ 详细了解cpp中的function->return type的用法
++ 写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
++ 了解C++中的异常的使用
++ 在emacs或者vim中实现一个小的智能程序
++ 写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)
++ 在vim移植emacs的org-mode(针对markdown)
++ 命令行的qq聊天(vim-plugin,emacs-plugin)
++ 探究真正意义上的人工智能
++ 学习黑客的思维
++ 写个备份Gentoo Linux的脚本(Live版本,iso格式)
++ 写个像Grammerly的功能的软件
++ 写方面绑定手机的各种账号更换
++ 看王垠的40行代码
++ 学习scheme语言
++ 学习C++中的incline特性
++ 详细看《Chapter 13. Copy contral》
++ 详细看《 Chapter 12. Dynamic Memory》
++ 详细看《13.1.4（p. 504）》
++ 了解C++里面的lamda表达式
++ C++的线程相关操作
++ C++中的explicit
++ 总结C++中的类型转换
+
+#### <div style="color:#369">明日计划</div>
+

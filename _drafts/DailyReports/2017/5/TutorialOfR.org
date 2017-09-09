@@ -1,0 +1,72 @@
+ @@html: <div style="color:#369">R语言教程</div>@@
+
+* 输入
+
+
+** 赋值
+
+
+#+begin_src R :exports both :results verbatim
+bubba <- c(3,5,7,9)
+#+end_src
+
+#+RESULTS:
+: 3
+: 5
+: 7
+: 9
+
++ 通过下标访问
+
+#+begin_src R :exports both :results output
+bubba <- c(3,5,7,9)
+bubba[0]
+bubba[1]
+bubba[2]
+bubba[3]
+bubba[4]
+#+end_src
+
+#+RESULTS:
+: numeric(0)
+: [1] 3
+: [1] 5
+: [1] 7
+: [1] 9
+
+
+
+
+ @@html: <div style="color:#369">读取CSV文件</div>@@
+
+#+begin_src R  :exports both :results output
+heisenberg<-read.csv(file="./data/files/simple.csv", head=TRUE,sep=",")
+heisenberg
+summary(heisenberg)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+  trial mass velocity
+1     A 10.0       12
+2     A 11.0       14
+3     B  5.0        8
+4     B  6.0       10
+5     A 10.5       13
+6     B  7.0       11
+
+ trial      mass          velocity    
+ A:3   Min.   : 5.00   Min.   : 8.00  
+ B:3   1st Qu.: 6.25   1st Qu.:10.25  
+       Median : 8.50   Median :11.50  
+       Mean   : 8.25   Mean   :11.33  
+       3rd Qu.:10.38   3rd Qu.:12.75  
+       Max.   :11.00   Max.   :14.00  
+#+end_example
+
+ @@html: <div style="color:#369">根据Label来访问CSV文件中的数据</div>@@
+
+#+begin_src R :exports both :results output
+
+#+end_src
+

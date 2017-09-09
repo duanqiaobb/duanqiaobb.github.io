@@ -1,0 +1,253 @@
+#+HTML_HEAD: <style type="text/css">.src-sh {background-color: #222; color: #ccc}</style>
+*** @@html:<div style="color:#369">今日计划</div>@@
+
++ 看盲源分离和神经网络方面的知识,以及查找其他代替方法
++ 15号将程序写出来以及论文弄好(还有五天)
++ 完成论文的第一章,图片基础知识的介绍
++ 有道口语一课（切记）
+
+ [@20]测试org-mode
+
+*** @@html:<div style="color:#369">今日收获</div>@@
+
+**** 盲源分离
+
+***** 盲源分离的数学模型
+
+@@html: &ensp;&ensp; @@盲源分离是通信领域中的一个概念，它是一种能从来自多个传感器输出的混合信号，在混合信号之间并不线性相关，原始信号未知，信号混合方法也未知的情况下，分析出没有观测的原始信号。
+
+@@html: &ensp;&ensp;@@  假设具有 $m$ 个独立的信号源 $s_1(t),...,s_m(t)$ 和 $n$ 个独立的观察量 $x_1(t),...,x_n(t)$ ,观察量和信号源的关系如下:
+
+$x(t) = As(t)$
+
+其中 $x(t) = [x_1(t),....,x_n(t)]^T$ ,
+
+$s(t) = [s_1(t),...,s_m(t)]^T$, $A$ 是一个 $n \times m$ 的系数矩阵，原问题变成了已知 $x(t)$ 和 $s(t)$ 的独立性，求对 $s(t)$ 的估计问题。假定有如下公式
+
+$y(t) = Wx(t)$
+
+其中 $y(t)$ 是对 $s(t)$ 的估计, $W$ 是一个 $m \times n$ 的系数矩阵， 问题变成了如何有效的对矩阵 $W$ 做出估计。
+
+
+***** 问题的基本假设
+
+@@html:&ensp;&ensp;@@ 各源信号 $s_i(t)$ 均为零均值信号， 实随机变量，信号之间统计独立，如果源信号 $s_i(t)$ 的概率面密度 $p_i(s_i)$, 则 $s(t)$ 的概率密度
+为: $p(s) = \prod_{i=1}^np_i(s_i))$
+
+@@html:&ensp;&ensp;@@ 源信号数目 $m$ 小于等于观察信号数目 $n$, 即 $m \leq n$ ,混合矩阵 $A$ 是一个 $n \times m$ 的矩阵。
+假定 $A$ 满秩。
+
+@@html:&ensp;&ensp;@@  源信号中只允许有一个高斯分布，当多于一个高斯分布时，源信号变得不可分。
+
+
+***** 自然梯度解法
+
+@@html:&ensp;&ensp;@@自然梯度法的计算公式为:
+
+$W(n+1) = W(n) + \eta(n)[I - \phi(y(n))y^T(n)]W(n)$
+
+其中 $W$ 为我们需要估计的矩阵，$\eta(n)$ 为步长, $\phi(y)$ 是一个非线性变换，比如 $\eta(y)=\eta(y^3)$
+
+实际计算时 $y$ 为一个$m \times k$ 的矩阵, $m$ 为原始信号个数，$k$ 为采样点个数。
+
+
+***** 算法描述
+@@html:&ensp;&ensp;@@ 1)初始化 $W(0)$ 为单位矩阵
+
+@@html:&ensp;&ensp;@@ 2)循环执行如下的步骤，直到 $W(n+1)$ 与 $W(n)$ 差异小于规定值 $\tau$ (计算矩阵差异的方法可以人为规定), 有时候也人为规定迭代次数
+
+@@html:&ensp;&ensp;@@ 3)利用公式 $y(n) = W(n)y(n-1)$, (其中 $y(-1) = x$ )
+
+@@html:&ensp;&ensp;@@ 4)利用公式 $W(n+1) = W(n)+ \eta(n)[I - \phi(y(n))y^T(n)]W(n)$
+
+**** @@html:<div style="color:#369">@@ 引用@@html:</div>@@
+
+[[https://zh.wikipedia.org/wiki/%25E7%259B%25B2%25E4%25BF%25A1%25E5%258F%25B7%25E5%2588%2586%25E7%25A6%25BB][盲信号分离]]
+
+**** @@html:<div style="color:#369">@@ 参考文献 @@html:</div>@@
+
+@@html:&ensp;&ensp;@@ 1. JEAN-FRAN ¸ COIS CARDOSO, MEMBER, IEEE,Blind Signal Separation: Statistical Principles 
+
+@@html:&ensp;&ensp;@@ 2. C. Jutten and J. Herault, “Blind separation of sources I. An adaptive algorithm based on neuromimetic architecture,” Signal Processing, vol. 24, no. 1, pp. 1–10, July 1991.
+
+@@html:&ensp;&ensp;@@ 3. J.-C. Fort, “Stability of the source separation algorithm of Jutten and H´erault,” in Artificial Neural Networks, T. Kohonen, Makasira, Simula, and Kangas, Eds. Amsterdam, The Netherlands: Elsevier, 1991, pp. 937–941.
+
+@@html:&ensp;&ensp;@@ 4. J. Deville, “A unified stability analysis of the H´erault–Jutten source separation neural network,” Signal Processing, vol. 51,no. 3, pp. 229–233, June 1996.
+
+**** @@html: <div style="color:#369">CMake的使用</div>@@
+
+**CMake目录结构**
+
+@@html:&ensp;&ensp;@@ Cmake的目录结构主要有三部分组成
+
++ CMakeLists.txt 文件
+
++ 以cmake文件扩展名的脚本文件
+
++ 以cmake文件扩展名的模块文件
+
+
+@@html:&ensp;&ensp;@@其中 ~CMakeLists.txt~ 文件是入口，一般放在源代码的顶目录中。
+脚本文件，可以使用 ~CMake -P~ 执行， 模块文件可以包含在脚本文件和 ~CMakeLists.txt~ 文件中。
+
+
+
+**CMake语法**
+
+@@html:&ensp;&ensp;@@ ~CMake~ 的语法核心是命令，命令的格式:
+
+#+ATTR_HTML: :style background-color:#eff0f1;
+#+BEGIN_SRC sh
+ 命令名 (命令参数...)
+#+END_SRC
+
+命令参数
+
+@@html:&ensp;&ensp;@@ ~CMake~ 中的命令参数有三种形式:
+
+1. ~[=..[参数内容]=..]~
+
+@@html:&ensp;&ensp;@@ 这种形式的命令参数不会解析参数内中的转义字符，以及变量，其中 ~..~ 表示我们可以使用不同的 ~=~ 的数量来表示长度. 不同长度可以互相内嵌。
+
+2. ~"参数内容"~
+
+@@html:&ensp;&ensp;@@ 这种形式的命令参数和上面的形式相反，会解析其中的转义字符，以及变量
+，但是不能内嵌。
+
+3. ~(参数内容)~
+
+@@html:&ensp;&ensp;@@ 这种形式的命令参数，不能包含任何空格， ~(~  , ~)~ , 或者 ~\~ 符号,除非被转义,
+转义字符和变量都会被解析。
+
+
+变量
+
+@@html:&ensp;&ensp;@@ CMake中允许定义和使用变量。
+
+~设置变量~
+
+@@html:&ensp;&ensp;@@ CMake中可以使用 ~set()~ 命令来定义一个变量
+
+CMake中的变量名字是大小写敏感的。CMake中的变量命名可以是任意文本但是还是推荐使用字母， ~_~ , ~-~ ,进行命名。
+
+#+BEGIN_SRC sh
+
+ set (Tutorial_VERSION_MAJOR 1)
+ set (Tutorial_VERSION_MINOR 0)
+
+#+END_SRC
+
+
+注释
+
+@@html:&ensp;&ensp;@@ CMake中的注释有两种，方括号注释和行注释
+
+~方括号注释~
+
+@@html:&ensp;&ensp;@@ 方括号注释主要使用在命令参数里面，用来注释命令参数
+
+#+BEGIN_SRC sh
+
+message("First Argument\n" #[[Bracket Comment]] "Second Argument")
+
+#+END_SRC
+
+@@html:&ensp;&ensp;@@ 上面只是注释了 ~Bracket Comment~ 参数(这个特性只有版本大于等于3.0才支持)
+
+~行注释~
+
+@@html:&ensp;&ensp;@@ 行注释经常用来注释单行代码
+
+#+BEGIN_SRC sh
+# 这是行注释
+message("First Argument\n" # 这是行注释
+        "Second Argument") # 这是行注释
+#+END_SRC
+
+
+作用域
+
+~变量的作用域~
+
+@@html:&ensp;&ensp;@@ 变量的作用域分为三种，函数作用域，目录作用域，缓存作用域。
+
+@@html:&ensp;&ensp;&ensp;@@ ~函数作用域~ : 在函数内定义的变量都是在函数作用域内
+
+@@html:&ensp;&ensp;&ensp;@@ ~目录作用域~ : 凡是不是在函数内定义的都是在目录作用域内
+
+@@html:&ensp;&ensp;&ensp;@@ ~缓存作用域~ : 一般Cmake项目第一次运行的时候会为相关的变量建立缓存，缓存变量是相对独立的，只能通过特定的 ~set()~ 或者 ~unsert()~ 的选项修改
+
+
+@@html:&ensp;&ensp;@@ 当遇到一个变量的时候， ~CMake~ 首先以函数作用域，目录作用域，缓存作用域一次进行查找。
+
+
+CMake项目配置
+
+~基本的配置~
+
+#+BEGIN_SRC sh
+ cmake_minimum_required (VERSION 2.6) 
+ project (Tutorial)
+ add_executable(Tutorial tutorial.cpp)
+#+END_SRC
+
++ @@html:&ensp;&ensp;@@ ~cmake_minimum_required (VERSION 2.6)~ 规定了CMake版本不能低于*2.6* 
+
+#+BEGIN_SRC sh
+cmake_minimum_required(VERSION major.minor[.[patch.tweak]][FATAL_ERROR])
+#+END_SRC
+
+
+
++ @@html:&ensp;&ensp;@@ ~project()~ 定义了项目的名字，同时将项目的名字保存到 ~PROJECT_NAME~ 变量中。同时设置了 ~PROJECT_SOURCE_DIR~  , ~<PROJECT-NAME>_SOURCE_DIR~ , 
+~PROJECT_BINARY_DIR~ , ~<PROJECT-NAME>_BINARY_DIR~ 等相关变量
+
+#+BEGIN_SRC sh
+
+project(<PROJECT-NAME> [LANGUAGES] [<language-name>...])
+project(<PROJECT-NAME>
+        [VERSION <major>[.<minor>[.<patch>[.<tweak>]]]]
+        [LANGUAGES <language-name>...])
+#+END_SRC
+
+@@html:&ensp;&ensp;@@ 上面将项目的名字定义为 ~Tutorial~
+
+
++ @@html:&ensp;&ensp;@@ ~add_executable~  定义了将特定的源文件生成特定的执行文件
+
+#+BEGIN_SRC sh
+
+add_executable(<name> [WIN32] [MACOSX_BUNDLE]
+               [EXCLUDE_FROM_ALL]
+               source1 [source2 ...])
+#+END_SRC
+
+@@html:&ensp;&ensp;@@ 上面将源目录的 ~tutorial.cpp~ 文件规定生成一个 ~Tutorial~ 的可执行文件。
+
+*** @@html: <div style="color:#369">todo</div>@@
+
++ 详细了解cpp中的function->return type的用法
++ 写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
++ 了解C++中的异常的使用
++ 在emacs或者vim中实现一个小的智能程序
++ 写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)
++ 在vim移植emacs的org-mode(针对markdown)
++ 命令行的qq聊天(vim-plugin,emacs-plugin)
++ 探究真正意义上的人工智能
++ 学习黑客的思维
++ 写个备份Gentoo Linux的脚本(Live版本,iso格式)
++ 写个像Grammerly的功能的软件
++ 写方面绑定手机的各种账号更换
++ 看王垠的40行代码
++ 学习scheme语言
++ 详细看《Chapter 13. Copy contral》
++ 详细看《 Chapter 12. Dynamic Memory》
++ 详细看《13.1.4（p. 504）》
++ 了解C++里面的lamda表达式
++ C++的线程相关操作
++ 看825页的dynamic_cast(看完虚函数再看)
++ 《 CPP prime 》 看到Circumventing the Virtual Mechanism
+
+
+*** @@html: <div style="color:#369">明日计划</div>@@
+

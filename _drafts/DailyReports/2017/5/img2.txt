@@ -1,0 +1,25 @@
+#+BEGIN_DITAA  asciiExampleWithColor.png -o -r -S
+
+       +----------+ edit +----------+   input +----------+ compile +----------+
+       |  cPNK    |      |  cRED    |         |   cGRE   |         |  cPNK    |
+       | refined  |<-----+ h,cpp    +-------->+ compiler,+-------->+Executable|
+       |   h,cpp  |      |          |         | linker   |         |   File   |
+       |          |      |          |         |          |         |          |
+       +----------+      +----+-----+         +----------+         +----------+
+                              | input
+                              v
+                         +----------+
+                         |  cGRE    |
+                         | doxygen  |
+                         |          |
+                         +----+-----+
+                              | process
+                              v
+                         +----------+
+                         |  cPNK    |
+                         | Doxgen   |
+                         | Document |
+                         |          |
+                         +----------+
+
+#+END_DITAA

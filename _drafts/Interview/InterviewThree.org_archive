@@ -1,0 +1,27 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /mnt/D/Developer/WorkPlace/Blog/Interview/InterviewThree.org
+
+
+* PHP基础题：
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2017-07-04 二 08:55
+  :ARCHIVE_FILE: /mnt/D/Developer/WorkPlace/Blog/Interview/InterviewThree.org
+  :ARCHIVE_OLPATH: 面试的问题
+  :ARCHIVE_CATEGORY: InterviewThree
+  :END:
+PHP语言的历史和PHP语言和C语言的区别。
+
+这个问题其实分为两个小问题，一个是PHP语言的历史（这个问题很操蛋的好不好），一个是PHP语言和C语言的区别（这个问题被面试中提到过了很多次，mark一下）。我是这样回答的：
+
+我：我本身并不是从早期的PHP开发者而来的，所以并不是对PHP这门语言的发展历史细节了解的很清楚，但是我大概知道PHP为什么会被发明。
+
+面试官： 那聊一聊为什么会被发明？
+
+我：因为传统的开发语言，比如 ~C~ , ~Java~ 等语言，在字符串方面处理方面不太方便，而作为服务器后端的主要工作就是字符串的拼接和字符串的处理。所以PHP开发者，在C语言的基础上，根据 ~cgi~ (通用网关接口) 的标准
+开发了PHP，这个也就是 ~PHP~ 的雏形，后面逐渐由喜欢的开源工作者们一起开发完善，就成了现在的PHP。
+
+
+
+

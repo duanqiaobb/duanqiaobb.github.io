@@ -1,0 +1,5 @@
+关于windows10 80端口被占用的解决方案：
+    sc  config http start=disabled
+
+关联文章:
+     http://my.oschina.net/Majw/blog/508661

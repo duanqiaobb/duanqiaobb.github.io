@@ -1,0 +1,260 @@
+% Created 2017-04-27 Thu 15:45
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usetheme{default}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.2.1 (Org mode 9.0.5)}, 
+ pdflang={English}}
+\begin{document}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\begin{frame}[label={sec:org4adfcd3}]{}
+\begin{itemize}
+\item 30前将普通傅里叶变化的算法和web程序写出来以及论文弄好(还有4天)
+\item 有道口语一课（切记）
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile,label={sec:org77cb714}]{}
+ \begin{block}{C语言中的复数操作}
+ 复数在数学运算中十分重要，在编写数值运算或者算法的时候，我们会用到复数这种概念。
+那么，复数在C/C++语言中是如何表示的呢？我们接下来一一介绍。
+
+\begin{itemize}
+\item C语言中复数
+\end{itemize}
+
+ 在数学中一个复数可以定义为 \(z=a + bi\) 的形式。 \texttt{C} 语言在 \texttt{ISO C99} 时就引入了复数类型。它是通过 \texttt{complex.h} 中定义的。
+我们可以使用 \texttt{complex} , \texttt{\_\_complex\_\_} , 或 \texttt{\_ComplexI} 类型符号来表示。在C语言中有三种复数类型，分别为 \texttt{float complex} , \texttt{double complex} , \texttt{long double complex} 。他们之间
+的区别就是表示复数中实部和虚步的数的数据类型不同。 \texttt{complex} 其实就是一个数组，数组中有两个元素，一个表示复数的实部，一个表示复数的虚部。
+
+\begin{itemize}
+\item 定义一个复数
+\end{itemize}
+
+ 在 \texttt{complex.h} 头文件中定义了两个宏 \texttt{\_Complex\_I} 和 \texttt{I} 来创建一个复数。
+
+\begin{verbatim}
+Macro: const float complex _Complex_I;
+Macro: const float complex  I;
+\end{verbatim}
+
+
+
+ 这两个宏表示复数 \(0+1i\) , 我们可是使用这个单位复数来创建任何复数。
+
+\begin{verbatim}
+#include <stdio.h>
+#include <complex.h>
+
+int main(int argc, char *argv[])
+{
+  complex  double  a = 3.0 + 4.0 * _Complex_I;
+  __complex__ double b = 4.0 + 5.0 * _Complex_I;
+  _Complex  double c = 5.0 + 6.0 * _Complex_I;
+
+  printf("a=%f+%fi\n", creal(a),cimag(a));
+  printf("b=%f+%fi\n", creal(b), cimag(b));
+  printf("c=%f+%fi\n", creal(c), cimag(c));
+
+
+
+  printf("the arg of a is %d", carg(a));
+
+  return 0;
+}
+\end{verbatim}
+
+\begin{verbatim}
+a=3.000000+4.000000i
+b=4.000000+5.000000i
+c=5.000000+6.000000i
+the arg of a is 176
+\end{verbatim}
+
+\begin{itemize}
+\item 复数的基本操作函数
+\end{itemize}
+
+ 在 \texttt{complex.h} 头文件中定义一些对复数的基本操作的函数。
+
+
+\begin{center}
+\begin{tabular}{ll}
+函数 & 功能\\
+\hline
+creal & 获取复数的实部\\
+cimag & 获取复数的虚部\\
+conj & 获取复数的共轭\\
+carg & 代表,复平面上穿过原点和复数在复平面表示的点,的直线和实数轴之间的夹角\\
+cproj & 返回复数在黎曼球面上的投影\\
+\end{tabular}
+\end{center}
+
+
+\begin{itemize}
+\item 复数的数值操作
+\end{itemize}
+
+ 复数类型也可以像普通数值类型， \texttt{int, double, long} 一样进行直接使用数值操作符号，进行数值操作。
+
+\begin{verbatim}
+#include <stdio.h>
+#include <complex.h>
+
+int main(int argc, char *argv[])
+{
+  complex  double  a = 3.0 + 4.0 * _Complex_I;
+  __complex__ double b = 4.0 + 5.0 * _Complex_I;
+  _Complex  double c = 5.0 + 6.0 * _Complex_I;
+
+  complex double d =a + b;
+  complex double f = a *b ;
+  complex double g = a/b;
+
+  printf ("d=a+b=%f+%fi\n",creal(d),cimag(d));
+  printf ("f=a*b=%f+%fi\n",creal(f),cimag(f));
+  printf("g=a/b=%f+%fi\n",creal(g),cimag(g));
+
+  return 0;
+}
+\end{verbatim}
+
+\begin{verbatim}
+d=a+b=7.000000+9.000000i
+f=a*b=-8.000000+31.000000i
+g=a/b=0.780488+0.024390i
+\end{verbatim}
+\end{block}
+
+\begin{block}{C++中的复数}
+ C++中的复数操作在C语言基础上引进了面向对象的特性，在 \texttt{C++} 头文件在 \texttt{complex} 中定义了一个 \texttt{complex} 类用来表示复数。同时为了兼容 \texttt{C} 的 \texttt{complex} 类型，也提供了一个 \texttt{complex.h} 的头文件。
+不同的是，在 \texttt{complex.h} 头文件中， \texttt{complex} 关键字被废弃，只能使用 \texttt{\_Complex} 和 \texttt{\_\_complex\_\_} 来使用 C风格的复数形式。
+
+\begin{itemize}
+\item 复数的定义
+\end{itemize}
+
+ 在C++中可以使用两种方式定义一个复数，一个使用C风格 \texttt{\_Complex} 和 \texttt{\_\_complex\_\_} ，一个是使用 \texttt{complex} 类。
+
+
+\begin{verbatim}
+#include <iostream>
+#include <complex>
+#include <complex.h>
+using namespace std;
+int main(int argc, char *argv[])
+{
+  complex<double> mycomplex(2.000,2);
+  _Complex double  mycomplex2 = 2.000 + 3I;
+  __complex__ double mycomplex3 = 2.000 + 4I;
+
+  cout << mycomplex << endl;
+  cout << "(" << creal(mycomplex2) << "," << cimag(mycomplex2) << ")" << endl;
+  cout << "(" << creal(mycomplex3) << "," << cimag(mycomplex3) << ")" << endl;
+  return 0;
+}
+\end{verbatim}
+
+\begin{verbatim}
+(2,2)
+(2,3)
+(2,4)
+\end{verbatim}
+
+
+\begin{itemize}
+\item 复数的基本操作函数
+\end{itemize}
+
+ 在C++中既可以使用 \texttt{C} 风格的相关函数。
+
+
+\begin{center}
+\begin{tabular}{ll}
+函数 & 功能\\
+\hline
+creal & 获取复数的实部\\
+cimag & 获取复数的虚部\\
+conj & 获取复数的共轭\\
+carg & 获取,复平面上穿过原点和复数在复平面表示的点,的直线和实数轴之间的夹角\\
+cproj & 返回复数在黎曼球面上的投影\\
+\end{tabular}
+\end{center}
+
+ 也可以使用 \texttt{complex} 类中的相关操作方法。
+
+
+\begin{center}
+\begin{tabular}{ll}
+方法 & 功能\\
+\hline
+complex.real() & 获取复数的实部\\
+complex.imag() & 获取复数的虚部\\
+complex.abs() & 获取复数的绝对值\\
+complex.arg() & 获取,复平面上穿过原点和复数在复平面表示的点,的直线和实数轴之间的夹角\\
+complex.norm() & 获取复数的范数\\
+complex.conj() & 获取复数的共轭\\
+complex.polar() & 获取极坐标对应的复数\\
+complex.proj() & 返回复数在黎曼球面上的投影\\
+\end{tabular}
+\end{center}
+\end{block}
+\end{frame}
+
+
+
+
+\begin{frame}[label={sec:org2e63169}]{}
+\begin{itemize}
+\item 详细了解cpp中的function->return type的用法
+\item 写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
+\item 了解C++中的异常的使用
+\item 在emacs或者vim中实现一个小的智能程序
+\item 写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)
+\item 在vim移植emacs的org-mode(针对markdown)
+\item 命令行的qq聊天(vim-plugin,emacs-plugin)
+\item 探究真正意义上的人工智能
+\item 学习黑客的思维
+\item 写个备份Gentoo Linux的脚本(Live版本,iso格式)
+\item 写个像Grammerly的功能的软件
+\item 写方面绑定手机的各种账号更换
+\item 看王垠的40行代码
+\item 学习scheme语言
+\item 详细看《Chapter 13. Copy contral》
+\item 详细看《 Chapter 12. Dynamic Memory》
+\item 详细看《13.1.4（p. 504）》
+\item 了解C++里面的lamda表达式
+\item C++的线程相关操作
+\item 看825页的dynamic\(_{\text{cast}}\)(看完虚函数再看)
+\item 《 CPP prime 》 看到Circumventing the Virtual Mechanism
+\item grub,UEFI,Legacy,Windows Loader,以及其他相关加载器的相关知识
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org93c62bc}]{}
+\end{frame}
+\end{document}

@@ -1,0 +1,70 @@
+# Created 2017-04-10 Mon 21:07
+#+TITLE: 
+* @@html:<div style="color:#369">今日计划</div>@@
+
+- 看盲源分离和神经网络方面的知识,以及查找其他代替方法
+- 15号将程序写出来以及论文弄好(还有五天)
+- 完成论文的第一章,图片基础知识的介绍
+- 有道口语一课（切记）
+
+
+
+* @@html:<div style="color:#369">今日收获</div>@@
+
+
+** 盲源分离
+
+*** 盲源分离的数学模型
+
+盲源分离是通信领域中的一个概念，它是一种能从来自多个传感器输出的混合信号，在混合信号之间并不线性相关，原始信号未知，信号混合方法也未知的情况下，分析出没有观测的原始信号。
+
+  假设具有 $m$ 个独立的信号源 $s_1(t),...,s_m(t)$ 和 $n$ 个独立的观察量 $x_1(t),...,x_n(t)$ ,观察量和信号源的关系如下:
+
+$x(t) = As(t)$
+
+其中 $x(t) = [x_1(t),....,x_n(t)]^T$ ,
+
+$s(t) = [s_1(t),...,s_m(t)]^T$, $A$ 是一个 $nxm$ 的系数矩阵，原问题变成了已知 $x(t)$ 和 $s(t)$ 的独立性，求对 $s(t)$ 的估计问题。假定有如下公式
+
+$y(t) = Wx(t)$
+
+其中 $y(t)$ 是对 $s(t)$ 的估计, $W$ 是一个 $mxn$ 的系数矩阵， 问题变成了如何有效的对矩阵 $W$ 做出估计。
+
+*** 问题的基本假设
+
+ 各源信号 $s_i(t)$ 均为零均值信号， 实随机变量，信号之间统计独立，如果源信号 $s_i(t)$ 的概率面密度 $p_i(s_i)$, 则 $s(t)$ 的概率密度
+为: $p(s) = \prod_{i=1}^np_i(s_i))$
+
+
+
+** @@html:<div style="color:#369">@@ 引用@@html:</div>@@
+
+[[https://zh.wikipedia.org/wiki/%25E7%259B%25B2%25E4%25BF%25A1%25E5%258F%25B7%25E5%2588%2586%25E7%25A6%25BB][盲信号分离]]
+
+
+* @@html: <div style="color:#369">todo</div>@@
+
+- 详细了解cpp中的function->return type的用法
+- 写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
+- 了解C++中的异常的使用
+- 在emacs或者vim中实现一个小的智能程序
+- 写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)
+- 在vim移植emacs的org-mode(针对markdown)
+- 命令行的qq聊天(vim-plugin,emacs-plugin)
+- 探究真正意义上的人工智能
+- 学习黑客的思维
+- 写个备份Gentoo Linux的脚本(Live版本,iso格式)
+- 写个像Grammerly的功能的软件
+- 写方面绑定手机的各种账号更换
+- 看王垠的40行代码
+- 学习scheme语言
+- 详细看《Chapter 13. Copy contral》
+- 详细看《 Chapter 12. Dynamic Memory》
+- 详细看《13.1.4（p. 504）》
+- 了解C++里面的lamda表达式
+- C++的线程相关操作
+- 看825页的dynamic_cast(看完虚函数再看)
+- 《 CPP prime 》 看到Circumventing the Virtual Mechanism
+
+
+* @@html: <div style="color:#369">明日计划</div>@@

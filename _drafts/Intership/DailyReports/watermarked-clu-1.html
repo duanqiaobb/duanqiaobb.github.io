@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>watermarked-clu-1.html</title>
+
+</head>
+
+<body>
+
+<p>&ensp;&ensp;&ensp;&ensp;数字盲水印是数字防伪追踪的一种方式，主要应用于图像领域。其实数字盲水印是数字水印的一种，属于信息隐藏领域。数字盲水印实质上是将相关敏感信息隐藏到图片当中，让用户无法从图片中判别敏感信息是否存在，并且难以获得敏感信息。 关于信息隐藏的特点:</p>
+
+<ol>
+<li>鲁棒性，也就是抗破坏性, 指不因图像文件的某种改动而导致隐藏的敏感信息丢失的能力，这里的改动指的是对传输过程中的信道噪音、滤波操作、重采样、有损编码亚索（如jpg）、D/A或A/D转换等</li>
+<li>不可检测性 , 也就是和原始图片的一致特性，如具有一致的噪音分布，从而使非法拦截这无法判断是否有隐蔽的敏感信息</li>
+<li>透明性，这个很简单，不能让用户从肉眼看到隐藏的敏感信息</li>
+<li>安全性，指隐藏算法具有很强的抗攻击能力，让它能够承受一定程度的人为攻击而不破坏隐藏的敏感信息</li>
+<li>自恢复性，使图片经过一些操作或者变换之后，仍然能从留下的片段数据中恢复隐藏数据，例如，用户剪切一半的图片，我们仍然能从剪切中的图片中获得隐藏敏感信息。</li>
+</ol>
+
+<h5><div style="color:#369">基本概念的说明 </div></h5>
+
+<ul>
+<li>时域  &ensp;&ensp;&ensp;&ensp;时域就是一个一时间为参照物的时间，跟我们现实时间很像。我们也可以将它看做一个以时间自变量的函数<code>$f(t)$</code></li>
+<li>空域  &ensp;&ensp;&ensp;&ensp;图像的空域就是我们平常所见的图像，准确来说图像的灰度分布。</li>
+<li>频域  &ensp;&ensp;&ensp;&ensp;图像的频率指的是图像中灰度变化剧烈的程度。如果图像的灰度变化快的话就是说图片的频率高，如果图像的灰度变化慢的话说明图片的频率低。</li>
+<li>噪声  &ensp;&ensp;&ensp;&ensp;图像中的噪声是，在图像拍摄和传输过程中的给给最终生成的图像质量造成的影响的因素.</li>
+</ul>
+
+<h5><div style="color:#369">典型数字水印的系统模型 </div></h5>
+
+<p><img src="picture254-1.png" alt="加密模型" /></p>
+
+<p><img src="picture254-2.png" alt="解密模型" /></p>
+
+<h5><div style="color:#369">关于数字盲水印的实现的几种方法。 </div></h5>
+
+<ul>
+<li><p>空域算法实现
+&ensp;&ensp;&ensp;&ensp; 这种算法就是将信息嵌入到随机选择的图像中的不重要的像素点中,这样可以保证不重要的像素位。这样能够保证水印是不可见的，但是由于使用了不重要的像素点，用户可能通过对图片进行操作,比如滤波，变形，图像量化的操作从而能在不破坏图像的整体质量的基础上进行破坏水印, 鲁棒性差,patchwork比较典型的空域实现算法。但是该算法实现相对于简单。对鲁棒性要求不高的可以考虑这种方法实现。</p></li>
+<li><p>变换域+扩展频谱算法实现(关于知乎中的讨论的支付宝如何通过截屏来找到刷月饼的员工的最高支持贴就是用的这种算法)
+&ensp;&ensp;&ensp;&ensp;这种方法简单的来说，将图像进行一系列的变化,也利用下面的扩展频谱通信算法, 将图像的空域信息通过一系列的数学变化转换为频率信息，就是将水印从不重要像素位转移到图像的低频段，从而提高空域算法的鲁棒性的特点，但是该算法，复杂度高，需要进行多种数学变化。</p></li>
+<li><p>压缩域算法</p></li>
+<li>NEC算法</li>
+<li>生理模型算法</li>
+</ul>
+
+<h5><div style="color:#369">傅里叶算法</div></h5>
+
+<p>&ensp;&ensp;&ensp;&ensp;傅里叶在数学中分为傅里叶系数和傅里叶变化，傅里叶级数认为它认为任何周期函数都可以表示为不同频率的正弦或者余弦之和的形式。而傅里叶变换就是认为任何非周期函数也可以用正弦和或者余弦乘以加权函数的积分来表示。</p>
+
+<h6><div style="color:#369">傅里叶级数和变换的特点</div></h6>
+
+<p>&ensp;&ensp;&ensp;&ensp;傅里叶级数或者变换表示的函数特征完全可以通过傅里叶反变换来重建，而且不会丢失任何信息。这一是为什么傅里叶变换能够大力的被运用于图像处理的原因.因为它可以使我们工作于另一个域'傅里叶域',在这个域中进行图像处理，然后在返回函数的原始域中不丢失任何信息。</p>
+
+<h6><div style="color:#369">傅里叶级数 </div></h6>
+
+<p><img src="picture866-1.png" alt="傅里叶级数" /></p>
+
+<h6><div style="color:#369">傅里叶变换</div></h6>
+
+<p><img src="picture372-1.png" alt="傅里叶变换" /></p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">其实简单来说傅里叶变化就是将你提供的一个非周期连续的函数(空域)转换另一个非周期连续的函数(频域)，同时转换的函数(频域)被修改之后还能无损的通过逆变换转化为原来的函数(空域)，而且不损失任何信息</span></p>
+
+<h6><div style="color:#369">傅里叶变化加盲水印的模型</div></h6>
+
+<p><strong>加水印模型</strong>
+<img src="picture460-1.png" alt="加水印模型" /></p>
+
+<p><strong>解水印模型</strong></p>
+
+<p><img src="picture948-1.png" alt="解水印模型" /></p>
+
+<h6><div style="color:#369">Matlab中的图像处理普及 </div></h6>
+
+<p><strong>基本函数介绍</strong></p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">figure()|figure </span>&ensp;&ensp;&ensp;&ensp;打开一个图形窗口显示图片用</p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">imshow()</span>&ensp;&ensp;&ensp;&ensp;显示一个图片</p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">imread()</span>&ensp;&ensp;&ensp;&ensp;读取一张图片,Matlab中默认用unit8或者unit16的格式显示图片数据</p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">title()</span>&ensp;&ensp;&ensp;&ensp;设置图形窗口的标题</p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">size()</span>&ensp;&ensp;&ensp;&ensp;获取三角连通列表的各部分的的大小</p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">randperm(n)</span>&ensp;&ensp;&ensp;&ensp;生成一列n个从1-n的随机行向量,</p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">zeros()</span>&ensp;&ensp;&ensp;&ensp;初始化单位矩阵, 例如zeros(n,m,l),生成一个m×n×l的单位矩阵</p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">fft2()</span>&ensp;&ensp;&ensp;&ensp;进行2维快速傅里叶变换</p>
+
+<p>```matlab</p>
+
+<p>%% 傅里叶变换加水印</p>
+
+<p>clc;clear;close all;</p>
+
+<p>%设置水印能量
+alpha = 1;</p>
+
+<p>%读取图片
+im = double(imread('moxiutheme1.jpg'))/255;
+mark = double(imread('water.png'))/255;
+%figure,imshow(im),title('original iamge');
+%figure,imshow(mark),title('watermark');</p>
+
+<p>%im = double(imread('picture.jpg'))/255;
+%
+%im<em>org = imread('picture.jpg');
+%%I = rgb2gray(im);
+%figure,imshow(im);
+%title('原始图片');
+%figure,imshow(im</em>org);
+%title('原始图片2');
+%</p>
+
+<p>% 给水印用随机数列替换的方式编码
+imsize = size(im);
+%生成随机数列
+TH = zeros(imsize(1)<em>0.5, imsize(2), imsize(3));
+TH1 = TH;
+TH1(1:size(mark,1),1:size(mark,2),:) = mark;
+M = randperm(0.5</em>imsize(1));
+N = randperm(imsize(2));
+%save('encode.mat','M','N');
+for i = 1: imsize(1)*0.5
+    for j=1:imsize(2)
+        TH(i,j,:) = TH1(M(i),N(j),:);
+    end
+end</p>
+
+<p>% 编码对齐，也就是将水印图像上下弄两份
+mark_ = zeros(imsize(1), imsize(2), imsize(3));
+mark<em>(1:imsize(1)*0.5,1:imsize(2),:) = TH;
+for i = i:imsize(1)*0.5
+    for j=1:imsize(2)
+        mark</em>(imsize(1)+1-i,imsize(2)+1-j,:)=TH(i,j,:);
+    end
+end
+%figure,imshow(mark_),title('编码后的水印');</p>
+
+<p>%%添加水印
+%对图像进行二维快速傅里叶变换，将图像从空域转到频域
+FA = fft2(im);
+%figure,imshow(FA),title('频率域下的图像');
+FB=FA+alpha*double(mark<em>);
+%figure,imshow(FB);title('频率域下的水印图像');
+%对水印图像进行二维快速逆傅里叶变换,将图像从频域重新转回
+FAO=ifft2(FB);
+figure,imshow(FAO),title('水印图像');
+%将添加水印后的图像，重新转回
+%imwrite(uint8(FAO), 'watermarked</em>image.jpg');
+%计算水印图像和原来图像的残差
+RI = FAO-double(im);
+%figure,imshow(uint8(RI));title('频谱的残差图');</p>
+
+<p>x1 = 1:imsize(2);
+y1 = 1:imsize(1);
+[xx,yy] = meshgrid(x1,y1);
+%figure,plot3(xx,yy,FA(:,:,1).^2+FA(:,:,2).^2+FA(:,:,3).^2),title('源图像的频谱');
+%figure,plot3(xx,yy,FB(:,:,1).^2+FB(:,:,2).^2+FB(:,:,3).^2),title('水印图像的频谱');
+%figure,plot3(xx,yy,FB(:,:,1).^2+FB(:,:,2).^2+FB(:,:,3).^2-FA(:,:,1).^2+FA(:,:,2).^2+FA(:,:,3).^2),title('残差频谱');</p>
+
+<p>%%提取水印
+FA2=fft2(FAO);
+G=(FA2-FA)/alpha;
+GG=G;
+for i=1:imsize(1)<em>0.5
+    for j=1:imsize(2)
+        GG(M(i),N(j),:) = G(i,j,:);
+    end
+end
+for i=1:imsize(1)</em>0.5
+    for j=1:imsize(2)
+        GG(imsize(1)+1-i, imsize(2)+1-j,:) = GG(i,j,:);
+    end
+end
+figure,imshow(GG),title('提取的水印图像');</p>
+
+<p>```
+<em>待加水印的图片</em>
+<img src="org_image.png" alt="待加水印的图片" /></p>
+
+<p><em>水印图像</em></p>
+
+<p><img src="watermark_image.png" alt="水印" /></p>
+
+<p><em>编码后的水印图像</em></p>
+
+<p><img src="encode_watermark_image.png" alt="编码后的水印图像" /></p>
+
+<p><em>频域下的原始图像</em></p>
+
+<p><img src="org_image_frequency_domain.png" alt="频域下的原始图像" /></p>
+
+<p><em>频域下的加了水印的图像</em></p>
+
+<p><img src="watermarked_image_frequency_domain.png" alt="频域下的加了水印的图像" /></p>
+
+<p><em>频域下的残差图</em>
+<img src="residual_image_frequency_domain.png" alt="频域下的残差图" /></p>
+
+<p><em>原始图像的频谱图</em></p>
+
+<p><img src="org_image_frequency_spectrum.png" alt="原始图像的频谱图" /></p>
+
+<p><em>加了水印后的图像的频谱图</em></p>
+
+<p><img src="watermarked_image_frequency_spectrum.png" alt="加了水印后的图像的频谱图" /></p>
+
+<p><em>残差频谱图</em></p>
+
+<p><img src="residual_image_frequency_spectrum.png" alt="残差频谱图" /></p>
+
+<p><em>加了水印的图像</em></p>
+
+<p><img src="watermarked_image.png" alt="加了水印的图像" /></p>
+
+<p><em>提取后的水印</em></p>
+
+<p><img src="extracted_watermark.png" alt="提取后的水印" /></p>
+
+<h5><div style="color:#369">C++实现 </div></h5>
+
+<p><em>OpenCV的编译和安装</em></p>
+
+<p><span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;">这里只针对Ubuntu,如果是其他的Linux版本，请用相应的包管理器</span></p>
+
+<p>```shell</p>
+
+<p>##必要的环境准备</p>
+
+<p>sudo apt-get install build-essential
+  sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+  sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev  //中间可能会遇到libjasper-dev依赖问题，但是这并不妨碍我们的编译安装</p>
+
+<p>### 获取opencv的源码
+  sudo git clone https://github.com/opencv/opencv.git</p>
+
+<p>### 编译</p>
+
+<p>cd openvc
+  mkdir builds
+  cd builds
+  sudo  cmake -D CMAKE<em>BUILD</em>TYPE=RELEASE -D CMAKE<em>INSTALL</em>PREFIX=/usr/local .. //如果这一步出错请到下面找对应的解决方法</p>
+
+<p>sudo make 
+  sudo make install</p>
+
+<p>```</p>
+
+<p><strong>CMake出错</strong></p>
+
+<p>&ensp;&ensp;&ensp;&ensp;在编译OpenCV的过程中可能会出现类似:</p>
+
+<p>```shell
+$ cmake -D CMAKE<em>BUILD</em>TYPE=RELEASE -D CMAKE<em>INSTALL</em>PREFIX=/usr/local ..
+-- Detected version of GNU GCC: 54 (504)
+RegularExpression::compile(): Nested *?+.
+RegularExpression::compile(): Error in compile.
+CMake Error at cmake/OpenCVUtils.cmake:116 (if):
+  if given arguments:</p>
+
+<pre><code>"/mnt/D/Developer/WorkPlace/Personal-Workplace-Temp/Algorithm/C++/WaterMark/opencv/builds" "MATCHES" "^/mnt/D/Developer/WorkPlace/Personal-Workplace-Temp/Algorithm/C++/WaterMark/opencv" "OR" "/mnt/D/Developer/WorkPlace/Personal-Workplace-Temp/Algorithm/C++/WaterMark/opencv/builds" "MATCHES" "^/mnt/D/Developer/WorkPlace/Personal-Workplace-Temp/Algorithm/C++/WaterMark/opencv/builds" "OR" "(" "OPENCV_EXTRA_MODULES_PATH" "AND" "/mnt/D/Developer/WorkPlace/Personal-Workplace-Temp/Algorithm/C++/WaterMark/opencv/builds" "MATCHES" "^" ")"
+</code></pre>
+
+<p>Regular expression
+  "^/mnt/D/Developer/WorkPlace/Personal-Workplace-Temp/Algorithm/C++/WaterMark/opencv"
+  cannot compile
+Call Stack (most recent call first):
+  cmake/OpenCVUtils.cmake:131 (ocv<em>is</em>opencv<em>directory)
+  CMakeLists.txt:458 (ocv</em>include_directories)</p>
+
+<p>-- Configuring incomplete, errors occurred!
+See also "/mnt/D/Developer/WorkPlace/Personal-Workplace-Temp/Algorithm/C++/WaterMark/opencv/builds/CMakeFiles/CMakeOutput.log".
+```
+这是由于opencv的源文件目录名,或者编译的目标目录名中'+','*'这样的元字符而导致的，解决方法是这些特殊字符进行转义，在opencv的源代码目录下，这里为opencv，的文件OpenCVUtils.cmake文件中,这里的路径为opencv/cmake/OpenCVUtils.make文件中,</p>
+
+<p>```cmake
+function(ocv<em>is</em>opencv<em>directory result</em>var dir)
+  get<em>filename</em>component(<strong>abs<em>dir "${dir}" ABSOLUTE)
+  if("${</strong>abs</em>dir}" MATCHES "^${OpenCV<em>SOURCE</em>DIR}"
+      OR "${<strong>abs<em>dir}" MATCHES "^${OpenCV</em>BINARY<em>DIR}"
+      OR (OPENCV</em>EXTRA<em>MODULES</em>PATH AND "${</strong>abs<em>dir}" MATCHES "^${OPENCV</em>EXTRA<em>MODULES</em>PATH}"))
+    set(${result<em>var} 1 PARENT</em>SCOPE)
+  else()
+    set(${result<em>var} 0 PARENT</em>SCOPE)
+  endif()
+endfunction()</p>
+
+<p>```
+改为</p>
+
+<p><code>cmake
+function(ocv_is_opencv_directory result_var dir)
+  get_filename_component(__abs_dir "${dir}" ABSOLUTE)
+  string(REPLACE "++" "\\+\\+" __abs_dir_escaped ${__abs_dir})
+  string(REPLACE "++" "\\+\\+" OpenCV_SOURCE_DIR_ESCAPED ${OpenCV_SOURCE_DIR})
+  string(REPLACE "++" "\\+\\+" OpenCV_BINARY_DIR_ESCAPED ${OpenCV_BINARY_DIR}) 
+  if("${__abs_dir_escaped}" MATCHES "^${OpenCV_SOURCE_DIR_ESCAPED}" 
+          OR "${__abs_dir_escaped}" MATCHES "^${OpenCV_BINARY_DIR_ESCAPED}"
+          OR (OPENCV_EXTRA_MODULES_PATH AND "${__abs_dir}" MATCHES "^${OPENCV_EXTRA_MODULES_PATH}"))
+    set(${result_var} 1 PARENT_SCOPE)
+  else()
+    set(${result_var} 0 PARENT_SCOPE)
+  endif()
+endfunction()
+</code>
+对目录名进行转义</p>
+
+<h6><div style="color:#369">opencv的基本概念</div></h6>
+
+<p>&ensp;&ensp;&ensp;&ensp;opencv是一个知名的图像视觉处理库，它提供了丰富的语言接口,C++, C , Python, Java, 同时支持多平台，Windows, Linux, Mac Os, ios, Android。他可以用来进行做图像识别，和图像处理的工作。</p>
+
+<h6><div style="color:#369">Mat数据类型 </div></h6>
+
+<p>&ensp;&ensp;&ensp;&ensp;Mat是OpenCV最基本的数据结构，OpenCV将从文件读取的图像和视频信息一般都存在Mat数据结构中，显然Mat是(Matrics 矩阵)的缩写。OpenCV的Mat跟Matlab中的矩阵类型很像, 但是又有一些区别。总的来说，对于矩阵的操作，两者是很相似的但是，数据存储方面还是有些不同。</p>
+
+<p>Mat数据结构主要是包含2部分: Header 和 Pointer。 Header中主要包含矩阵大小， 存储方式， 存储地址等信息; Pointer中存储指向像素值的指针。</p>
+
+<p>```cpp
+    enum { MAGIC<em>VAL  = 0x42FF0000, AUTO</em>STEP = 0, CONTINUOUS<em>FLAG = CV</em>MAT<em>CONT</em>FLAG, SUBMATRIX<em>FLAG = CV</em>SUBMAT<em>FLAG };
+    enum { MAGIC</em>MASK = 0xFFFF0000, TYPE<em>MASK = 0x00000FFF, DEPTH</em>MASK = 7 };</p>
+
+<pre><code>/*! includes several bit-fields:
+     - the magic signature
+     - continuity flag
+     - depth
+     - number of channels
+ */
+int flags;
+//! the matrix dimensionality, &gt;= 2
+int dims;
+//! the number of rows and columns or (-1, -1) when the matrix has more than 2 dimensions
+int rows, cols;
+//! pointer to the data
+uchar* data;
+
+//! helper fields used in locateROI and adjustROI
+const uchar* datastart;
+const uchar* dataend;
+const uchar* datalimit;
+
+//! custom allocator
+MatAllocator* allocator;
+//! and the standard allocator
+static MatAllocator* getStdAllocator();
+static MatAllocator* getDefaultAllocator();
+static void setDefaultAllocator(MatAllocator* allocator);
+
+//! interaction with UMat
+UMatData* u;
+
+MatSize size;
+MatStep step;
+</code></pre>
+
+<p>```</p>
+
+<p>&ensp;&ensp;&ensp;&ensp;Mat常用来存储图像，一般来说Mat存储图像分为两种，一种是单通道二维数组和多通道二维数组， 其中单通道二维数组用来存储灰度图，多通道二位数组存储彩色图</p>
+
+<p><strong>单通道二维数组的存储结构</strong></p>
+
+<p><img src="single_channel.png" alt="单通道二维数组" /></p>
+
+<p><strong>多通道二位数组的存储结构</strong>
+<img src="rgb_channel.png" alt="多通道二维数组" /></p>
+
+<h6><div style="color:#369">OpenCV Mat的基本操作</div></h6>
+
+<p><strong>构造一个Mat</strong></p>
+
+<p>&ensp;&ensp;&ensp;&ensp;openvc中构建一个Mat数据有很多方法，你可以通过读取文件来构造一个Mat数据，通常是图片文件，你也可以通过自己定义数据来构建一个Mat数据</p>
+
+<p><em>通过读取文件构造一个Mat数据结构</em></p>
+
+<p><code>cpp
+    Mat M = imread("./water.jpg");
+</code></p>
+
+<p><em>通过自定义数据来构建一个Mat数据</em></p>
+
+<p>&ensp;&ensp;&ensp;&ensp; 通过自定义数据来构造一个Mat数据结构有很多方法，这里只是把常用的几种方法列出来，具体可以去看<span style="color:#c7254e;background-color:#f9f2f4;border:1px solid #f9f2f4; margin-left: 10px; margin-right: 10px; border-radius:6px;"><code>mat.hpp</code></span>文件中Mat类的构造函数</p>
+
+<p>&ensp;&ensp;&ensp;&ensp;1.&ensp;&ensp;通过<code>Mat(int rows, int cols, int type, const Scalar&amp; s)</code>;其中Scalar是一个待填充进去的标量</p>
+
+<p>```cpp</p>
+
+<pre><code>//构建一个3x2的4通道8位矩阵, 每个元素值为(1, 2, 3, 4)
+Mat M(3, 2, CV_8UC4, Scalar(1, 2 ,3, 4));
+cout « M « endl;
+</code></pre>
+
+<p>```</p>
+
+<p><code>shell
+[  1,   2,   3,   4,   1,   2,   3,   4;
+1,   2,   3,   4,   1,   2,   3,   4;]
+</code></p>
+
+<p>&ensp;&ensp;&ensp;&ensp;2.&ensp;&ensp;通过<code>Mat(Size const &amp;, int type)</code>构建一个Mat</p>
+
+<p>```cpp
+   //构建一个3x3的默认单通道矩阵，元素默认为0
+   Mat M(Size(3,3), CV_8U);
+   cout « M « endl;</p>
+
+<p>```</p>
+
+<p>```shell</p>
+
+<p>[0,   0,   0;
+ 0,   0,   0;
+ 0,   0,   0]</p>
+
+<p>```</p>
+
+<h6><div style="color:#369">8位和32位图片的区别 </div></h6>
+
+<p>&ensp;&ensp;&ensp;&ensp;通常图像使用无符号8位的格式来表示，这种格式可以兼容现在众多的图像库。opencv也只支持8位无符号的格式，如果图片被转成32位，那么opencv中的imshow函数无法正常显示图片，一般opencv会将所有非0的值转成1，随意32位的图片通常显示为白色图片</p>
+
+<h6><div style="color:#369"> opencv中的快速傅里叶实现 </div></h6>
+
+<p>&ensp;&ensp;&ensp;&ensp;opencv中dft函数，它的实现其实就是优化后的快速傅里叶变换实现的，直接使用dft函数即可(官方文档有说明
+<a href="http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_transforms/py_fourier_transform/py_fourier_transform.html">dft函数的实现</a>), 另外还有dlib, Armadillo库提供fft方法</p>
+
+<ul>
+<li>数字水印的几种技术实现总结</li>
+</ul>
+
+<p>| 实现算法    | 加水印的方法                                                                 | 难易程度 | 安全性 | 运算量 | 增加图片的大小 | 解水印是否需要原图 | 影响原图 |
+| ----------- | ---------------------------------------------------------------------------- | -------- | ------ | ------ | -------------- | ------------------ | -------- |
+| 1快速傅里叶 | 将水印图像信息或文字打在频域                                                 | 较简单   | 较低   | 较低   | 不增加         | 是                 | 较小     |
+| 2快速傅里叶 | 加水印图像信息或文字通过一定的随机编码，然后将水印信息叠加到图像的频域       | 较简单   | 较高   | 较低   | 不增加         | 是                 | 较小     | <br />
+| 3快速傅里叶 | 将水印图像信息或文字通过一定的随机编码，然后将水印信息嵌入到图像的频域       | 较难     | 较高   | 较低   | 增加           | 否                 | 较大     |
+| 4快速傅里叶 | 将水印图像信息或文字通过一定的随机编码，然后将水印的频域信息叠加在图像的频域 | 较难     | 较高   | 较高   | 不增加         | 是                 | 较小     |
+| 5快速傅里叶 | 将水印图像信息或文字通过一定的随机编码，然后将水印的频域信息嵌入在图像的频域 | 较难     | 较高   | 较高   | 增加           | 否                 | 较大     |
+| 6快速傅里叶 | 加水印方法同4),解水印方法使用盲源分离算法                                    | 难       | 较高   | 高     | 不增加         | 否                 | 较小     |</p>
+
+<h5><div style="color:#369">方案调整</div></h5>
+
+<p>&ensp;&ensp;&ensp;&ensp;鉴于业务场景需求，加了数字水印后，图片尺寸不能增加, 对原图不能造成视觉可见的影响, 并且解图片不能使用原图来解，于是做出如下方案调整:</p>
+
+<ol>
+<li><p>利用傅里叶变换添加水印，利用水印图片进行解水印</p></li>
+<li><p>利用傅里叶变换添加水印，盲源分析解水印</p></li>
+<li><p>基于IWT和SVD的数字图像逆水印算法</p></li>
+<li><p>基于排序和直方图修改的可逆信息隐藏</p></li>
+<li><p>基于八邻域像素的可逆信息隐藏的方法</p></li>
+<li><p>基于奇异值分解的近无损的可逆信息隐藏的相关方法</p></li>
+<li><p>基于路径搜索的可逆信息隐藏的方法</p></li>
+</ol>
+
+<h6><div style="color:#369">验证用加了水印的图像和水印图像做残差从而得到原图的c++代码</div></h6>
+
+<p>```cpp</p>
+
+<h1>include <opencv2/opencv.hpp></h1>
+
+<h1>include <iostream></h1>
+
+<p>using namespace std;
+using namespace cv;</p>
+
+<p>string getImgType (cv::Mat frame)
+{
+    int imgTypeInt = frame.type();
+    int numImgTypes = 28; // 7 base types, with 4 channels options each </p>
+
+<pre><code>int enum_ints[] =  {
+    CV_8UC1, CV_8UC2, CV_8UC3, CV_8UC4, CV_8SC1, CV_8SC2, CV_8SC3, CV_8SC4, CV_16UC1, CV_16UC2, CV_16UC3, CV_16UC4, CV_16SC1, CV_16SC2, CV_16SC3, CV_16SC4, CV_32SC1, CV_32SC2, CV_32SC3, CV_32SC4, CV_32FC1, CV_32FC2, CV_32FC3, CV_32FC4,  CV_64FC1, CV_64FC2, CV_64FC3, CV_64FC4 
+};
+
+string enum_string[] = {
+    "CV_8UC1,", "CV_8UC2,","CV_8UC3,", "CV_8UC4,", "CV_8SC1,", "CV_8SC2,", "CV_8SC3,", "CV_8SC4,", "CV_16UC1", "CV_16UC2", "CV_16UC3", "CV_16UC4", "CV_16SC1", "CV_16SC2", "CV_16SC3", "CV_16SC4", "CV_32SC1", "CV_32SC2", "CV_32SC3", "CV_32SC4", "CV_32FC1", "CV_32FC2", "CV_32FC3", "CV_32FC4",  "CV_64FC1", "CV_64FC2", "CV_64FC3", "CV_64FC4"};
+
+for (int i = 0; i&lt; numImgTypes; i++) 
+{
+    if (imgTypeInt == enum_ints[i]) 
+        return enum_string[i];
+
+}
+return "unknown image type";
+</code></pre>
+
+<p>};</p>
+
+<p>Mat dofft(Mat const &amp;src){</p>
+
+<pre><code>Mat padded;
+int m = getOptimalDFTSize(src.rows);
+int n = getOptimalDFTSize(src.cols);
+
+copyMakeBorder(src, padded, 0 , m-src.rows, 0,  n-src.cols, BORDER_CONSTANT, Scalar::all(0));
+
+Mat fImage;
+
+padded.convertTo(fImage, CV_32F);
+
+Mat planes[] = { fImage, Mat::zeros(padded.size(), CV_32F) };
+
+
+Mat complexI;
+merge(planes, 2, complexI);
+
+//cout &lt;&lt; complexI&lt;&lt;endl;
+
+dft(complexI, complexI, DFT_SCALE | DFT_COMPLEX_OUTPUT);
+
+split(complexI, planes);
+
+//cout &lt;&lt;  "complexI" &lt;&lt; complexI.cols &lt;&lt; endl;
+//cout &lt;&lt;  "complexI" &lt;&lt;  complexI.rows &lt;&lt; endl;
+return complexI;
+</code></pre>
+
+<p>}</p>
+
+<p>int showSpectrumImg(Mat const &amp;orgspectrumMat) {</p>
+
+<pre><code>Mat spectrumMat;
+orgspectrumMat.copyTo(spectrumMat);
+
+if (spectrumMat.empty())
+
+    return -1;
+vector&lt;Mat&gt; planes;
+Mat dst;
+
+
+split(spectrumMat, planes);
+magnitude(planes[0], planes[1], planes[0]);
+dst = planes[0];
+dst += Scalar::all(1);
+
+dst = dst(Rect(0,0,dst.cols &amp; -2, dst.rows &amp; -2));
+log(dst, dst);
+
+
+Mat finalSpectrum;
+normalize(dst, finalSpectrum, 0, 1, CV_MINMAX);
+imshow("频谱图", finalSpectrum);
+waitKey(0);
+return 0;
+</code></pre>
+
+<p>}</p>
+
+<p>vector<Mat> MultiChannelDFT( Mat const &amp;src ) {</p>
+
+<pre><code>Mat tmpMat, dst;
+src.copyTo(tmpMat);
+
+vector&lt;Mat&gt; planes;
+vector &lt;Mat&gt; results;
+if (src.channels() &gt; 1) {
+
+    split(tmpMat, planes);
+    vector&lt;Mat&gt;::iterator iter;
+
+    for (iter = planes.begin(); iter!= planes.end(); iter++) {
+        Mat tmp ;
+        tmp = *iter;
+        results.push_back(dofft(*iter));
+    }
+}
+
+
+return results;
+</code></pre>
+
+<p>}</p>
+
+<p>Mat MultiChannelIDFT (vector<Mat> src){</p>
+
+<pre><code>Mat dst,tmpMat;
+
+vector&lt;Mat&gt;::iterator iter;
+vector&lt;Mat&gt; results;
+
+for (iter=src.begin(); iter!= src.end(); iter++) {
+        Mat tmp;
+        idft(*iter, tmp, DFT_INVERSE | DFT_REAL_OUTPUT);
+        results.push_back(tmp);
+    }
+merge(results, dst);
+return dst;
+</code></pre>
+
+<p>}</p>
+
+<p>vector<Mat> SubtractSpectrum( vector<Mat> &amp; srcImg,vector<Mat>  &amp; watermark ) {</p>
+
+<pre><code>vector&lt;Mat&gt; tmpImg(srcImg.size()) ;
+copy(srcImg.begin(), srcImg.end(), tmpImg.begin());
+
+cout &lt;&lt; tmpImg.size() &lt;&lt; endl;
+cout &lt;&lt; watermark.size() &lt;&lt; endl;
+
+vector&lt;int&gt;::size_type i;
+vector&lt;int&gt;::size_type j;
+
+for (i = 0, j = 0; i &lt; tmpImg.size() &amp;&amp; j&lt; watermark.size(); i++, j++ ) {
+
+    vector&lt;Mat&gt; tcomplex;
+    vector&lt;Mat&gt; wcomplex;
+
+
+    split(tmpImg.at(i),tcomplex);
+    split(watermark.at(j),wcomplex);
+    //cout &lt;&lt; tmpImg.at(i) &lt;&lt; endl;
+    //cout &lt;&lt; tmpImg.at(i).channels() &lt;&lt; endl;
+    //cout &lt;&lt; i &lt;&lt; endl;
+    //split(tmpImg.at(i), tcomplex);
+
+    int col1,col2,row1,row2;
+
+    //cout &lt;&lt; tcomplex[0].cols &lt;&lt; endl;
+    //cout &lt;&lt; tcomplex[0].rows &lt;&lt; endl;
+
+    //exit(0);
+
+    for (row1 = 0,row2 = 0; row1 &lt; tmpImg.at(i).rows &amp;&amp; row2 &lt; watermark.at(j).rows; row1++,row2++ ) {
+        for (col1 = 0, col2 = 0; col1 &lt; tmpImg.at(i).cols &amp;&amp; col2 &lt; watermark.at(j).cols;col1++,col2++) {
+           cout &lt;&lt; "未减的原图频域点的实数值" &lt;&lt; tcomplex[0].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           cout &lt;&lt; "未减的水印频域点的实数值" &lt;&lt; wcomplex[0].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           tcomplex[0].at&lt;double&gt;(row1, col1) -= wcomplex[0].at&lt;double&gt;(row2,col2);
+           cout &lt;&lt; "减后的频域点的实数值" &lt;&lt; tcomplex[0].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           //cout &lt;&lt; "未添加的原图频域点的虚数值" &lt;&lt; tcomplex[1].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           //cout &lt;&lt; "未添加的水印频域点的虚数值" &lt;&lt; wcomplex[1].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           tcomplex[1].at&lt;double&gt;(row1, col1) -= wcomplex[1].at&lt;double&gt;(row2,col2);
+           //cout &lt;&lt; "添加后的频域点的虚数值" &lt;&lt; tcomplex[1].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+
+        }
+    }
+} 
+return tmpImg;
+</code></pre>
+
+<p>}</p>
+
+<p>vector<Mat> OverlaySpectrum( vector<Mat> &amp; srcImg,vector<Mat>  &amp; watermark ) {</p>
+
+<pre><code>vector&lt;Mat&gt; tmpImg(srcImg.size()) ;
+
+copy(srcImg.begin(), srcImg.end(), tmpImg.begin());
+
+
+vector&lt;int&gt;::size_type i;
+vector&lt;int&gt;::size_type j;
+
+for (i = 0, j = 0; i &lt; tmpImg.size() &amp;&amp; j&lt; watermark.size(); i++, j++ ) {
+
+    vector&lt;Mat&gt; tcomplex;
+    vector&lt;Mat&gt; wcomplex;
+
+    split(tmpImg.at(i),tcomplex);
+    split(watermark.at(j),wcomplex);
+    //cout &lt;&lt; tmpImg.at(i) &lt;&lt; endl;
+    //cout &lt;&lt; tmpImg.at(i).channels() &lt;&lt; endl;
+    //cout &lt;&lt; i &lt;&lt; endl;
+    //split(tmpImg.at(i), tcomplex);
+
+    int col1,col2,row1,row2;
+
+    //cout &lt;&lt; tcomplex[0].cols &lt;&lt; endl;
+    //cout &lt;&lt; tcomplex[0].rows &lt;&lt; endl;
+
+    //exit(0);
+
+    for (row1 = 0,row2 = 0; row1 &lt; tmpImg.at(i).rows &amp;&amp; row2 &lt; watermark.at(j).rows; row1++,row2++ ) {
+        for (col1 = 0, col2 = 0; col1 &lt; tmpImg.at(i).cols &amp;&amp; col2 &lt; watermark.at(j).cols;col1++,col2++) {
+           //cout &lt;&lt; "未添加的原图频域点的实数值" &lt;&lt; tcomplex[0].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           //cout &lt;&lt; "未添加的水印频域点的实数值" &lt;&lt; wcomplex[0].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           tcomplex[0].at&lt;double&gt;(row1, col1) += wcomplex[0].at&lt;double&gt;(row2,col2);
+           //cout &lt;&lt; "添加后的频域点的实数值" &lt;&lt; tcomplex[0].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           //cout &lt;&lt; "未添加的原图频域点的虚数值" &lt;&lt; tcomplex[1].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           //cout &lt;&lt; "未添加的水印频域点的虚数值" &lt;&lt; wcomplex[1].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+           tcomplex[1].at&lt;double&gt;(row1, col1) += wcomplex[1].at&lt;double&gt;(row2,col2);
+           //cout &lt;&lt; "添加后的频域点的虚数值" &lt;&lt; tcomplex[1].at&lt;double&gt;(row1, col1) &lt;&lt; endl;
+
+        }
+    }
+}
+
+return tmpImg;
+</code></pre>
+
+<p>}</p>
+
+<p>vector<Mat> WmSplit( Mat &amp; waterImg,Mat &amp; watermark) {</p>
+
+<pre><code>Mat orgImg;
+vector&lt;Mat&gt; tmpImg;
+vector&lt;Mat&gt; subspec;
+
+
+vector&lt;Mat&gt; waterImgSpec = MultiChannelDFT(waterImg);
+vector&lt;Mat&gt; watermarkSpec= MultiChannelDFT(watermark);
+subspec =  SubtractSpectrum(waterImgSpec, watermarkSpec);
+cout &lt;&lt; subspec.size() &lt;&lt; endl;
+cout &lt;&lt; subspec.at(0).channels() &lt;&lt; endl;
+orgImg = MultiChannelIDFT(subspec);
+
+orgImg.convertTo(orgImg, CV_8U);
+
+imshow("水印图", watermark);
+imshow("解出后的原图", orgImg);
+waitKey(0);
+tmpImg.push_back(orgImg);
+
+tmpImg.push_back(watermark);
+return tmpImg;
+</code></pre>
+
+<p>}</p>
+
+<p>int main() {</p>
+
+<pre><code>Mat I = imread("water.jpg",CV_LOAD_IMAGE_COLOR);
+Mat W = imread("laosiji.jpg", CV_LOAD_IMAGE_UNCHANGED);
+Mat Icopy;
+
+I.copyTo(Icopy);
+//cout &lt;&lt; W.channels() &lt;&lt; endl;
+//cout &lt;&lt; getImgType(W) &lt;&lt; endl;
+//cout &lt;&lt; W.size() &lt;&lt; endl;
+//imshow("原图", I);
+//imshow("水印图", W);
+//waitKey(0);
+
+//加水印
+vector&lt;Mat&gt; fourierTransform;
+vector&lt;Mat&gt; WfourierTransfrom;
+vector&lt;Mat&gt; WaterImgF;
+
+fourierTransform = MultiChannelDFT(I);
+WfourierTransfrom = MultiChannelDFT(W);
+
+WaterImgF = OverlaySpectrum(fourierTransform, WfourierTransfrom);
+/*showSpectrumImg(WaterImgF);*/
+//显示频域图
+//showSpectrumImg(fourierTransform);
+
+//IFFT
+cout &lt;&lt; "Inverse transform"&lt;&lt;endl;
+Mat inverseTransform;
+</code></pre>
+
+<p>//Back to 8-bits
+    Mat finalImage;
+    inverseTransform = MultiChannelIDFT(WaterImgF);
+    inverseTransform.convertTo(finalImage, CV_8U);
+    imshow("经转换过的图片", finalImage);
+    waitKey();</p>
+
+<pre><code>//利用水印原图进行解水印
+//使用加水印的原图进行解水印
+WmSplit(finalImage, W);
+//使用未加水印的原图解水印
+WmSplit(Icopy, W);
+</code></pre>
+
+<p>}
+```</p>
+
+<p><strong>编译运行Opencv程序</strong></p>
+
+<p>``<code>
+  //编译
+  g++ -o [targetfile  example:../bin/ff2t] [srcfile  example:test/ff2t.cpp]</code>pkg-config  opencv --cflags --libs`</p>
+
+<p>//设置环境路径
+  export  LD<em>LIBRARY</em>PATH=$LD<em>LIBRARY</em>PATH:/usr/local/lib</p>
+
+<p>//执行
+  ../bin/ff2t</p>
+
+<p>```
+<strong>pkg-config命令的使用</strong></p>
+
+<p>&ensp;&ensp;&ensp;&ensp; pkg-config命令, 主要用来查询系统中安装库的元信息,主要来辅助编译器进行编译链接多个动态链接库</p>
+
+<p>```shell
+//查询opencv库的版本
+% pkg-config --version opencv
+0.29.1</p>
+
+<p>//查询opencv库的编译所需的编译选项,其中--cflags选项用来查询编译预处理和编译选项, --libs选项用来查询链接需要的选项
+% pkg-config opencv --cflags --libs
+-I/usr/local/include/opencv -I/usr/local/include -L/usr/local/lib -lopencv<em>shape -lopencv</em>stitching -lopencv<em>objdetect -lopencv</em>superres -lopencv<em>videostab -lopencv</em>calib3d -lopencv<em>features2d -lopencv</em>highgui -lopencv<em>videoio -lopencv</em>imgcodecs -lopencv<em>video -lopencv</em>photo -lopencv<em>ml -lopencv</em>imgproc -lopencv<em>flann -lopencv</em>core</p>
+
+<p>//一般可以结合编译器一起使用
+g++ src.file -o target.file <code>pkg-config opencv --cflags --libs</code></p>
+
+<p>```</p>
+
+<p><strong>原图</strong></p>
+
+<p><img src="org_image.png" alt="原图" /></p>
+
+<p><strong>水印图片</strong></p>
+
+<p><img src="fft_watermark.jpg" alt="水印图片" /></p>
+
+<p><strong>加了水印的图片</strong>
+<img src="addedWater.png" alt="加了水印的图片" /></p>
+
+<p><strong>从加了水印的图片中解出的图片</strong>
+<img src="ExtractFromOrgin.png" alt="从加了水印的图片中解出的图片" /></p>
+
+<p><strong>从未加了水印的图片中解出的图片</strong>
+<img src="ExtractFromWaterImg.png" alt="从未加了水印的图片中解出的图片" /></p>
+
+<h5><div style="color:#369">验证结果说明 </div></h5>
+
+<p>&ensp;&ensp;&ensp;&ensp; 这种方法从理论上是不可行的，因为本来利用频域进行水印叠加，本来就是利用了频域的相关变化对空域的变化的影响特别小的特点。所以, 不管是用水印从加了水印的图片, 或者是没有加了水印的图片，分离原图时，用加了水印的图片的频域和原水印的频域作差，得到的图片两者没有肉眼可见的区别，无法辨识。</p>
+
+<h5><div style="color:#369">为什么在频域添加的水印比在空域添加的水印的隐蔽性更好，鲁棒性更高? </div></h5>
+
+<p>&ensp;&ensp;&ensp;&ensp;首先从空域和频域的概念来说，空域就是我们日常所见的图像或者图像的差分所组成的，所以在空域添加水印的话，会直接增加图像的噪声，如果增加的信息过多的话，会影响图片的质量, 所以这也是为什么空域添加的信息比较少的原因，因为你只能在不影响图片质量的基础上去添加水印。同时，在空域上添加水印，被发现的可能性更高，毕竟它没有经过数学转换，我们也可以将数学转换，也就是从空域到频域的过程中看做一个编码过程(加密),编过码(加过密)总归要更加难以被发现。那为什么鲁棒性更高呢？这很好理解，我们修改图像的时候比如剪切，涂抹,压缩什么的都是直接对图像的空域操作，而对图像的灰度影响比较少。而且你不知道水印加在哪个频段，而且收到攻击，往往会破坏图像原本内容。</p>
+
+<h5><div style="color:#369">为什么说生成的水印图像的隐蔽性和鲁棒性是互斥的呢？ </div></h5>
+
+<p>&ensp;&ensp;&ensp;&ensp;首先隐蔽性，也就是不可见性，它是指隐蔽载体与原始载体具有一致的性特性，比如说具有一致的统计噪声分布，从而使第三方的非法拦截者无法判断是否有隐蔽信息.也就是说水印图像中的水印与图像的一致性.而鲁棒性是指不因图像的某种改动而导致水印信息的丢失的能力。然而如果水印的隐蔽性越高，也就是它和图像的一致性越高，那么对图像进行改动操作，造成水印信息丢失的可能性就越高。两者呈负相关。</p>
+
+</body>
+</html>

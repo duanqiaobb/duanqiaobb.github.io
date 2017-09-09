@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-05-24 三 22:52 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style type="text/css">.src-cpp {background-color: #222; color: #ccc}</style>
+<style type="text/css">.src-results {background-color: #222; color: #ccc}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb594650">1. cpp中的回调函数 （译文）</a>
+<ul>
+<li><a href="#org41204e0">1.1. 什么是回调函数？我们为什么要使用它？</a></li>
+<li><a href="#org2aaee9b">1.2. C++11中的回调是什么？</a></li>
+<li><a href="#orgb7c67d1">1.3. 详说几种编写回调的集中重要方法</a>
+<ul>
+<li><a href="#orgefc8ced">1.3.1. 函数指针</a></li>
+<li><a href="#orgeffd856">1.3.2. 调用回调函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org32ebfbe">2. 引用</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb594650" class="outline-2">
+<h2 id="orgb594650"><span class="section-number-2">1</span> cpp中的回调函数 （译文）</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org41204e0" class="outline-3">
+<h3 id="org41204e0"><span class="section-number-3">1.1</span> 什么是回调函数？我们为什么要使用它？</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+&ensp;&ensp;html 一个回调方法是可以被一个类或者函数可以接受并可调用的方法。它可以用来根据回调定制当前逻辑。
+我们使用回调函数的其中一个原因是: 回调函数可以用来写一些独立于被调用函数的通用代码，并且可以被不同的回调方法使用。
+标准 <code>algorithm</code> 库中的许多函数都使用了回调。比如， <code>for_each</code> 算法在遍历过程中就对遍历器中的每一个元素使用了一个 <code>unary(一元)</code> 回调函数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #F92672;">template</span>&lt;<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">InputIt</span>, <span style="color: #F92672;">class</span> <span style="color: #66D9EF;">UnaryFunction</span>&gt;
+<span style="color: #66D9EF;">UnaryFunction</span> <span style="color: #A6E22E;">for_each</span>(<span style="color: #66D9EF;">InputIt</span> <span style="color: #FD971F;">first</span>, <span style="color: #66D9EF;">InputIt</span> <span style="color: #FD971F;">last</span>, <span style="color: #66D9EF;">UnaryFunction</span> <span style="color: #FD971F;">f</span>) 
+{
+   <span style="color: #F92672;">for</span> (; first != last; ++first) {
+      f(*first);
+   }
+   <span style="color: #F92672;">return</span> f;
+}
+</pre>
+</div>
+
+<p>
+可以用来进行第一次增加并且然后通过传递一个合适的可调用函数来输出一个 <code>vector</code> ,比如:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #FF80F4;">std</span>::<span style="color: #66D9EF;">vector</span>&lt;<span style="color: #66D9EF;">double</span>&gt; <span style="color: #FD971F;">v</span>{1.0,2.2,4.0,5.5,7.2};
+<span style="color: #66D9EF;">double</span> <span style="color: #FD971F;">r</span> = 4.0;
+<span style="color: #FF80F4;">std</span>::for_each(v.begin(), v.end(), [&amp;](<span style="color: #66D9EF;">double</span> &amp;<span style="color: #FD971F;">v</span>) { v += r;});
+<span style="color: #FF80F4;">std</span>::for_each(v.begin(), v.end(), [](<span style="color: #66D9EF;">double</span> <span style="color: #FD971F;">v</span>) { <span style="color: #FF80F4;">std</span>::cout &lt;&lt; v &lt;&lt; <span style="color: #EEDC82;">" "</span>;});
+</pre>
+</div>
+
+<p>
+上面的代码会输出: 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-results">5 6.2 8 9.5 11.2
+</pre>
+</div>
+
+<p>
+回调函数的另一个应用是通知某些事件的调用者，这保证了一定量的静态/编译事件灵活性。
+个人来说，我使用一个使用了两个不同的回调函数的本地优化库。
+</p>
+
+<ul class="org-ul">
+<li>当需要一个函数值和一个基于 <code>vector</code> 类型的输入值的梯度时， 第一个回调会被调用。（回调函数中的逻辑： 函数值确定/梯度推导）</li>
+
+<li>第二个回调函数会在算法的每一步调用一次来接收算法一定的覆盖范围的相关信息。（通知回调）</li>
+</ul>
+
+<p>
+所以, 库的设计者并不决定,通过通知回调而传递给程序员的信息将会做什么，并且他不需要担心如何决定函数值，因为他们会在回调函数的逻辑中实现。
+这些都是库使用者所考虑的事情，而我只需要保持库小并且更加通用。
+</p>
+
+<p>
+另外，回调可以让程序动态运行。
+</p>
+
+<p>
+想像一下，一些有些类型的游戏引擎类具有被出发的功能。每次，用户在他的键盘上按下一个按钮，一系列控制你游戏的功能就被触发。使用回调，你可以在运行时决定或者再次决定采用什么动作。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">player_jump</span>();
+<span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">player_crouch</span>();
+
+<span style="color: #F92672;">class</span> <span style="color: #66D9EF;">game_core</span>
+{
+   <span style="color: #FF80F4;">std</span>::<span style="color: #66D9EF;">array</span>&lt;<span style="color: #66D9EF;">void</span>(*)(), <span style="color: #FD971F;">total_num_keys</span>&gt; <span style="color: #FD971F;">actions</span>;
+
+   <span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">key_pressed</span>(<span style="color: #66D9EF;">unsigned</span> <span style="color: #FD971F;">key_id</span>)
+   {
+      <span style="color: #F92672;">if</span>(actions[key_id]) actions[key_id]();
+
+   }
+
+   <span style="color: #8C8C8C;">//</span><span style="color: #8C8C8C;">update keybind from menu</span>
+   <span style="color: #66D9EF;">void</span> <span style="color: #A6E22E;">update_keybind</span>(<span style="color: #66D9EF;">unsigned</span> <span style="color: #FD971F;">key_id</span>, <span style="color: #66D9EF;">void</span>(*<span style="color: #A6E22E;">new_action</span>)())
+   {
+    actions[key_id] = new_action;
+   }
+};
+</pre>
+</div>
+<p>
+这里的 <code>key_pressed</code> 函数使用了保存在 <code>actions</code> 数组中的的回调用来获取当按下一些特定的键所执行的行为。当玩家选择改变跳动作的按钮，引擎可以调用。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">game_core_instance.update_keybind(newly_selected_key, &amp;player_jump);
+</pre>
+</div>
+
+<p>
+并且当这个按钮下次在游戏中按下的时候,调用 <code>key_pressed</code> （调用 <code>player_jump</code> ） 的行为会改变。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2aaee9b" class="outline-3">
+<h3 id="org2aaee9b"><span class="section-number-3">1.2</span> C++11中的回调是什么？</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+&ensp;&ensp; 可以到cppreference中 <a href="http://en.cppreference.com/w/cpp/concept/Callable">C++ concepts: Callable</a> 查看更标准的描述。
+因为，一些不同的东西都可以转换为 <code>callable</code> , 所以在 <code>C++(11)</code> 中，函数性回调可以以不同的
+方式实现：
+</p>
+
+<ul class="org-ul">
+<li>函数指针（包括只想成员函数的指针）</li>
+<li><code>std::function</code> 对象</li>
+<li>Lambdah表达式</li>
+<li>绑定表达式</li>
+<li>函数对象（拥有重载方法的类调用 <code>operator()</code> ）</li>
+</ul>
+
+<p>
+<i>Note:指向数据成员的指针也是可调用的，但是没有函数被调用</i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb7c67d1" class="outline-3">
+<h3 id="orgb7c67d1"><span class="section-number-3">1.3</span> 详说几种编写回调的集中重要方法</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>在这篇文章中编写一个回调函数表示声明并且定义一个回调类型的语法。</li>
+<li>调用一个回调函数表示调用这些对象的语法。</li>
+<li>使用一个回调函数表示给一个使用回调的函数传递参数的语法。</li>
+</ul>
+
+<p>
+<i>Note:从 <code>C++17</code> 起， 如 <code>f(...)</code> 的调用可以写成 <code>std::invoke(f,...)</code>, 后者也可以处理指向成员方法的指针</i>
+</p>
+</div>
+
+<div id="outline-container-orgefc8ced" class="outline-4">
+<h4 id="orgefc8ced"><span class="section-number-4">1.3.1</span> 函数指针</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+&ensp;&ensp; 函数指针是最简单的回调实现方式（就通用性而言，就可读性而言，有些人人认为是最差的）。
+让我们定义一个简单的函数 <code>foo</code> :
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">foo</span>(<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">x</span>) {<span style="color: #F92672;">return</span> 2+x;}
+</pre>
+</div>
+</div>
+
+<ol class="org-ol"><li><a id="orge71c751"></a>定义一个函数指针 / 类型符号<br /><div class="outline-text-5" id="text-1-3-1-1">
+<p>
+&ensp;&ensp; 一个函数指针类型定义方式如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #66D9EF;">return_type</span> (*)(paramter_type1, paramter_type_2, paramter_type_3)
+<span style="color: #8C8C8C;">// </span><span style="color: #8C8C8C;">i.e, a pointer to foo has the type</span>
+<span style="color: #66D9EF;">int</span> (*)(<span style="color: #66D9EF;">int</span>)
+</pre>
+</div>
+
+<p>
+&ensp;&ensp; 一个有名称的函数指针的定义方式如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp">return_type (* name) (parramter_type_1, paramater_type_2, parameter_type_3)
+<span style="color: #8C8C8C;">// </span><span style="color: #8C8C8C;">i.e f_int_t is a type: function pointer taking one int argument, return int</span>
+<span style="color: #F92672;">typedef</span> <span style="color: #66D9EF;">int</span> (*<span style="color: #66D9EF;">f_int_t</span>)(<span style="color: #66D9EF;">int</span>);
+<span style="color: #8C8C8C;">//</span><span style="color: #8C8C8C;">foo_p is a pointer to function taking int returning int</span>
+<span style="color: #8C8C8C;">//</span><span style="color: #8C8C8C;">initialized by pointer to function foo taking int returning int</span>
+<span style="color: #66D9EF;">f_init_t</span> <span style="color: #FD971F;">foo_p</span> = &amp;foo;
+<span style="color: #66D9EF;">f_int_t</span> <span style="color: #FD971F;">foo_p</span> = &amp;foo;
+</pre>
+</div>
+
+<p>
+&ensp;ensp; 使用 <code>using</code> 声明可以让函数指针的定义可读性更强， 因为上面的 <code>typedef</code> 定义方式也可以写为：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #F92672;">using</span> <span style="color: #66D9EF;">f_int_t</span> = <span style="color: #66D9EF;">int</span>(*)(<span style="color: #66D9EF;">int</span>);
+</pre>
+</div>
+
+<p>
+如此定义，使得 <code>f_int_t</code> 是一种新类型和函数指针类型更加容易辨识变得更加清楚（至少对于我来说是这样的）。
+并且声明使用一个函数指针的回调的函数的方式如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #8C8C8C;">//</span><span style="color: #8C8C8C;">foobar having a callback argument named moo of type </span>
+<span style="color: #8C8C8C;">//</span><span style="color: #8C8C8C;">pointer to function reutrning int taking int as its argument</span>
+<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">foobar</span> (<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">x</span>, <span style="color: #66D9EF;">int</span>(*<span style="color: #A6E22E;">moo</span>)(<span style="color: #66D9EF;">int</span>));
+<span style="color: #8C8C8C;">//</span><span style="color: #8C8C8C;">if f_int is the function pointer typedef from above we can alsow write foolbar as</span>
+</pre>
+</div>
+</div></li></ol>
+</div>
+
+<div id="outline-container-orgeffd856" class="outline-4">
+<h4 id="orgeffd856"><span class="section-number-4">1.3.2</span> 调用回调函数</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+&ensp;&ensp; 调用回调函数的语法如下:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">foobar</span> (<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">x</span>, <span style="color: #66D9EF;">int</span> (*<span style="color: #A6E22E;">moo</span>)(<span style="color: #66D9EF;">int</span>))
+{
+   <span style="color: #66D9EF;">reutrn</span> <span style="color: #A6E22E;">x</span>+moo(x);
+}
+<span style="color: #8C8C8C;">// </span><span style="color: #8C8C8C;">analog</span>
+<span style="color: #66D9EF;">int</span> <span style="color: #A6E22E;">foobar</span> (<span style="color: #66D9EF;">int</span> <span style="color: #FD971F;">x</span>, <span style="color: #66D9EF;">f_int_t</span> <span style="color: #FD971F;">moo</span>)
+{
+  <span style="color: #F92672;">return</span> x + moo(x); <span style="color: #8C8C8C;">//</span><span style="color: #8C8C8C;">function pointer moo called using argument x</span>
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org32ebfbe" class="outline-2">
+<h2 id="org32ebfbe"><span class="section-number-2">2</span> 引用</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://stackoverflow.com/questions/2298242/callback-functions-in-c">StackOverflow:Callback functions in c++</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2017-05-24 三 22:52</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

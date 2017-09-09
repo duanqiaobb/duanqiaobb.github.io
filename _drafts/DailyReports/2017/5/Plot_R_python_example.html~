@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-05-17 三 22:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc123d05">1.  <div style="color:#369">R语言画图教程</div></a>
+<ul>
+<li><a href="#orgcc00038">1.1. 利用表格数据画折线图</a></li>
+<li><a href="#orge77ea60">1.2. 样点图</a></li>
+<li><a href="#org1b9ca9c">1.3. R语言本身画正弦曲线</a>
+<ul>
+<li><a href="#orgeea8c7e">1.3.1. 正弦波缩放</a></li>
+</ul>
+</li>
+<li><a href="#orge3e5922">1.4. ggplot画正弦曲线</a></li>
+<li><a href="#orgb57e7cf">1.5. ggplot画小波图像</a></li>
+</ul>
+</li>
+<li><a href="#org5417fe5">2.  <div style="color:#369">Matliblot画图教程</div></a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc123d05" class="outline-2">
+<h2 id="orgc123d05"><span class="section-number-2">1</span>  <div style="color:#369">R语言画图教程</div></h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgcc00038" class="outline-3">
+<h3 id="orgcc00038"><span class="section-number-3">1.1</span> 利用表格数据画折线图</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #FF80F4;">library</span>(ggplot2)
+<span style="color: #FF80F4;">library</span>(gcookbook)
+BOD <span style="color: #8C8C8C;">##</span><span style="color: #8C8C8C;">&#20316;&#22270;&#20351;&#29992;&#30340;&#25968;&#25454;&#34920;</span>
+<span style="color: #8C8C8C;">##   </span><span style="color: #8C8C8C;">Time demand</span>
+<span style="color: #8C8C8C;">## </span><span style="color: #8C8C8C;">1  1 8.3</span>
+<span style="color: #8C8C8C;">## </span><span style="color: #8C8C8C;">2  2 10.3</span>
+<span style="color: #8C8C8C;">## </span><span style="color: #8C8C8C;">3  3 19.0</span>
+<span style="color: #8C8C8C;">## </span><span style="color: #8C8C8C;">4  4 16.0</span>
+<span style="color: #8C8C8C;">## </span><span style="color: #8C8C8C;">5  5 15.6</span>
+<span style="color: #8C8C8C;">## </span><span style="color: #8C8C8C;">6  7 19.8</span>
+ggplot(BOD, aes(x = Time, y = demand))+geom_line() <span style="color: #8C8C8C;">#</span><span style="color: #8C8C8C;">&#21464;&#37327;Time&#20026;&#36830;&#32493;&#21464;&#37327;</span>
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example01.png" alt="ggplot_example01.png" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orge77ea60" class="outline-3">
+<h3 id="orge77ea60"><span class="section-number-3">1.2</span> 样点图</h3>
+<div class="outline-text-3" id="text-1-2">
+<ol class="org-ol">
+<li>ggplot使用方式一</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-R"> <span style="color: #8C8C8C;">#</span><span style="color: #8C8C8C;">Generate some sample data, then compute mean and standard deviation</span>
+<span style="color: #8C8C8C;">#</span><span style="color: #8C8C8C;">in each group</span>
+<span style="color: #FF80F4;">library</span>(ggplot2)
+df <span style="color: #FF80F4;">&lt;-</span> data.frame(
+    gp = factor(rep(letters[1:3], each=10)),
+    y  = rnorm(30)
+)
+
+ds <span style="color: #FF80F4;">&lt;-</span> plyr::ddply(df, <span style="color: #EEDC82;">"gp"</span>, plyr::summarise, mean = mean(y), sd = sd(y))
+
+<span style="color: #8C8C8C;"># </span><span style="color: #8C8C8C;">The summary data frame ds is used to plot large red points on top</span>
+<span style="color: #8C8C8C;"># </span><span style="color: #8C8C8C;">of the raw data. Note that we don't need to supply 'data' or `mapping`</span>
+<span style="color: #8C8C8C;"># </span><span style="color: #8C8C8C;">in each layer because the defaults from ggplot() are used</span>
+ggplot(df,aes(gp,y))+geom_point()+geom_point(data=ds,aes(y=mean),color=<span style="color: #EEDC82;">'red'</span>,size=3)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example02.png" alt="ggplot_example02.png" />
+</p>
+</div>
+
+<ol class="org-ol">
+<li>ggplot使用方式2</li>
+</ol>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example03.png" alt="ggplot_example03.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #8C8C8C;">#</span><span style="color: #8C8C8C;">same plot as above,declaring only the data frame in ggplot().</span>
+<span style="color: #8C8C8C;">#</span><span style="color: #8C8C8C;">Note how the x and y aesthetics must now be declared in each goem_point() layer</span>
+<span style="color: #FF80F4;">library</span>(ggplot2)
+df <span style="color: #FF80F4;">&lt;-</span> data.frame(
+   gp = factor(rep(letters[1:3], each=10)), y = rnorm(30)
+)
+ds <span style="color: #FF80F4;">&lt;-</span> plyr::ddply(df, <span style="color: #EEDC82;">"gp"</span>, plyr::summarise, mean = mean(y), sd = sd(y))
+
+ggplot(df)+geom_point(aes(gp,y))+
+geom_point(data = ds, aes(gp, mean), colour = <span style="color: #EEDC82;">'red'</span>, size = 3)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example03.png" alt="ggplot_example03.png" />
+</p>
+</div>
+
+
+<ol class="org-ol">
+<li>ggplot方式3</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-R">  <span style="color: #8C8C8C;">#</span><span style="color: #8C8C8C;">Alternatively we can fully specify the plot in each layer, This </span>
+  <span style="color: #8C8C8C;">#</span><span style="color: #8C8C8C;">is not useful here, but can be more clear when working with complex </span>
+  <span style="color: #8C8C8C;"># </span><span style="color: #8C8C8C;">mult-dataset graphics</span>
+  <span style="color: #FF80F4;">library</span>(ggplot2)
+  df <span style="color: #FF80F4;">&lt;-</span> data.frame(
+         gp = factor(rep(letters[1:3], each=10)), y = rnorm(30)
+  )
+  ds <span style="color: #FF80F4;">&lt;-</span> plyr::ddply(df, <span style="color: #EEDC82;">"gp"</span>, plyr::summarise, mean = mean(y), sd = sd(y))
+
+ggplot() +
+  geom_point(data = df, aes(gp, y)) +
+  geom_point(data = ds, aes(gp, mean), colour = <span style="color: #EEDC82;">'red'</span>, size = 3) +
+  geom_errorbar(
+    data = ds,
+    aes(gp, mean, ymin = mean - sd, ymax = mean + sd),
+    colour = <span style="color: #EEDC82;">'red'</span>,
+    width = 0.4
+  )
+</pre>
+</div>
+
+<p>
+<img src="data/2017/ggplot_example04.png" alt="ggplot_example04.png" />
+<img src="data/2017/ggplot_example04.png" alt="ggplot_example04.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1b9ca9c" class="outline-3">
+<h3 id="org1b9ca9c"><span class="section-number-3">1.3</span> R语言本身画正弦曲线</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-R">t = seq(0,10,0.1)
+y = sin(t)
+plot(t,y,type=<span style="color: #EEDC82;">"l"</span>, xlab=<span style="color: #EEDC82;">"time"</span>, ylab= <span style="color: #EEDC82;">"Sine wave"</span>)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example05.png" alt="ggplot_example05.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeea8c7e" class="outline-4">
+<h4 id="orgeea8c7e"><span class="section-number-4">1.3.1</span> 正弦波缩放</h4>
+<div class="outline-text-4" id="text-1-3-1">
+</div><ol class="org-ol"><li><a id="org8f76d87"></a>\(a = \frac{1}{2}\)<br /><div class="outline-text-6" id="text-1-3-1-0-1">
+<div class="org-src-container">
+<pre class="src src-R">t = seq(0,10,0.1)
+y = sin(0.5*t)
+plot(t,y,type=<span style="color: #EEDC82;">"l"</span>, xlab=<span style="color: #EEDC82;">"time"</span>, ylab= <span style="color: #EEDC82;">"Sine wave"</span>)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example06.png" alt="ggplot_example06.png" />
+</p>
+</div>
+</div></li>
+
+<li><a id="org1a9d4cf"></a>\(a = \frac{1}{4}\)<br /><div class="outline-text-6" id="text-1-3-1-0-2">
+<div class="org-src-container">
+<pre class="src src-R">t = seq(0,10,0.1)
+y = sin(0.25*t)
+plot(t,y,type=<span style="color: #EEDC82;">"l"</span>, xlab=<span style="color: #EEDC82;">"time"</span>, ylab= <span style="color: #EEDC82;">"Sine wave"</span>)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example07.png" alt="ggplot_example07.png" />
+</p>
+</div>
+</div></li>
+
+<li><a id="org878533d"></a>正弦线的平移<br /><div class="outline-text-5" id="text-1-3-1-1">
+<div class="org-src-container">
+<pre class="src src-R">t = seq(0,10,0.1);
+y = sin(t - 4);
+plot(t,y,type=<span style="color: #EEDC82;">"l"</span>,xlab=<span style="color: #EEDC82;">"time"</span>, ylab=<span style="color: #EEDC82;">"Sine wave"</span>);
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example07.png" alt="ggplot_example07.png" />
+</p>
+</div>
+</div></li>
+
+
+<li><a id="org8cc969c"></a>正弦线的向左平移<br /><div class="outline-text-5" id="text-1-3-1-2">
+<div class="org-src-container">
+<pre class="src src-R">t = seq(0,10,0.1);
+y = sin(t + 4);
+plot(t,y,type=<span style="color: #EEDC82;">"l"</span>,xlab=<span style="color: #EEDC82;">"time"</span>, ylab=<span style="color: #EEDC82;">"Sine wave"</span>);
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example07.png" alt="ggplot_example07.png" />
+</p>
+</div>
+</div></li></ol>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orge3e5922" class="outline-3">
+<h3 id="orge3e5922"><span class="section-number-3">1.4</span> ggplot画正弦曲线</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #FF80F4;">library</span>(ggplot2)
+t = seq(0,10,0.1)
+y = sin(t)
+qplot(t,y,geom=<span style="color: #EEDC82;">"path"</span>, xlab=<span style="color: #EEDC82;">"time"</span>, ylab=<span style="color: #EEDC82;">"Sine wave"</span>)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example10.png" alt="ggplot_example10.png" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgb57e7cf" class="outline-3">
+<h3 id="orgb57e7cf"><span class="section-number-3">1.5</span> ggplot画小波图像</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #FF80F4;">library</span>(utils)
+<span style="color: #FF80F4;">library</span>(dplR)
+data(ca533)
+ca533.rwi<span style="color: #FF80F4;">&lt;-</span>detrend(rwl = ca533, method = <span style="color: #EEDC82;">"ModNegExp"</span>)
+ca533.crn <span style="color: #FF80F4;">&lt;-</span> chron(ca533.rwi, prefix = <span style="color: #EEDC82;">"CAM"</span>, prewhiten = <span style="color: #66D9EF;">FALSE</span>)
+Years <span style="color: #FF80F4;">&lt;-</span> as.numeric(rownames(ca533.crn))
+CAMstd <span style="color: #FF80F4;">&lt;-</span> ca533.crn[,1]
+out.wave<span style="color: #FF80F4;">&lt;-</span> morlet(y1 = CAMstd,x1 = Years, p2 = 9, dj = 0.1, siglvl = 0.99)
+wavelet.plot(out.wave,useRaster = <span style="color: #66D9EF;">NA</span>)
+levs <span style="color: #FF80F4;">&lt;-</span> quantile(out.wave$Power, probs = c(0,0.5,0.75,0.9,0.99))
+wavelet.plot(out.wave, wavelet.levels = levs, add.sig=<span style="color: #66D9EF;">FALSE</span>, key.cols = c(<span style="color: #EEDC82;">"white"</span>,<span style="color: #EEDC82;">"green"</span>,<span style="color: #EEDC82;">"blue"</span>, <span style="color: #EEDC82;">"red"</span>), useRaster = <span style="color: #66D9EF;">NA</span>)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/ggplot_example11.png" alt="ggplot_example11.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5417fe5" class="outline-2">
+<h2 id="org5417fe5"><span class="section-number-2">2</span>  <div style="color:#369">Matliblot画图教程</div></h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #F92672;">import</span> matplotlib
+matplotlib.use(<span style="color: #EEDC82;">'Agg'</span>)
+<span style="color: #F92672;">import</span> matplotlib.pyplot <span style="color: #F92672;">as</span> plt
+<span style="color: #FD971F;">fig</span>=plt.figure(figsize=(3,2))
+plt.plot([1,3,2])
+plt.savefig(<span style="color: #EEDC82;">'myfig.png'</span>)
+<span style="color: #F92672;">return</span> <span style="color: #EEDC82;">'myfig.png'</span>
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="myfig.png" alt="myfig.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2017-05-17 三 22:09</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

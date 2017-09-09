@@ -1,0 +1,261 @@
+
+ @@html: <div style="color:#369">Graphivz的几个使用示例</div>@@
+
+
+#+begin_src dot :file data/2017/graphviz_example2.png  :exports results
+  digraph abc {
+  a;
+  b;
+  c;
+  d;
+
+  a -> b;
+  b -> d;
+  c -> d;
+  }
+#+end_src
+
+#+RESULTS:
+[[file:data/2017/graphviz_example2.png]]
+
+
+#+begin_src dot :file data/2017/graphviz_zh_example.png  :exports results
+  digraph{
+    node [shape="record"];
+    edge [style="dashed"];
+    步骤1;
+    步骤2;
+    步骤3;
+    步骤4;
+
+    步骤1 -> 步骤2;
+    步骤2 -> 步骤4;
+    步骤3 -> 步骤4;
+  }
+#+end_src 
+
+#+RESULTS:
+
+ @@html: <div style="color:#369">修改节点的颜色</div>@@
+
+
+#+begin_src dot :file data/2017/graphviz_example3.png :exports results
+digraph abc{
+node [shape="record"];
+edge [style="dashed"];
+
+a[style="filled", color="black", fillcolor="chartreuse"];
+b;
+c;
+d;
+
+a->b;
+b->d;
+c->d [color="red"];
+}
+#+end_src
+
+#+RESULTS:
+[[file:data/2017/graphviz_example3.png]]
+
+ @@html: <div style="color:#369">以图片为节点</div>@@
+
+#+begin_src dot :file data/2017/graphivz_example4.png :exports results
+  digraph abc {
+    node [shape="record"];
+    edge [style="dashed"];
+    a[style="filled", color="black", fillcolor="chartreuse"];
+    b;
+    c[shape="none", image="logos/googlelogo_color\
+  _120x44dp.png", label=""];
+    a->b;
+    b->d;
+    c->d [color="red"];
+
+  }
+#+end_src
+
+#+RESULTS:
+[[file:data/2017/graphivz_example4.png]]
+
+@@html: &ensp;&ensp;@@设置节点为图片的时候， ~shape~  必须设置为 ~none~
+
+
+ @@html: <div style="color:#369">子图的绘制</div>@@
+
+#+begin_src dot :file data/2017/graphviz_example5.png :exports results
+digraph abc {
+  
+   node [shape="record"];
+   edge [style="dashed"];
+   
+   a[style="filled", color="black", fillcolor="chartreuse"];
+   b;
+   
+     subgraph cluster_cd {
+      label=" c and d" ;
+      bgcolor="mintcream";
+      c;
+      d;
+     }
+   a->b;
+   b->d;
+   c->d [color="red"];
+}
+#+end_src
+
+#+RESULTS:
+[[file:data/2017/graphviz_example5.png]]
+
+@@html: &ensp;&ensp;@@ 子图的名称必须设置为 ~cluster~ 开头,否则 ~graphviz~ 无法识别。
+
+ @@html: <div style="color:#369">数据结构的可视化</div>@@
+
++ hash表的数据结构
+
+#+begin_src dot :file data/2017/graphviz_example6.png :exports results 
+digraph st2 {
+ 
+   fontname = "Verdana"  ;
+   fontsize = 10;
+   rankdir  = TB;
+
+   node [fontname = "Verdana", fontsize= 10, color="skyblue", shape="record"];
+   edge [fontname = "Verdana", fontsize= 10, color="crimson", style="solid"];
+   
+   st_hash_type[label="{<head>st_hash_type|(*compare)|(*hash)}"];
+   st_table_entry[label="{<head>st_table_entry|hash|key|record|<next>next}"];
+   st_table[label="{st_table|<type>type|num_bins|num_entries|<bins>bins}"];
+   
+   st_table:bins -> st_table_entry:head;
+   st_table:type -> st_hash_type:head;
+   st_table_entry:next -> st_table_entry:head [style="dashed", color="forestgreen"];
+
+
+}
+#+end_src
+
+#+RESULTS:
+[[file:data/2017/graphviz_example6.png]]
+
+ @@html: <div style="color:#369">对上图进行circor布局重绘</div>@@
+
+#+begin_src dot :file data/2017/graphviz_example7.png  :cmdline -Kcirco -Tpng :exports results
+digraph st2 {
+ 
+   fontname = "Verdana"  ;
+   fontsize = 10;
+   rankdir  = TB;
+
+   node [fontname = "Verdana", fontsize= 10, color="skyblue", shape="record"];
+   edge [fontname = "Verdana", fontsize= 10, color="crimson", style="solid"];
+   
+   st_hash_type[label="{<head>st_hash_type|(*compare)|(*hash)}"];
+   st_table_entry[label="{<head>st_table_entry|hash|key|record|<next>next}"];
+   st_table[label="{st_table|<type>type|num_bins|num_entries|<bins>bins}"];
+   
+   st_table:bins -> st_table_entry:head;
+   st_table:type -> st_hash_type:head;
+   st_table_entry:next -> st_table_entry:head [style="dashed", color="forestgreen"];
+
+
+}
+#+end_src
+
+#+RESULTS:
+[[file:data/2017/graphviz_example7.png]]
+
+
+ @@html: <div style="color:#369">节点式的hash表实例</div>@@
+
+#+begin_src dot :file data/2017/graphivz_example8.png :exports results
+  digraph st {
+     fontname = "Verdana";
+     fontsize = 10;
+     rankdir  = LR;
+
+
+     node [shape="record",width=.1, height=.1];
+     node [fontname="Verdana", fontsize = 10, color="skyblue", shape="record"];
+     edge [fontname="Verdana", fontsize = 10, color = "crimson", style="solid"];
+     node [shape="plaintext"];
+
+     st_table [ label=<
+     <table border="0" cellborder="1" cellspacing="0" align="left">
+     <tr>
+     <td>st_stable</td>
+     </tr>
+     <tr>
+     <td>num_bins=5</td>
+     </tr>
+     <tr>
+     <td>num_entries=3</td>
+     </tr>
+     <tr>
+     <td port="bins">bins</td>
+     </tr>
+     </table>>]
+     node [shape="record"]
+     num_bins [label=" <b1> | <b2> | <b3> | <b4> | <b5> ", height=2];
+     node [width=2];
+
+     entry_1 [label="{<e>st_table_entry|<next>next}"];
+     entry_2 [label="{<e>st_table_entry|<next>null}"];
+     entry_3 [label="{<e>st_table_entry|<next>null}"];
+
+     st_table:bins -> num_bins:b1;
+     num_bins:b1 -> entry_1:e;
+     entry_1:next -> entry_2:e;
+     num_bins:b3 -> entry_3:e;
+  }
+#+end_src
+
+#+RESULTS:
+[[file:data/2017/graphivz_example8.png]]
+
+
+
+ @@html: <div style="color:#369">软件模块组成图</div>@@
+
++Apache httpd模块关系
+
+#+begin_src dot :file data/2017/graphivz_example9.png  :exports results
+digraph idp_modules{
+
+  rankdir = TB;
+  fontname = "Microsoft YaHei";
+  fontsize = 12;
+  
+  node [ fontname = "Microsoft YaHei", fontsize = 12, shape="record"];
+  edge [ fontname = "Microsoft YaHei", fontsize = 12];
+
+     subgraph cluster_sl {
+        label = "IDP支持层";
+	bgcolor = "mintcream";
+	node [shape="Mrecord", color="skyblue", style="filled"];
+	network_mgr [label="网络管理器"];
+	log_mgr[label="日志管理器"];
+	module_mgr [label="模块管理器"];
+	conf_mgr[label="配置管理器"]
+	db_mgr[label="数据库管理器"];
+	};
+	
+    subgraph cluster_md{
+
+    }
+
+#+end_src
+
+
+
+
+
+
+
+
+
+
+
+
+
+

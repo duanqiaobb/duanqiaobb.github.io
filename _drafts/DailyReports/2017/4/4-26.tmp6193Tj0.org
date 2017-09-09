@@ -1,0 +1,63 @@
+# Created 2017-04-26 Wed 19:53
+#+TITLE: 
+#+HTML_HEAD: <style type="text/css">.src-makefile {background-color: #222; color: #ccc}</style>
+#+HTML_HEAD: <style type="text/css">.src-sh {background-color: #222; color: #ccc}</style>
+
+
+* @@html:<div style="color:#369">今日计划</div>@@
+
+- 30前将普通傅里叶变化的算法和web程序写出来以及论文弄好(还有4天)
+- 有道口语一课（切记）
+
+
+* @@html:<div style="color:#369">今日收获</div>@@
+
+** C语言中的复数操作
+
+ 复数在数学运算中十分重要，在编写数值运算或者算法的时候，我们会用到复数这种概念。
+那么，复数在C/C++语言中是如何表示的呢？我们接下来一一介绍。
+
+- C语言中复数
+
+ 在数学中一个复数可以定义为 $z=a + bi$ 的形式。 ~C~ 语言在 ~ISO C99~ 时就引入了复数类型。它是通过 ~complex.h~ 中定义的。
+我们可以使用 ~complex~ , ~__complex__~ , 或 ~_ComplexI~ 类型符号来表示。在C语言中有三种复数类型，分别为 ~float complex~ , ~double complex~ , ~long double complex~ 。他们之间
+的区别就是表示复数中实部和虚步的数的数据类型不同。 ~complex~ 其实就是一个数组，数组中有两个元素，一个表示复数的实部，一个表示复数的虚部。
+
+- 定义一个复数
+
+ 在 ~complex.h~ 头文件中定义了两个宏 ~_Complex_I~ 和 ~I~ 来创建一个复数。
+
+#+BEGIN_SRC C
+  
+#+END_SRC
+
+
+
+ 这两个宏表示复数 $0+1i$ 
+
+* @@html: <div style="color:#369">todo</div>@@
+
+- 详细了解cpp中的function->return type的用法
+- 写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
+- 了解C++中的异常的使用
+- 在emacs或者vim中实现一个小的智能程序
+- 写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)
+- 在vim移植emacs的org-mode(针对markdown)
+- 命令行的qq聊天(vim-plugin,emacs-plugin)
+- 探究真正意义上的人工智能
+- 学习黑客的思维
+- 写个备份Gentoo Linux的脚本(Live版本,iso格式)
+- 写个像Grammerly的功能的软件
+- 写方面绑定手机的各种账号更换
+- 看王垠的40行代码
+- 学习scheme语言
+- 详细看《Chapter 13. Copy contral》
+- 详细看《 Chapter 12. Dynamic Memory》
+- 详细看《13.1.4（p. 504）》
+- 了解C++里面的lamda表达式
+- C++的线程相关操作
+- 看825页的dynamic_cast(看完虚函数再看)
+- 《 CPP prime 》 看到Circumventing the Virtual Mechanism
+- grub,UEFI,Legacy,Windows Loader,以及其他相关加载器的相关知识
+
+* @@html: <div style="color:#369">明日计划</div>@@

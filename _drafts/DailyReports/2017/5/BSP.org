@@ -1,0 +1,149 @@
+#+OPTIONS: tex:imagemagick toc:nil
+
+* 盲源分离算法 (blind singal processing,BSP)
+
+@@html:&ensp;&ensp;@@ 盲信号处理(blind singal processing, BSP) 就是在传输信道特性未知，输入信息位置或仅有少量先验知识的情况下，从系统的输出信号中分离或估计源信号的波形
+盲信号处理可以分为相互关联而研究目标有所区别的子领域，如:
++ 盲源分离(blind source speparation,BSS)
++ 盲信号提取(blind singal extraction,BSE)
++ 盲反卷积（blind deconvolution）
++ 盲均衡(blind equalization)、盲辨识(blind identification)。
+
+** 盲信号分离的相关算法
+
++ 基于反馈神经网络的盲源分离
++ 基于高阶统计的联合对角化盲源分离方法
++ 主分量法，独立分量分析法，基于最小互信息量的独立分量分析方法
++ 基于熵最大思想的盲源分离方法
++ 基于独立分量分析的快速分离算法FastICA
++ 自然梯度算法
++ 时频分析方法
++ 非独立分量的FastICA算法
++ 状态空间法
+
+** 盲信号提取技术
+
++ 基于峰度的顺序提取方法
++ 线性混合模型的多个源同时抽取算法
++ 基于二阶统计量的相关源的盲信号提取
++ 基于四阶累计量的盲信号提取方法
+
+** 盲信号处理算法的基本理论
+
+@@html:&ensp;&ensp;@@ 盲信号处理算法主要包括两大任务： 
+
+1. 构造目标函数
+2. 应用合适的数值优化方法使得目标函数达到最大值或最小值。
+
+
+** 盲信号处理的数学模型
+
+@@html:&ensp;&ensp;@@ 根据源信号信号不同的混合方式，盲信号处理可分为: 线性瞬时混合模型、线性卷积模型和非线性混合模型。
+
+*** 线性瞬时混合模型
+
+@@html:&ensp;&ensp;@@ 线性混合信号系统数学模型为:
+
+
+\begin{equation}
+x(k) = As(k)+n(k)
+\end{equation}
+
+
+其中: 
+
+\(x(k) = [x_1(k),x_2(k),...,x_m(k)]^T\) 是 $M$ 维观测信号矢量： 
+
+$s(k) = [s_1(k), s_2(k), ..., s_N(k)]^T$ 是 $N$ 维未知源信号矢量;
+
+$n(k)$ 是 $M$ 维加性观测噪声; $A$ 为 $M \times N$ 维未知混合矩阵。 每个观测向量 $x(k)$ 只是源向量 $s(k)$ 的线性组合。
+
+@@html:&ensp;&ensp;@@ 其中盲信号分离的任务就是依据某一准则求出分离矩阵 $W$ , 通过 $W$ 从观测信号 $x(k)$ 中恢复出 $s(k)$, 
+设 $y(k)$ 为源信号的估计矢量， 则盲信号分离系统的数学模型为:
+ 
+\begin{equation}
+y(k) = Wx(k) = WAs(k) \rightarrow PDs(k)
+\end{equation}
+
+@@html:&ensp;&ensp;@@ 其中:
+
+
+$y(k) = [y_1(k), y_2(k), ..., y_N(k)]^T$ 为源信号的估计矢量； $W$ 为 $N \times M$ 维分离矩阵; $P$ 为 $N \times N$ 置换矩阵; $D$ 为 $N \times N$ 对角矩阵。
+
+*** 线性卷积混合模型
+
+@@html:&ensp;&ensp;@@ 更一般的情形，观测信号为源信号不同时延的线性组合即源型号的卷积混合，多通道卷积混合信号的数学模型为:
+
+\begin{equation}
+x(k) = \sum^{\infty}_{p=-\infty}A(p)s(k-p)+n(k)
+\end{equation}
+
+@@html:&ensp;&ensp;@@ 其中: $x(k)$ 、 $s(k)$ 的物理意义与瞬时混合系统相同; $A(p)$ 为 $M \times N$ 维未知混合矩阵， 由于 $x(k)$ 为 $s(k)$ 与 $A(p)$ 的
+卷积，所以 $A(p)$ 又称为 混合-冲激响应矩阵。
+
+@@html:&ensp;&ensp;@@ 盲解卷积是在已知 $x(k),k = 0,1,2,\cdots$, 但未知 $A(p)$ 和 $s(k),k=0,1,2, \cdots$ 的情况下估计 $s(k), k = 0,1,2,\cdots$ 。 设 $y(k)$ 为源信号的
+估计矢量，则解盲卷积系统的数学模型为：
+\begin{equation}
+y(k) = \sum_{p=-infty}^{infty}W(p)x(k-p)=W(k)*x(k)
+\end{equation}
+
+其中: $y(k)$ 为 $N$ 维矢量; $W(k)$ 为 $N \times M$ 。
+
+*** 非线性混合模型
+@@html:&ensp;&ensp;@@ 线性混合模型的一个自然拓广就是非线性混合模型，非线性混合模型为:
+\begin{equation}
+x(k) = f(s(k))+n(k)
+\end{equation}
+
+@@html:&ensp;&ensp;@@ 其中: $x(k)$ 是 $M$ 维观测信号矢量; $s(k)$ 是 $N$ 维未知源信号矢量; $n(k)$ 是 $M$ 维加性噪声，且与信号统计独立; 
+$f:\ R^N \rightarrow R^M$ 为未知的可逆实值非线性混合函数。
+@@html:&ensp;&ensp;@@ 非线性盲信号处理就是通过观测信号 $x(k)$ 来找到一组映射 $g:\ R^N \rightarrow R^M$ 使得通过 $g$ 尽可能恢复源信号 $s(k)$ , 数学模型为：
+
+\begin{equation}
+y(k) = g(x(k))
+\end{equation}
+
+其中: $y(k)$ 为 $N$ 维输出。
+
+
+** 盲信号分离方法
+
+*** 独立分量分析 (independent component analysis, ICA)
+
+@@html:&ensp;&ensp;@@ 在利用独立分量分析法解决盲源分离问题时，为得到确定的解，需要进行如下约束:
+
+1) 各源信号 $s_i(k)(i=1, \cdots , M)$ 为 0 均值、实随机变量，且各源信号之间统计独立。
+
+2) 源信号的维数和观测信号维数相同，即 $M=N$ 。
+
+3) 源信号 $s_i(k)$ 中至少有一个为高斯分布。
+
+4) 噪声很小可以忽略。
+
+@@html:&ensp;&ensp;@@ 独立分量分析的目的是通过学习求得 $W$ ，使得输出各分量 $y_i(k)$ 尽可能统计独立。
+
+*** 独立分量分析目标函数——峰度
+
+@@html:&ensp;&ensp;@@ 中心极限定理表明，在一般的条件下，当独立随机变量的个数增加时，其和的分布趋于高斯分布。 所以两个
+变量和的分布总比其中任一变量趋于高斯，故可以用非高斯性来度量独立性。常用的非高斯度量有峰值和负熵。负熵可以通过KL散度（Kullback-Leiblerdi-vergence,KL散度）
+来度量。
+
+@@html:&ensp;&ensp;@@ 对于0均值实信号而言，峰值即为其四阶统计量，其经典定义为:
+
+\begin{equation}
+kurt(y) = E\{y^4\}-3(E\{y^2\})^2
+\end{equation}
+
+其中: $E\{.\}$ 表示统计期望值。对上式归一化，即：
+\begin{equation}
+kurt(y)=E\{y^4\}/(E\{y^2\})^2 -3
+\end{equation}
+@@html:&ensp;&ensp;@@ 当信号方差为1时，有:
+\begin{equation}
+kurt(y)=E\{y^4\}-3
+\end{equation}
+
+这说明峰度可以化成标准的四阶矩形式，对于高斯变量的四阶矩是 $3(E\{y^2\})^2$, 因此高斯变量的峰度为0。
+峰度为负则随机变量称为亚高斯信号，峰度为正则随机变量称为超高斯信号。一般的，通信信号为亚高斯信号，语音信号
+为超高斯信号。
+

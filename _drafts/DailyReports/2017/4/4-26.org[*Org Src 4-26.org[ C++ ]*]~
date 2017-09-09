@@ -1,0 +1,16 @@
+#include <iostream>
+#include <complex>
+using namespace std;
+int main(int argc, char *argv[])
+{
+  complex<double> mycomplex;
+  mycomplex = 10.0; //10
+  mycomplex += 2.0; //12
+  mycomplex = complex<double>(10.0,1.0);
+  mycomplex = mycomplex + 10.0;
+
+  if (mycomplex == complex<double>(20.0,1.0)) {
+    cout << "mycomplex is " << mycomplex << '\n';
+  }
+  return 0;
+}

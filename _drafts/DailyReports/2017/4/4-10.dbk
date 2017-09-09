@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+  <articleinfo>
+    <title></title>
+  </articleinfo>
+<sect1 id="section">
+  <title><div style="color:#369">今日计划</div></title>
+  <itemizedlist spacing="compact">
+    <listitem>
+      <para>
+        看盲源分离和神经网络方面的知识,以及查找其他代替方法
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        15号将程序写出来以及论文弄好(还有五天)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        完成论文的第一章,图片基础知识的介绍
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        有道口语一课（切记）
+      </para>
+    </listitem>
+  </itemizedlist>
+</sect1>
+<sect1 id="section-1">
+  <title><div style="color:#369">今日收获</div></title>
+  <sect2 id="盲源分离">
+    <title>盲源分离</title>
+    <sect3 id="盲源分离的数学模型">
+      <title>盲源分离的数学模型</title>
+      <para>
+        盲源分离是通信领域中的一个概念，它是一种能从来自多个传感器输出的混合信号，在混合信号之间并不线性相关，原始信号未知，信号混合方法也未知的情况下，分析出没有观测的原始信号。
+      </para>
+      <para>
+        假设具有 <emphasis>m</emphasis> 个独立的信号源
+        <emphasis>s</emphasis><subscript>1</subscript>(<emphasis>t</emphasis>),...,<emphasis>s</emphasis><subscript><emphasis>m</emphasis></subscript>(<emphasis>t</emphasis>)
+        和 <emphasis>n</emphasis> 个独立的观察量
+        <emphasis>x</emphasis><subscript>1</subscript>(<emphasis>t</emphasis>),...,<emphasis>x</emphasis><subscript><emphasis>n</emphasis></subscript>(<emphasis>t</emphasis>)
+        ,观察量和信号源的关系如下:
+      </para>
+      <para>
+        <emphasis>x</emphasis>(<emphasis>t</emphasis>)=<emphasis>A</emphasis><emphasis>s</emphasis>(<emphasis>t</emphasis>)
+      </para>
+      <para>
+        其中
+        <emphasis>x</emphasis>(<emphasis>t</emphasis>)=[<emphasis>x</emphasis><subscript>1</subscript>(<emphasis>t</emphasis>),...., <emphasis>x</emphasis><subscript><emphasis>n</emphasis></subscript>(<emphasis>t</emphasis>)]<superscript><emphasis>T</emphasis></superscript>
+        ,
+      </para>
+      <para>
+        <emphasis>s</emphasis>(<emphasis>t</emphasis>)=[<emphasis>s</emphasis><subscript>1</subscript>(<emphasis>t</emphasis>),...,<emphasis>s</emphasis><subscript><emphasis>m</emphasis></subscript>(<emphasis>t</emphasis>)]<superscript><emphasis>T</emphasis></superscript>,
+        <emphasis>A</emphasis> 是一个
+        <emphasis>n</emphasis><emphasis>x</emphasis><emphasis>m</emphasis>
+        的系数矩阵，原问题变成了已知
+        <emphasis>x</emphasis>(<emphasis>t</emphasis>) 和
+        <emphasis>s</emphasis>(<emphasis>t</emphasis>) 的独立性，求对
+        <emphasis>s</emphasis>(<emphasis>t</emphasis>)
+        的估计问题。假定有如下公式
+      </para>
+      <para>
+        <emphasis>y</emphasis>(<emphasis>t</emphasis>)=<emphasis>W</emphasis><emphasis>x</emphasis>(<emphasis>t</emphasis>)
+      </para>
+      <para>
+        其中 <emphasis>y</emphasis>(<emphasis>t</emphasis>) 是对
+        <emphasis>s</emphasis>(<emphasis>t</emphasis>) 的估计,
+        <emphasis>W</emphasis> 是一个
+        <emphasis>m</emphasis><emphasis>x</emphasis><emphasis>n</emphasis>
+        的系数矩阵， 问题变成了如何有效的对矩阵 <emphasis>W</emphasis>
+        做出估计。
+      </para>
+    </sect3>
+    <sect3 id="问题的基本假设">
+      <title>问题的基本假设</title>
+      <para>
+        各源信号
+        <emphasis>s</emphasis><subscript><emphasis>i</emphasis></subscript>(<emphasis>t</emphasis>)
+        均为零均值信号， 实随机变量，信号之间统计独立，如果源信号
+        <emphasis>s</emphasis><subscript><emphasis>i</emphasis></subscript>(<emphasis>t</emphasis>)
+        的概率面密度
+        <emphasis>p</emphasis><subscript><emphasis>i</emphasis></subscript>(<emphasis>s</emphasis><subscript><emphasis>i</emphasis></subscript>),
+        则 <emphasis>s</emphasis>(<emphasis>t</emphasis>) 的概率密度 为:
+        $p(s) = \prod_{i=1}^np_i(s_i))$
+      </para>
+    </sect3>
+  </sect2>
+  <sect2 id="引用">
+    <title><div style="color:#369"> 引用</div></title>
+    <para>
+      <ulink url="https://zh.wikipedia.org/wiki/%25E7%259B%25B2%25E4%25BF%25A1%25E5%258F%25B7%25E5%2588%2586%25E7%25A6%25BB">盲信号分离</ulink>
+    </para>
+  </sect2>
+</sect1>
+<sect1 id="section-2">
+  <title> <div style="color:#369">todo</div></title>
+  <itemizedlist spacing="compact">
+    <listitem>
+      <para>
+        详细了解cpp中的function-&gt;return type的用法
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        了解C++中的异常的使用
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        在emacs或者vim中实现一个小的智能程序
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        在vim移植emacs的org-mode(针对markdown)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        命令行的qq聊天(vim-plugin,emacs-plugin)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        探究真正意义上的人工智能
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        学习黑客的思维
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        写个备份Gentoo Linux的脚本(Live版本,iso格式)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        写个像Grammerly的功能的软件
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        写方面绑定手机的各种账号更换
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        看王垠的40行代码
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        学习scheme语言
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        详细看《Chapter 13. Copy contral》
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        详细看《 Chapter 12. Dynamic Memory》
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        详细看《13.1.4（p. 504）》
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        了解C++里面的lamda表达式
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        C++的线程相关操作
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        看825页的dynamic<subscript>cast</subscript>(看完虚函数再看)
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        《 CPP prime 》 看到Circumventing the Virtual Mechanism
+      </para>
+    </listitem>
+  </itemizedlist>
+</sect1>
+<sect1 id="section-3">
+  <title> <div style="color:#369">明日计划</div></title>
+  <para>
+  </para>
+</sect1>
+</article>

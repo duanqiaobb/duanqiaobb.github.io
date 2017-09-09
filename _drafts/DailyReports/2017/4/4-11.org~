@@ -1,0 +1,111 @@
+*** @@html:<div style="color:#369">今日计划</div>@@
+
++ 看盲源分离和神经网络方面的知识,以及查找其他代替方法
++ 15号将程序写出来以及论文弄好(还有五天)
++ 完成论文的第一章,图片基础知识的介绍
++ 有道口语一课（切记）
+
+ [@20]测试org-mode
+
+*** @@html:<div style="color:#369">今日收获</div>@@
+
+**** 盲源分离
+
+***** 盲源分离的数学模型
+
+@@html: &ensp;&ensp; @@盲源分离是通信领域中的一个概念，它是一种能从来自多个传感器输出的混合信号，在混合信号之间并不线性相关，原始信号未知，信号混合方法也未知的情况下，分析出没有观测的原始信号。
+
+@@html: &ensp;&ensp;@@  假设具有 $m$ 个独立的信号源 $s_1(t),...,s_m(t)$ 和 $n$ 个独立的观察量 $x_1(t),...,x_n(t)$ ,观察量和信号源的关系如下:
+
+$x(t) = As(t)$
+
+其中 $x(t) = [x_1(t),....,x_n(t)]^T$ ,
+
+$s(t) = [s_1(t),...,s_m(t)]^T$, $A$ 是一个 $n \times m$ 的系数矩阵，原问题变成了已知 $x(t)$ 和 $s(t)$ 的独立性，求对 $s(t)$ 的估计问题。假定有如下公式
+
+$y(t) = Wx(t)$
+
+其中 $y(t)$ 是对 $s(t)$ 的估计, $W$ 是一个 $m \times n$ 的系数矩阵， 问题变成了如何有效的对矩阵 $W$ 做出估计。
+
+
+***** 问题的基本假设
+
+@@html:&ensp;&ensp;@@ 各源信号 $s_i(t)$ 均为零均值信号， 实随机变量，信号之间统计独立，如果源信号 $s_i(t)$ 的概率面密度 $p_i(s_i)$, 则 $s(t)$ 的概率密度
+为: $p(s) = \prod_{i=1}^np_i(s_i))$
+
+@@html:&ensp;&ensp;@@ 源信号数目 $m$ 小于等于观察信号数目 $n$, 即 $m \leq n$ ,混合矩阵 $A$ 是一个 $n \times m$ 的矩阵。
+假定 $A$ 满秩。
+
+@@html:&ensp;&ensp;@@  源信号中只允许有一个高斯分布，当多于一个高斯分布时，源信号变得不可分。
+
+
+***** 自然梯度解法
+
+@@html:&ensp;&ensp;@@自然梯度法的计算公式为:
+
+$W(n+1) = W(n) + \eta(n)[I - \phi(y(n))y^T(n)]W(n)$
+
+其中 $W$ 为我们需要估计的矩阵，$\eta(n)$ 为步长, $\phi(y)$ 是一个非线性变换，比如 $\eta(y)=\eta(y^3)$
+
+实际计算时 $y$ 为一个$m \times k$ 的矩阵, $m$ 为原始信号个数，$k$ 为采样点个数。
+
+
+***** 算法描述
+@@html:&ensp;&ensp;@@ 1)初始化 $W(0)$ 为单位矩阵
+
+@@html:&ensp;&ensp;@@ 2)循环执行如下的步骤，直到 $W(n+1)$ 与 $W(n)$ 差异小于规定值 $\tau$ (计算矩阵差异的方法可以人为规定), 有时候也人为规定迭代次数
+
+@@html:&ensp;&ensp;@@ 3)利用公式 $y(n) = W(n)y(n-1)$, (其中 $y(-1) = x$ )
+
+@@html:&ensp;&ensp;@@ 4)利用公式 $W(n+1) = W(n)+ \eta(n)[I - \phi(y(n))y^T(n)]W(n)$
+
+**** @@html:<div style="color:#369">@@ 引用@@html:</div>@@
+
+[[https://zh.wikipedia.org/wiki/%25E7%259B%25B2%25E4%25BF%25A1%25E5%258F%25B7%25E5%2588%2586%25E7%25A6%25BB][盲信号分离]]
+
+**** @@html:<div style="color:#369">@@ 参考文献 @@html:</div>@@
+
+@@html:&ensp;&ensp;@@ 1. JEAN-FRAN ¸ COIS CARDOSO, MEMBER, IEEE,Blind Signal Separation: Statistical Principles 
+
+@@html:&ensp;&ensp;@@ 2. C. Jutten and J. Herault, “Blind separation of sources I. An adaptive algorithm based on neuromimetic architecture,” Signal Processing, vol. 24, no. 1, pp. 1–10, July 1991.
+
+@@html:&ensp;&ensp;@@ 3. J.-C. Fort, “Stability of the source separation algorithm of Jutten and H´erault,” in Artificial Neural Networks, T. Kohonen, Makasira, Simula, and Kangas, Eds. Amsterdam, The Netherlands: Elsevier, 1991, pp. 937–941.
+
+@@html:&ensp;&ensp;@@ 4. J. Deville, “A unified stability analysis of the H´erault–Jutten source separation neural network,” Signal Processing, vol. 51,no. 3, pp. 229–233, June 1996.
+
+****  @@html: <div style="color:#369">CMake的使用</div>@@
+
+*** @@html: <div style="color:#369">todo</div>@@
+
++ 详细了解cpp中的function->return type的用法
++ 写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
++ 了解C++中的异常的使用
++ 在emacs或者vim中实现一个小的智能程序
++ 写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)
++ 在vim移植emacs的org-mode(针对markdown)
++ 命令行的qq聊天(vim-plugin,emacs-plugin)
++ 探究真正意义上的人工智能
++ 学习黑客的思维
++ 写个备份Gentoo Linux的脚本(Live版本,iso格式)
++ 写个像Grammerly的功能的软件
++ 写方面绑定手机的各种账号更换
++ 看王垠的40行代码
++ 学习scheme语言
++ 详细看《Chapter 13. Copy contral》
++ 详细看《 Chapter 12. Dynamic Memory》
++ 详细看《13.1.4（p. 504）》
++ 了解C++里面的lamda表达式
++ C++的线程相关操作
++ 看825页的dynamic_cast(看完虚函数再看)
++ 《 CPP prime 》 看到Circumventing the Virtual Mechanism
+
+
+*** @@html: <div style="color:#369">明日计划</div>@@
+
+
+
+
+
+
+
+

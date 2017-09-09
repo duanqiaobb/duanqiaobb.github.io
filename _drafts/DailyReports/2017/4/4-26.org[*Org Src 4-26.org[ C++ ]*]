@@ -1,0 +1,21 @@
+#include <iostream>
+#include <complex.h>
+
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+  complex<double> mycomplex(2.000,2);
+  _Complex double  mycomplex2 = 2.000 + 3I;
+  __complex__ double mycomplex3 = 2.000 + 4I;
+
+  double real_mycomplex = mycomplex.real();
+  double imag_mycomplex = mycomplex.imag();
+  double abs_mycomplex = abs(mycomplex);
+  double norm_mycomplex = norm(mycomplex);
+
+  cout << "real part of mycomplex" << real_mycomplex << endl;
+  cout << "image part of mycomplex" << real_mycomplex <<
+  return 0;
+}
+

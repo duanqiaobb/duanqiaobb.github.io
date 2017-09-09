@@ -1,0 +1,414 @@
+#### <div style="color:#369">今日计划 </div>
+
++ 了解C++里面的lamda表达式
++ 学习C++的面向对象的知识
++ 看互联网的24种的思想20页
+
+
+
+#### <div style="color:#369">今日收获 </div>
+ + C++的auto特性
+
+
+
+
+&ensp;&ensp;auto,是从c++11起引入的一个关键字, 它可以用来修饰变量，函数，表达式，以及类模板参数.
+
++ C++的decltype特性
+
+&ensp;&ensp;decltype,是作为c++11类型推断而引入的一个新的关键词，它主要用来修饰实体，和表达式, 是用来推测实体的声明类型,或者表达式的值和类型的种类。
+
+
++ C++的属性指示符
+
+&ensp;&ensp;C++的属性指示符，有点类似Java中Anotation, 是可以实现定义的。它主要是用来引入一些对象，类型，代码的属性，也可以理解为限制对象，类型，代码的一些行为。它为实现定义的语言扩展提供标准统一的语法，比如GNU和IBM的`__attribute__((…))`,微软的`__declspec()`语言扩展，等等。
+
+&ensp;&ensp;尽管每个特殊的属性仅当实现允许时才有效，但是属性几乎能在C++程序的任何地方使用，同时也可以被应用到,类型，变量，函数，命名，代码块，以及整个的翻译单元，几乎所有的实体上。比如，`[[likely]]`属性只能用在`if`语句上边，不能用在函数声明上;[[omp::parallel()]] 属性只能用在`for`循环语句上，而不能用在类型上面。（这两个属性只是为了举例方便而虚构的，实际并不存在）
+
+&ensp;&ensp;在声明时，属性可能出现在实体声明前后，结合使用的。大多数情况，属性声明都放在实体声明前面，尽管`对齐指示符`的语法有些不同，但是它是`属性指示符`的一部分。它可能出现在`[[]]`属性的地方，也可能和他们混合使用（但是只能用在允许对齐的地方）
+&ensp;&ensp;两个连续的左中括号`[[`,只能当引入属性指示符时或者在一个属性的参数中出现
+
+*标准的属性指示符的格式为*
+
+```cpp 
+
+[[identifier]] (since c++11)
+
+[[ using  attribute-namespace::identifier]] (since c++17)
+
+[[identifier(argument-list)]] (since c++11)
+
+[[ using  attribute-namespace:identifier(argument-list)]]  (since c++17)
+```
+
+**注意：**
+
+```cpp
+   如果 命令空间出现在属性类表的开头，那么属性列表中的其他属性不能指定一个命名空间，该属性
+   类列表中的所有属性共享一个命名空间。
+```
+
+**标准的属性指示符** 
+
+
+| 属性指示符名称                               | 用途                                                                                           | 引入版本 |
+| : -----------------------------              | :--                                                                                            | :--      |
+| [[noreturn]]                                 | 表示函数不返回值,并只能应用在函数上面,</br>如果函数真的有返回值，那么该属性无效,并且会给出警告 | c++11    |
+| [[carries_dependency]]                       | 表示消耗释放模式的依赖链在函数内外传播,允许编译器跳过一些不必要的栅栏指令                      | c++11    |
+| [[deprecated]] </br>[[deprecated("reason")]] |                                                                                                | c++14    |
+| [[nodiscard]]                                |                                                                                                | c++17    |
+| [[maybe_unuesd]]                             |                                                                                                | c++17    |
+| [[optimize_for_synchronized]]                |                                                                                                |          |
+
+
+
+
+*[[noreturn]]*
+
+```cpp
+
+#include <cassert>
+[[ noreturn ]]  void f() {
+   throw "error";
+}
+
+[[ noreturn  ]] void q(int i ) {
+  if ( i > 0 ) {
+    
+    throw "positive";
+
+  }
+}
+
+```
+[测试代码](https://godbolt.org/g/QryGNb)
+
+
+*[[carries_dependency]]*
+
+&ensp;&ensp;该属性是个优化属性,它能够优化使用了`memory_order_consume`的代码。它的作用就是转移使用`memory_order_consume`而形成的依赖，将原先通过插入栅指令维持依赖树的方法变为有我们自己来编码维持依赖，从而达到优化的目的。如果一个通过`memory_order_consume`的值被传递给一个函数的参数，那么如果没有使用`[[carries_dependency]]`属性，那么编译器可能会使用一个内存栅指令去保证合适的`memory order`语义的支持，如果一个参数被`[[carries_dependency]]`注释，那么编译器就假定函数体会保存依赖，从而不必生成内存栅，达到优化的目的。同样如果一个函数的返回值以`memory_order_consume`的方式读取，如果没有被`[[carries_dependency]]`修饰，那么编译器需要插入一个栅指令来保证合适`memory order`语义的支持。如果声明`[[carries_dependency]]`,那么栅指令就不必要的了，依赖树转由调用者维持。
+
+&ensp;&ensp;由上面也知道，`[[carries_dependency]]`属性只能应用到函数或lamda表达式的参数处，或者返回值处。
+
+*注意*
+&ensp;&ensp;这个属性一定要出现在函数的第一次声明中或者在任何翻译单元的一个属性中。否则程序将会报错。
+
+
+```cpp
+
+#include <iostream>
+#include <atomic>
+
+std::atomic<int *> p;
+
+void print( int * val ) 
+{
+     std::cout<< *p << std::endl;
+}
+
+void print2(int * [[carries_dependency]] val) 
+{
+    std::cout << *p << std::endl;
+
+}
+
+int main () {
+
+int * local = p.load(std::memory_order_consume);
+
+
+if (local) 
+    std::cout << *local<<std::endl; // 1
+if (local)
+    print(local); //2
+if(local)
+    print2(local); //3
+
+
+}
+```
+
+&ensp;&ensp;1处的代码，依赖很清楚，所以编译器知道`local`变量是废弃的，所以它必须确保依赖链被保存，避免内存栅的生成。
+
+&ensp;&ensp;2处的代码，`print`的定义是不透明的，所以编译器必须生成一个内存栅为了,读取`*p`的值的`print`函数能够返回正确的值。
+
+&ensp;&ensp;3处的代码，编译器可以假定，就算`print2`的定义也是不透明的,那么从参数道废弃的值的依赖被保存在指令流中，所以并不一定需要生成内存栅。很显然，`print2`的定义确实保存了这个依赖，所以`[[carries_dependency]]`对`print2`的代码生成有一定的影响。
+
+[测试代码](https://godbolt.org/g/QgocM6)
+
+
+##### <div style="color:#369">数据依赖性排序：函数注释 </div>
+&ensp;&ensp; 
+
+##### <div style="color:#369">数据依赖性排序：原子和内存模型 </div>
+
+**为什么将数据依赖性排序引入原子和内存模型?**
+
+&ensp;&ensp;在C++程序中，并发中，读频繁但是写稀少的数据结构的效率很大程度上影响了一些程序的扩展性。影响主要体现在两个场景上。
+
++ 读多写少的同步数据结构
+
+&ensp;&ensp;&ensp;&ensp; 读多些少的同步数据结构,在系统内核和服务端软件中都十分常见，比如路由表，软件配置，硬件配置，和安全规则（访问控制权限，防火墙规则）.读写频次比率远远超过1/100000的十分常见。
+
++ 用于指针中介的发布-订阅语义
+
+&ensp;&ensp;&ensp;&ensp;大多数多进程中的通信采用的是中介指针, 采用的是生产者和消费者模型实现。一线程扮演生产者的角色发布一个指针，而另外一线程则扮演消费者角色，可以通过该指针来访问生产者的信息。在没有完全获取语义的情况下可以访问该数据。
+
+&ensp;&ensp;&ensp;&ensp;在以上的情景中，使用进程间数据依赖性排序能数量级的提高程序的性能和支持进程间数据依赖性排序的机器的扩展性。这样的性能提高是可能的，因为这样的机器能够避免原先需要的高昂的锁消耗，原子指令以及内存栅。
+
+
+&ensp;&ensp;以下是Linux内核代码中，使用了线程间的数据依赖性排序的代码。
+
+```cpp
+
+struct foo {
+
+    int a;
+    struct foo *next;
+};
+
+struct foo *head;
+
+void insert(int a) {
+    struct foo *p = kmalloc(sizeof(*p), GFP_KERNEL); /* cannot fail */
+    spin_lock(&mylock);
+    p->a = 1;
+    p->next = head;
+    smp_wmb(); /* Can be thought of as a store-release fence. */
+    head = p;
+    spin_unlock(&mylock);
+}
+，
+int getfirstval(void) {
+    /** requires head not NULL */
+    struct foo *q = rcu_dereference(head); /** see discussion below. */
+    int retval = q->a;
+    return retval;
+}
+
+
+```
+
+&ensp;&ensp;代码中的getfirstval是返回列表头部的值，比列表不变时所需的开销要稍微多一点（甚至不会超过），但是仍然可以更新。`getfirstval()`中的`rcu_dereferenece()`能以不同的方式实现,为不同类型的机器优化。
+
++ strong memory ordering (比如： TSO)
+
+   `rcu_dereference()`简单的避免了编译器在读取`head`之前，对`q`上的数据依赖进行排序的优化操作。在这种情况下，代码依靠强排序来避免,`retval`的赋值语句获取预先初始化的`a`值，\因为`p->a=1`一定执行在`p->next=head`之前。
+
++ 强制数据依赖性排序的弱内存排序
+
+   `rcu_dereference()`同样的避免了编译器在读取`head`之前，对`q`上的数据依赖进行排序的优化操作。可是，在这种情况下，代码依靠机器上的数据依赖排序的执行，来避免`retval`的赋值语句获取预先初始化的`a`值，因为`q->a`依赖于`q`。
+
++ 无数据依赖性排序的弱内存排序
+  
+   `rcu_dereference()`提升为读获取操作。因为这样获取能够避免所有的内存相关的子序列，被`head`的读取重新排序，它必须防止任何依赖`h`的操作序列并`head`读取重新排列。
+
+   
+
+**什么是读获取(load-acquire)**
+
+&ensp;&ensp; 简单来说`读获取`就是保证所有后面的指令必须在当前指令完成后完成。
+
+**解决方法** 
+&ensp;&ensp; 我们建议好的程序支持进程间的数据依赖性排序。程序员明显的标记数据依赖操作的根,并按照顺序进行实现。
+
+**依赖树**
+
+&ensp;&ensp; 给定的`load`读取的值作为数据依赖树的根节点。依赖树大致的粗略的定义为，拥有依赖树中的数据依赖参数，或者读取依赖树内的数据依赖登时中的变量的，任意的操作或者同一线程内函数.
+&ensp;&ensp; 一个数据依赖树的生命周期伴随着依赖树中所有的值的销毁而结束。因为依赖树会随着函数的调用进入函数并在函数返回值的时候退出函数，所以依赖树的生命周期可能会持续到程序执行结束为止。
+
+&ensp;&ensp;编译器必须保护依赖树不受优化操作的损坏，通常采用的方法有，添加代码保存依赖树，生成内存栅。但是内存栅的消耗较大。
+
+&ensp;&ensp;如果，在正常的编译过程中，一个不受控制的依赖扩展被发现效率十分低，那么程序员可以使用`std::kill_dependency`函数来删除依赖树。 如果，使用了`std::kill_depenency`函数来消除依赖树，那么，参数中将不在携带依赖，即便值是相同的。
+
+
+**依赖种类**
+
++ memory_order_relaxed
+
++ memory_order_consume
+
++ memory_order_acquire
+
++ memory_order_release 
+
++ memory_order_acq_rel
+
++ memory_order_seq_cst
+
+&ensp;&ensp;内存排序性不断增强。
+
+**一些会破坏依赖树的编译器优化的例子**
+
+```
+  r1 = x.load(memory_order_relaxed);
+  r2 = *r1;
+```
+
+**为符合推荐的API,重新编码**
+
+``` cpp
+
+   r1 = x.load(memory_order_relaxed);
+   r2 = *r1;
+
+```
+&ensp;&ensp;假定`x`是原子性的，那么`x.load(memory_order_consume)`将会创建一个依赖树的根。依赖树通过`r1`间接的y延伸到`r2`。所以依赖是有序的。
+
+**代码删减**
+
+``` cpp
+
+   r1 = x.load(memory_order_relaxed);
+   r3 = &a + r1 - r1;
+   r2 = *r3;
+   
+```
+&ensp;&ensp;这段代码将会被编译器认为合理的优化为下列代码，破坏依赖树。
+
+```
+  r1 = x.load(memory_order_relaxed);
+  r3 = &a;
+  r2 = *r3;
+  
+```
+&ensp;&ensp;符合标准的API的编码为:
+
+```
+    r1 = x.load(memory_order_consume);
+	r3 = &a + r1 - r1;
+	r2 = *r3;
+	
+```
+
+&ensp;&ensp;再次假设`x`为原子性。那么`x.load(memory_order_consume)`将会创建一个依赖树的根节点。依赖树通过`r1`间接的将依赖延伸到`r2`, 所以依赖是有序的。因为依赖树的溯沿优先于优化。如果，一旦进行优化，一个相应的内存栈一定会被插入或者必须手动添加相应的数据依赖。
+
+**控制敏感的间接延伸**
+
+``` cpp
+   r1 = x.load(memory_order_consume);
+   if ( r1 == 0)
+       r2 = *r1;
+	else 
+	   r2 = *(r1 + 1);
+```
+可能会被优化为:
+
+
+
+``` cpp
+    r1 = x.load_relaxed();
+	if (r1 == 0)
+	   r3 = r1;
+    else
+	   r3 = r1+1;
+	   r2 = *r3;
+```
+同样，这样的可能破坏依赖的优化可能发生在独立的编译单元。这样就使限制他们就显得不切实际。
+
+**常量传播**
+
+
+``` cpp
+   if (x.load(memory_order_consume))
+     ...
+   else
+     ...
+   y = 42 * x/13;
+   
+```
+
+&ensp;&ensp;`x` 为`0` 或者`1`这样的代码可能被优化为:
+
+```
+   if (x.load(memory_order_consume)){
+      ...
+	  y = 3;
+   } else {
+      ...
+	  y = 0;
+   }
+```
+&ensp;&ensp; 假定`x`是原子性的，那么`x.load(memory_order_consume)`将会建立一个依赖树的根节点，依赖树将会延伸到`y`,所以依赖是有序的。如果底层机器保存了写的控制依赖，那么这样的优化是合法的。如果底层机器不保存控制依赖性顺序，那么，这样的优化就应该避免， 在读取了`x`之后，一个内存栅必须生成，或者手动处理数据依赖(如下)。
+
+``` cpp
+   
+   if ( r1 = x.load(memory_order_consume)) {
+      ...
+	  y = 3;
+	  
+   } else {
+     ...
+	 y = 0;
+	}
+	y = y + r1 - r1;
+```
+
+&ensp;&ensp;这样编译器将需要决定是否加，减运算好于乘，除运算。
+
+**依赖消除**
+
+``` cpp
+   r1 = x.load(memory_order_consume)
+   
+   if (r1) 
+      r2 = y.a;
+   else 
+      r2 = y.a;
+```
+这样的代码可能会被优化为以下代码,破坏了依赖树。
+
+``` cpp
+ r1 = x.load(memory_order_relaxed);
+ r2 = ya.a;
+```
+&ensp;&ensp;这个是控制依赖，所以不在提案的讨论范围之内。
+
+**控制依赖**
+
+``` cpp
+   r1 = x.load(memory_order_consume);
+   if (r1)
+      f(&y);
+   else 
+      g(&y);
+	  
+```
+
+##### <div style="color:#369">Linux命令 </div>
+
+**给磁盘添加卷标**
+
+```cpp
+  
+   //e2label <device-name> <label-name>
+   e2lable /dev/sda2 GENTOO_ROOT
+
+   //或者使用mlabel
+   sudo emerge mtools
+
+  // mlabel -i <device-name> <label-name>
+
+  mlabel -i /dev/sda2 GENTOO_ROOT
+
+```
+
+
+&ensp;&ensp;&ensp;&ensp;[c++ data-dependency ordering:atomics and memory model](http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2556.html)
+
+
+##### <div style="color:#369"> 复习和学习了一些英文单词 </div>
+
+
+#### <div style="color:#369">复习和学习了一些英文短语</div>
+
+| 短语               | 释义     |
+
++ 学习c++的面向对象的知识
++ 看互联网的24种的思想20页
+
+#### <div style="color:#369">todo</div>
++ 详细了解cpp中的function->return type的用法
++ 写一个管理markdown的博客vim插件(参考vim的vimwiki插件)
++ 了解C++中的异常的使用
++ 在emacs或者vim中实现一个小的智能程序

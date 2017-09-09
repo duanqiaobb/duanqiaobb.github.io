@@ -1,0 +1,253 @@
+- [面试的公司](#org94da3c7)
+- [面试中体现的问题](#org70dcf21)
+- [解决和提升的方法](#org13e8946)
+- [面试官问的问题](#org435dac6)
+  - [PHP基础题1：](#org602b3aa)
+  - [PHP基础题2:](#orga27cff9)
+  - [PHP基础题3:](#org274b8e4)
+  - [PHP基础题4：](#org2a68180)
+  - [PHP基础题5:](#orgc521caa)
+  - [PHP基础试题6：](#orgbce9d9c)
+  - [Linux基础题：](#org40b8620)
+  - [性能优化和架构题](#org32bb447)
+
+第二次面试的公司是一家游戏公司，总公司在上海，公司的办公室在酒店里，挺不错的。我对这家公司比较满意，同时也很希望进入这家公司。进入公司后，首先是在人事妹子那拿了份面试题和面试需要填写的资料填了。 面试题都是十分简单的PHP题目，但是由于几乎我半年没碰PHP了，我答得十分不好（作为一个写了两年PHP的我，羞愧捂脸）。
+
+
+<a id="org94da3c7"></a>
+
+# 面试的公司
+
+上海邑世游戏公司
+
+
+<a id="org70dcf21"></a>
+
+# 面试中体现的问题
+
+-   基础知识不足
+
+
+<a id="org13e8946"></a>
+
+# 解决和提升的方法
+
+-   过一下基础知识，同时兼顾刷下常见的面试题目
+
+
+<a id="org435dac6"></a>
+
+# 面试官问的问题
+
+面试我的是一个比较年轻的哥们，比较实在,问的问题都是根据做的面试题来的。
+
+
+<a id="org602b3aa"></a>
+
+## PHP基础题1：
+
+```php
+$a = 10;
+$b = &a;
+++a;
+unset($a);
+echo $b;
+```
+
+```example
+11
+```
+
+这里考到了PHP中的引用，和unset函数对引用操作的问题。首先需要明白,PHP中的引用并不等价与C中的指针 `unset` 函数对引用的操作仅仅是断开了引用和值之间的联系，这并不意味这变量中的内容被销毁了。所以题 中的变量 `a` 的内容经过 `unset` 操作并没有被销毁。所以 `$b` 的值为 `11` 。
+
+
+<a id="orga27cff9"></a>
+
+## PHP基础题2:
+
+假设从数据库中读取总共有 `$total` 条记录， 每一页有 <img src="ltximg/InterviewTwo_3a9d279267d62d5e5472a144f36a86feb31dbed8.png" alt="InterviewTwo_3a9d279267d62d5e5472a144f36a86feb31dbed8.png" /> 条记录，请问总共要分多少页？
+
+```php
+$pages =
+```
+
+这道题考的是简单的分页计算，答案是:
+
+```php
+$pages = $total%$perpage == 0 ? (int)($total/$perpage):(int)($total/$perpage+1);
+```
+
+
+<a id="org274b8e4"></a>
+
+## PHP基础题3:
+
+通过给定的年份和月份，计算出该年该月的最后一天的日期。
+
+```php
+function DateofYearMonth($year,$month){
+  $date = 
+  return $date;
+}
+```
+
+这道题主要考的PHP对日期的操作，可以使用 `date` 和 `strtotime` 函数来实现，思路是
+
+-   首先得到该年该月的第一天
+-   然后将上面的结果加上一个月，再减去一天得到该年该月的最后一天的日期
+
+```php
+function DateofYearMonth($year,$month) {
+  $firstdate = date("Y-m-01",strtotime("$year-$month"));
+  return date('Y-m-d',strtotime("$firstdate+1 month - 1 day"));
+}
+```
+
+
+<a id="org2a68180"></a>
+
+## PHP基础题4：
+
+匹配并输出以下字符串中的所有数字， `'Abc_37_jk_3'`
+
+该题主要是考了PHP中的正则表达式的知识。可以使用 `preg_match` 实现
+
+```php
+$str = 'Abc_37_Fkj_3';
+preg_match('/.*_(\d{2})_.*(\d)$/',$str,$matches);
+$matches = array_slice($matches,1);
+var_dump($matches);
+```
+
+
+<a id="orgc521caa"></a>
+
+## PHP基础题5:
+
+使用jquery写出一段让一点击相应行的删除按钮就删除相应的行的效果。
+
+```html
+<html>
+  <table class="example_table">
+    <tr> <td class="tb">column 1</td> <td><button class="del"> 删除 </button> </td></tr>
+    <tr> <td class="tb">column 2</td> <td><button class="del"> 删除</button> </td></tr>
+    <tr> <td class="tb">column 3</td> <td> <button class="del"> 删除 </button> </td></tr>
+  </table>
+</html>
+```
+
+这里主要是考察了jquery的基本知识点,使用如下代码就能达到这种效果。
+
+```html
+<html>
+
+  <table class="example_table">
+    <tr> <td class="tb">column 1</td> <td><button class="del"> 删除 </button> </td></tr>
+    <tr> <td class="tb">column 2</td> <td><button class="del"> 删除</button> </td></tr>
+    <tr> <td class="tb">column 3</td> <td> <button class="del"> 删除 </button> </td></tr>
+  </table>
+  <script type="text/javascript">
+      $(".del").click(function() {
+	 $(this).parents("tr")[0].remove();
+})
+  </script>
+</html>
+```
+
+这道题其实主要涉及到jquery的选择器的相关和一些基本的dom操作函数，只要了解这两个知识点的话，这道题基本就没什么问题了。
+
+
+<a id="orgbce9d9c"></a>
+
+## PHP基础试题6：
+
+假设数据库中有两张表，一张users表存储游戏用户的用户信息，一张fees表存储游戏用户在游戏中的付费记录 。两张表的字段为：
+
+
+<div class="figure">
+<p><img src="ltximg/InterviewTwo_ef1c1c089228af3eef95e4d8acbe5d666d25550b.png" alt="InterviewTwo_ef1c1c089228af3eef95e4d8acbe5d666d25550b.png" /></p>
+</div>
+
+那么请问如何查出在游戏中消费最多的10个用户的用户名和消费总金额，请写出相应的 `SQL` 语句。
+
+这道题主要是考察 `SQL` 的基本知识。由于游戏公司的数据库通常比较大，所以相对来说比较注重于应聘者的数据库基础，以及 数据库优化方面的知识。 可以使用如下的SQL语句达到目的。
+
+```sql
+select userid,sum(costs) as total_costs from users,fees where users.userid = fees.uid group by uid order by total_costs desc limit 10;
+```
+
+这里也要同时考虑下查询语句的性能问题，尽量避免 `join` 语句和 `SQL` 语句中尽量涉及比较少的表字段。
+
+
+<a id="org40b8620"></a>
+
+## Linux基础题：
+
+写出你常使用的Linux命令,越多越好。
+
+```shell
+-文件操作
+ls    --查看文件夹中的文件
+dd    --复制和转换文件
+mv    --移动文件
+cp    --复制文件
+mkdir --创建文件夹
+touch --创建文件
+find  --查找文件
+tree  --查看文件系统的结构
+rm    --删除文件
+ln    --创建文件链接
+cat   --查看文件内容
+less  --查看文件的内容
+more  --查看文件的内容
+pwd   --显示当前的文件路径
+vim   --文件编辑
+emacs --文件编辑
+
+
+-磁盘管理
+fdisk --磁盘分区
+gdisk --磁盘分区
+df    --查看磁盘空间和状态
+du    --计算文件在磁盘中占用的空间
+
+--进程管理
+top   --实时查看系统进程状态
+htop  --实时更加强大的系统进程查看器
+ps    --查看系统进程信息
+jobs  --查看当前会话的进程信息
+fg    --将当前会话的后台进程唤醒到前台
+bg    --将当前会话的前台进程隐藏到后台执行
+kill  --杀死进程
+
+--网络管理
+ping     --通常用来测试网络是否联通
+netstat  --查看网络连接情况
+nmcli    --无线网络管理
+pppoe    --拨号上网工具
+
+
+--帮助工具
+man  --查看相关手册
+info --查看比较详细的手册
+
+--文本处理工具
+grep    --正则表达式匹配
+awk     --文本模式搜索和处理工具
+sed     --文本过滤和转化的流处理器
+
+--系统管理
+crontab --定时化任务
+```
+
+这道题主要考察的是Linux基础知识。这道题是一道很灵活的题，但是面试官可能会根据你写的常用命令，问你一些这些命名的使用场景，或者需要结合多个命令来完成一个任务的场景。所以要在这一块表现的好一些。最好都 好好的准备一下。
+
+
+<a id="org32bb447"></a>
+
+## 性能优化和架构题
+
+公司有个活动页面，现在需要统计页面访问数，请谈一谈你的思路。
+
+-   我之前的想法是，根据ip来统计页面的访问数,实现方法为：写个脚本读写web服务器的记录，统计记录中的不同ip的总数。但是我没考虑到活动页面是实时性的，如果采用这个方法，会造成磁盘的io很高，所以这个方法不能采取。
+-   合适的方法是: 在前端采用异步的方式请求一个接口，然后后台提供一个相关的计数器接口。同时异步请求不会直接请求web服务器，而是首先请求web服务器的反向代理服务器层。

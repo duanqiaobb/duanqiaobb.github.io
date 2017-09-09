@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-05-12 Fri 14:10 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<p>
+ <div style="color:#369">Graphivz中文显示问题</div>
+</p>
+
+<p>
+&ensp;&ensp; <a href="http://www.graphviz.org/"> <code>graphviz</code> </a> （相关详细教程请点击进入官网）是基于dot语言的绘图工具，可以画有向图，无向图，关系图，目录图，流程图等。在使用过程中，发现 <code>Graphivz</code> 对
+中文的支持还是不够，容易出现各种各样的问题。
+</p>
+
+<ul class="org-ul">
+<li>中文乱码问题</li>
+</ul>
+
+<p>
+ &ensp;&ensp; 这种问题，很多人都遇到过，因为 <code>Graphivz</code> 默认是不支持中文的，所以如果直接写中文的画，会显示成乱码，一般这种情况可以修改文件的编码
+格式为 <code>UTF-8</code> , 然后将 <code>fontname</code> 设置为系统中存在的中文字体格式就可以解决。具体可以参考这篇博文 <a href="http://lockriver.blog.163.com/blog/static/487232242010101761749383/">Graphviz使用简介(中文乱码的问题)</a> ，我就不在赘叙了。
+</p>
+
+<ul class="org-ul">
+<li>中文无法显示</li>
+</ul>
+
+<p>
+ &ensp;&ensp; 这是我使用过程中确确实实遇到的问题。比如，我们使用如下 <code>dot</code> 代码来绘制一个 <code>hash</code> 表图。
+</p>
+
+<p>
+<b>可能这个问题跟系统环境有关，首先，我先贴一下我的环境</b>
+</p>
+
+<ul class="org-ul">
+<li>编辑器: GNU Emacs 25.2.1 (x86<sub>64</sub>-pc-linux-gnu, GTK+ Version 3.20.9) of 2017-02-25</li>
+
+<li>系统:  Linux version 4.4.39-gentoo (root@johans) (gcc version 4.9.4 (Gentoo 4.9.4 p1.0, pie-0.6.4) ) #1 SMP Wed Mar 8 09:21:39 CST 2017</li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-dot">digraph idp_modules{
+
+  rankdir = TB;
+  fontname = <span style="color: #8AE234;">"Microsoft YaHei"</span>;
+  fontsize = 12;
+
+  node [ fontname = <span style="color: #8AE234;">"Microsoft YaHei"</span>, fontsize = 12, shape = <span style="color: #8AE234;">"record"</span> ];
+  edge [ fontname = <span style="color: #8AE234;">"Microsoft YaHei"</span>, fontsize = 12 ];
+
+  subgraph cluster_sl{
+          label=<span style="color: #8AE234;">"IDP&#25903;&#25345;&#23618;"</span>;
+          bgcolor=<span style="color: #8AE234;">"mintcream"</span>;
+          node [shape=<span style="color: #8AE234;">"Mrecord"</span>, color=<span style="color: #8AE234;">"skyblue"</span>, style=<span style="color: #8AE234;">"filled"</span>];
+          network_mgr [label=<span style="color: #8AE234;">"&#32593;&#32476;&#31649;&#29702;&#22120;"</span>];
+          log_mgr [label=<span style="color: #8AE234;">"&#26085;&#24535;&#31649;&#29702;&#22120;"</span>];
+          module_mgr [label=<span style="color: #8AE234;">"&#27169;&#22359;&#31649;&#29702;&#22120;"</span>];
+          conf_mgr [label=<span style="color: #8AE234;">"&#37197;&#32622;&#31649;&#29702;&#22120;"</span>];
+          db_mgr [label=<span style="color: #8AE234;">"&#25968;&#25454;&#24211;&#31649;&#29702;&#22120;"</span>];
+      };
+
+      subgraph cluster_md{
+          label=<span style="color: #8AE234;">"&#21487;&#25554;&#25300;&#27169;&#22359;&#38598;"</span>;
+          bgcolor=<span style="color: #8AE234;">"lightcyan"</span>;
+          node [color=<span style="color: #8AE234;">"chartreuse2"</span>, style=<span style="color: #8AE234;">"filled"</span>];
+          mod_dev [label=<span style="color: #8AE234;">"&#24320;&#21457;&#25903;&#25345;&#27169;&#22359;"</span>];
+          mod_dm [label=<span style="color: #8AE234;">"&#25968;&#25454;&#24314;&#27169;&#27169;&#22359;"</span>];
+          mod_dp [label=<span style="color: #8AE234;">"&#37096;&#32626;&#21457;&#24067;&#27169;&#22359;"</span>];
+      };
+
+  mod_dp -&gt; mod_dev [label=<span style="color: #8AE234;">"&#20381;&#36182;..."</span>];
+  mod_dp -&gt; mod_dm [label=<span style="color: #8AE234;">"&#20381;&#36182;..."</span>];
+  mod_dp -&gt; module_mgr [label=<span style="color: #8AE234;">"&#23433;&#35013;..."</span>, color=<span style="color: #8AE234;">"yellowgreen"</span>, arrowhead=<span style="color: #8AE234;">"none"</span>];
+  mod_dev -&gt; mod_dm [label=<span style="color: #8AE234;">"&#20381;&#36182;..."</span>];
+  mod_dev -&gt; module_mgr [label=<span style="color: #8AE234;">"&#23433;&#35013;..."</span>, color=<span style="color: #8AE234;">"yellowgreen"</span>, arrowhead=<span style="color: #8AE234;">"none"</span>];
+  mod_dm -&gt; module_mgr [label=<span style="color: #8AE234;">"&#23433;&#35013;..."</span>, color=<span style="color: #8AE234;">"yellowgreen"</span>, arrowhead=<span style="color: #8AE234;">"none"</span>];
+}
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/hash_example1.png" alt="hash_example1.png" />
+</p>
+</div>
+
+<p>
+&ensp;&ensp; 导致这一情况的有两种原因： 
+</p>
+
+<ul class="org-ul">
+<li>设置的字体在你系统中不存在，在这里，我的系统中不存在 <code>Microsoft YaHei</code> 这种字体</li>
+<li>在 <code>Label</code> 中包含中文的时候, 英文引号和中文之间需要有空格分分隔。</li>
+</ul>
+
+<p>
+&ensp;&ensp; 但是很奇怪，这种情况只发生在 <code>subgraph(子图)</code> 中的 <code>label</code> 上, 而不会发生在 <code>digraph</code> 中的 <code>label</code> 上, 比如:
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-dot">digraph{
+rankdir = TB;
+fontname = <span style="color: #8AE234;">"FZFangSong-Z02"</span>;
+fontsize = 12;
+
+node [ fontname = <span style="color: #8AE234;">"FZFangSong-Z02"</span>, fontsize = 12, shape = <span style="color: #8AE234;">"record"</span> ];
+edge [ fontname = <span style="color: #8AE234;">"FZFangSong-Z02"</span>, fontsize = 12 ];
+
+
+p1 [label=<span style="color: #8AE234;">"&#27493;&#39588;1"</span>];
+p2 [label=<span style="color: #8AE234;">"&#27493;&#39588;2"</span>];
+
+p3 [label=<span style="color: #8AE234;">"&#27493;&#39588;3"</span>];
+p4 [label=<span style="color: #8AE234;">"&#27493;&#39588;4"</span>];
+
+p1-&gt;p2;
+p2-&gt;p4;
+p3-&gt;p4;
+
+}
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/zh_display_example2.png" alt="zh_display_example2.png" />
+</p>
+</div>
+
+
+
+
+<p>
+&ensp;&ensp; 解决方法:
+</p>
+
+<ul class="org-ul">
+<li>将中文字体设置为你系统存在的中文字体</li>
+<li>在 <code>Label</code> 中的中文和引号之间用空格隔开。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-dot">digraph idp_modules{
+
+  rankdir = TB;
+  fontname = <span style="color: #8AE234;">"FZFangSong-Z02"</span>;
+  fontsize = 12;
+
+  node [ fontname = <span style="color: #8AE234;">"FZFangSong-Z02"</span>, fontsize = 12, shape = <span style="color: #8AE234;">"record"</span> ];
+  edge [ fontname = <span style="color: #8AE234;">"FZFangSong-Z02"</span>, fontsize = 12 ];
+
+      subgraph cluster_sl{
+          label=<span style="color: #8AE234;">"IDP&#25903;&#25345;&#23618;"</span>;
+          bgcolor=<span style="color: #8AE234;">"mintcream"</span>;
+          node [shape=<span style="color: #8AE234;">"Mrecord"</span>, color=<span style="color: #8AE234;">"skyblue"</span>, style=<span style="color: #8AE234;">"filled"</span>];
+          network_mgr [label=<span style="color: #8AE234;">" &#32593;&#32476;&#31649;&#29702;&#22120; "</span>];
+          log_mgr [label=<span style="color: #8AE234;">" &#26085;&#24535;&#31649;&#29702;&#22120; "</span>];
+          module_mgr [label=<span style="color: #8AE234;">" &#27169;&#22359;&#31649;&#29702;&#22120; "</span>];
+          conf_mgr [label=<span style="color: #8AE234;">" &#37197;&#32622;&#31649;&#29702;&#22120; "</span>];
+          db_mgr [label=<span style="color: #8AE234;">" &#25968;&#25454;&#24211;&#31649;&#29702;&#22120; "</span>];
+      };
+
+      subgraph cluster_md{
+          label=<span style="color: #8AE234;">"&#21487;&#25554;&#25300;&#27169;&#22359;&#38598;"</span>;
+          bgcolor=<span style="color: #8AE234;">"lightcyan"</span>;
+          node [color=<span style="color: #8AE234;">"chartreuse2"</span>, style=<span style="color: #8AE234;">"filled"</span>];
+          mod_dev [label=<span style="color: #8AE234;">" &#24320;&#21457;&#25903;&#25345;&#27169;&#22359; "</span>];
+          mod_dm [label=<span style="color: #8AE234;">" &#25968;&#25454;&#24314;&#27169;&#27169;&#22359; "</span>];
+          mod_dp [label=<span style="color: #8AE234;">" &#37096;&#32626;&#21457;&#24067;&#27169;&#22359; "</span>];
+      };
+
+  mod_dp -&gt; mod_dev [label=<span style="color: #8AE234;">"&#20381;&#36182;..."</span>];
+  mod_dp -&gt; mod_dm [label=<span style="color: #8AE234;">"&#20381;&#36182;..."</span>];
+  mod_dp -&gt; module_mgr [label=<span style="color: #8AE234;">"&#23433;&#35013;..."</span>, color=<span style="color: #8AE234;">"yellowgreen"</span>, arrowhead=<span style="color: #8AE234;">"none"</span>];
+  mod_dev -&gt; mod_dm [label=<span style="color: #8AE234;">"&#20381;&#36182;..."</span>];
+  mod_dev -&gt; module_mgr [label=<span style="color: #8AE234;">"&#23433;&#35013;..."</span>, color=<span style="color: #8AE234;">"yellowgreen"</span>, arrowhead=<span style="color: #8AE234;">"none"</span>];
+  mod_dm -&gt; module_mgr [label=<span style="color: #8AE234;">"&#23433;&#35013;..."</span>, color=<span style="color: #8AE234;">"yellowgreen"</span>, arrowhead=<span style="color: #8AE234;">"none"</span>];
+}
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="data/2017/hash_example2.png" alt="hash_example2.png" />
+</p>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2017-05-12 Fri 14:10</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-04-27 Thu 19:12 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style type="text/css">.src-makefile {background-color: #222; color: #ccc}</style>
+<style type="text/css">.src-sh {background-color: #222; color: #ccc}</style>
+<style type="text/css">.src-C {background-color: #222; color: #ccc}</style>
+<style type="text/css">.src-C\+\+ {background-color: #222; color: #ccc}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4da4fb5">1. <div style="color:#369">今日计划</div></a></li>
+<li><a href="#org1865966">2. <div style="color:#369">今日收获</div></a>
+<ul>
+<li><a href="#orgbfbd8b3">2.1. C语言中的复数操作</a></li>
+<li><a href="#orgab01772">2.2. C++中的复数</a></li>
+</ul>
+</li>
+<li><a href="#orgeb8739c">3.  <div style="color:#369">todo</div></a></li>
+<li><a href="#org12331a6">4.  <div style="color:#369">明日计划</div></a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4da4fb5" class="outline-2">
+<h2 id="org4da4fb5"><span class="section-number-2">1</span> <div style="color:#369">今日计划</div></h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>30前将普通傅里叶变化的算法和web程序写出来以及论文弄好(还有4天)</li>
+<li>有道口语一课（切记）</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org1865966" class="outline-2">
+<h2 id="org1865966"><span class="section-number-2">2</span> <div style="color:#369">今日收获</div></h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgbfbd8b3" class="outline-3">
+<h3 id="orgbfbd8b3"><span class="section-number-3">2.1</span> C语言中的复数操作</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+ &ensp;&ensp;  复数在数学运算中十分重要，在编写数值运算或者算法的时候，我们会用到复数这种概念。
+那么，复数在C/C++语言中是如何表示的呢？我们接下来一一介绍。
+</p>
+
+<ul class="org-ul">
+<li>C语言中复数</li>
+</ul>
+
+<p>
+ &ensp;&ensp; 在数学中一个复数可以定义为 \(z=a + bi\) 的形式。 <code>C</code> 语言在 <code>ISO C99</code> 时就引入了复数类型。它是通过 <code>complex.h</code> 中定义的。
+我们可以使用 <code>complex</code> , <code>__complex__</code> , 或 <code>_ComplexI</code> 类型符号来表示。在C语言中有三种复数类型，分别为 <code>float complex</code> , <code>double complex</code> , <code>long double complex</code> 。他们之间
+的区别就是表示复数中实部和虚步的数的数据类型不同。 <code>complex</code> 其实就是一个数组，数组中有两个元素，一个表示复数的实部，一个表示复数的虚部。
+</p>
+
+<ul class="org-ul">
+<li>定义一个复数</li>
+</ul>
+
+<p>
+ &ensp;&ensp; 在 <code>complex.h</code> 头文件中定义了两个宏 <code>_Complex_I</code> 和 <code>I</code> 来创建一个复数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #99CC99;">Macro</span>: <span style="color: #96CBFE;">const</span> <span style="color: #CFCB90;">float</span> <span style="color: #c5c8c6; background-color: #1d1f21;">complex</span> _Complex_I;
+<span style="color: #99CC99;">Macro</span>: <span style="color: #96CBFE;">const</span> <span style="color: #CFCB90;">float</span> <span style="color: #c5c8c6; background-color: #1d1f21;">complex</span>  I;
+</pre>
+</div>
+
+
+
+<p>
+ &ensp;&ensp;  这两个宏表示复数 \(0+1i\) , 我们可是使用这个单位复数来创建任何复数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;stdio.h&gt;</span>
+<span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;complex.h&gt;</span>
+
+<span style="color: #CFCB90;">int</span> <span style="color: #FFD2A7;">main</span>(<span style="color: #CFCB90;">int</span> <span style="color: #c5c8c6; background-color: #1d1f21;">argc</span>, <span style="color: #CFCB90;">char</span> *<span style="color: #c5c8c6; background-color: #1d1f21;">argv</span>[])
+{
+  complex  <span style="color: #CFCB90;">double</span>  <span style="color: #c5c8c6; background-color: #1d1f21;">a</span> = 3.0 + 4.0 * _Complex_I;
+  __complex__ <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">b</span> = 4.0 + 5.0 * _Complex_I;
+  <span style="color: #CFCB90;">_Complex</span>  <span style="color: #CFCB90;">double</span> c = 5.0 + 6.0 * _Complex_I;
+
+  printf(<span style="color: #8AE234;">"a=%f+%fi\n"</span>, creal(a),cimag(a));
+  printf(<span style="color: #8AE234;">"b=%f+%fi\n"</span>, creal(b), cimag(b));
+  printf(<span style="color: #8AE234;">"c=%f+%fi\n"</span>, creal(c), cimag(c));
+
+
+
+  printf(<span style="color: #8AE234;">"the arg of a is %d"</span>, carg(a));
+
+  <span style="color: #96CBFE;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+a=3.000000+4.000000i
+b=4.000000+5.000000i
+c=5.000000+6.000000i
+the arg of a is 176
+</pre>
+
+<ul class="org-ul">
+<li>复数的基本操作函数</li>
+</ul>
+
+<p>
+ &ensp;&ensp; 在 <code>complex.h</code> 头文件中定义一些对复数的基本操作的函数。
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">函数</th>
+<th scope="col" class="org-left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">creal</td>
+<td class="org-left">获取复数的实部</td>
+</tr>
+
+<tr>
+<td class="org-left">cimag</td>
+<td class="org-left">获取复数的虚部</td>
+</tr>
+
+<tr>
+<td class="org-left">conj</td>
+<td class="org-left">获取复数的共轭</td>
+</tr>
+
+<tr>
+<td class="org-left">carg</td>
+<td class="org-left">代表,复平面上穿过原点和复数在复平面表示的点,的直线和实数轴之间的夹角</td>
+</tr>
+
+<tr>
+<td class="org-left">cproj</td>
+<td class="org-left">返回复数在黎曼球面上的投影</td>
+</tr>
+</tbody>
+</table>
+
+
+<ul class="org-ul">
+<li>复数的数值操作</li>
+</ul>
+
+<p>
+ &ensp;&ensp;  复数类型也可以像普通数值类型， <code>int, double, long</code> 一样进行直接使用数值操作符号，进行数值操作。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;stdio.h&gt;</span>
+<span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;complex.h&gt;</span>
+
+<span style="color: #CFCB90;">int</span> <span style="color: #FFD2A7;">main</span>(<span style="color: #CFCB90;">int</span> <span style="color: #c5c8c6; background-color: #1d1f21;">argc</span>, <span style="color: #CFCB90;">char</span> *<span style="color: #c5c8c6; background-color: #1d1f21;">argv</span>[])
+{
+  complex  <span style="color: #CFCB90;">double</span>  <span style="color: #c5c8c6; background-color: #1d1f21;">a</span> = 3.0 + 4.0 * _Complex_I;
+  __complex__ <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">b</span> = 4.0 + 5.0 * _Complex_I;
+  <span style="color: #CFCB90;">_Complex</span>  <span style="color: #CFCB90;">double</span> c = 5.0 + 6.0 * _Complex_I;
+
+  complex <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">d</span> =a + b;
+  complex <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">f</span> = a *b ;
+  complex <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">g</span> = a/b;
+
+  printf (<span style="color: #8AE234;">"d=a+b=%f+%fi\n"</span>,creal(d),cimag(d));
+  printf (<span style="color: #8AE234;">"f=a*b=%f+%fi\n"</span>,creal(f),cimag(f));
+  printf(<span style="color: #8AE234;">"g=a/b=%f+%fi\n"</span>,creal(g),cimag(g));
+
+  <span style="color: #96CBFE;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+d=a+b=7.000000+9.000000i
+f=a*b=-8.000000+31.000000i
+g=a/b=0.780488+0.024390i
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgab01772" class="outline-3">
+<h3 id="orgab01772"><span class="section-number-3">2.2</span> C++中的复数</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+ &ensp;&ensp; C++中的复数操作在C语言基础上引进了面向对象的特性，在 <code>C++</code> 头文件在 <code>complex</code> 中定义了一个 <code>complex</code> 类用来表示复数。同时为了兼容 <code>C</code> 的 <code>complex</code> 类型，也提供了一个 <code>complex.h</code> 的头文件。
+不同的是，在 <code>complex.h</code> 头文件中， <code>complex</code> 关键字被废弃，只能使用 <code>_Complex</code> 和 <code>__complex__</code> 来使用 C风格的复数形式。
+</p>
+
+<ul class="org-ul">
+<li>复数的定义</li>
+</ul>
+
+<p>
+ &ensp;&ensp; 在C++中可以使用两种方式定义一个复数，一个使用C风格 <code>_Complex</code> 和 <code>__complex__</code> ，一个是使用 <code>complex</code> 类。
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #8996A8;">  #include</span> <span style="color: #8AE234;">&lt;iostream&gt;</span>
+<span style="color: #8996A8;">  #include</span> <span style="color: #8AE234;">&lt;complex&gt;</span>
+<span style="color: #8996A8;">  #include</span> <span style="color: #8AE234;">&lt;complex.h&gt;</span>
+  <span style="color: #96CBFE;">using</span> <span style="color: #96CBFE;">namespace</span> <span style="color: #99CC99;">std</span>;
+  <span style="color: #CFCB90;">int</span> <span style="color: #FFD2A7;">main</span>(<span style="color: #CFCB90;">int</span> <span style="color: #c5c8c6; background-color: #1d1f21;">argc</span>, <span style="color: #CFCB90;">char</span> *<span style="color: #c5c8c6; background-color: #1d1f21;">argv</span>[])
+  {
+o    <span style="color: #CFCB90;">complex</span>&lt;<span style="color: #CFCB90;">double</span>&gt; <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex</span>(2.000,2);
+    _Complex <span style="color: #CFCB90;">double</span>  <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex2</span> = 2.000 + 3I;
+    __complex__ <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex3</span> = 2.000 + 4I;
+
+    cout &lt;&lt; mycomplex &lt;&lt; endl;
+    cout &lt;&lt; <span style="color: #8AE234;">"("</span> &lt;&lt; creal(mycomplex2) &lt;&lt; <span style="color: #8AE234;">","</span> &lt;&lt; cimag(mycomplex2) &lt;&lt; <span style="color: #8AE234;">")"</span> &lt;&lt; endl;
+    cout &lt;&lt; <span style="color: #8AE234;">"("</span> &lt;&lt; creal(mycomplex3) &lt;&lt; <span style="color: #8AE234;">","</span> &lt;&lt; cimag(mycomplex3) &lt;&lt; <span style="color: #8AE234;">")"</span> &lt;&lt; endl;
+    <span style="color: #96CBFE;">return</span> 0;
+  }
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>复数的基本操作函数</li>
+</ul>
+
+<p>
+ &ensp;&ensp;  在C++中既可以使用 <code>C</code> 风格的相关函数处理 <code>C</code> 风格的复数形式。
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">函数</th>
+<th scope="col" class="org-left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">creal</td>
+<td class="org-left">获取复数的实部</td>
+</tr>
+
+<tr>
+<td class="org-left">cimag</td>
+<td class="org-left">获取复数的虚部</td>
+</tr>
+
+<tr>
+<td class="org-left">conj</td>
+<td class="org-left">获取复数的共轭</td>
+</tr>
+
+<tr>
+<td class="org-left">carg</td>
+<td class="org-left">获取,复平面上穿过原点和复数在复平面表示的点,的直线和实数轴之间的夹角</td>
+</tr>
+
+<tr>
+<td class="org-left">cproj</td>
+<td class="org-left">返回复数在黎曼球面上的投影</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+ &ensp;&ensp; 也可以使用 C++相关数值操作方法,处理 <code>complex</code> 形式的复数。
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">方法</th>
+<th scope="col" class="org-left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">real</td>
+<td class="org-left">获取复数的实部</td>
+</tr>
+
+<tr>
+<td class="org-left">imag</td>
+<td class="org-left">获取复数的虚部</td>
+</tr>
+
+<tr>
+<td class="org-left">abs</td>
+<td class="org-left">获取复数的绝对值</td>
+</tr>
+
+<tr>
+<td class="org-left">arg</td>
+<td class="org-left">获取,复平面上穿过原点和复数在复平面表示的点,的直线和实数轴之间的夹角</td>
+</tr>
+
+<tr>
+<td class="org-left">norm</td>
+<td class="org-left">获取复数的范数</td>
+</tr>
+
+<tr>
+<td class="org-left">conj</td>
+<td class="org-left">获取复数的共轭</td>
+</tr>
+
+<tr>
+<td class="org-left">polar</td>
+<td class="org-left">获取极坐标对应的复数</td>
+</tr>
+
+<tr>
+<td class="org-left">proj</td>
+<td class="org-left">返回复数在黎曼球面上的投影</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;iostream&gt;</span>
+<span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;complex.h&gt;</span>
+
+<span style="color: #96CBFE;">using</span> <span style="color: #96CBFE;">namespace</span> <span style="color: #99CC99;">std</span>;
+
+<span style="color: #CFCB90;">int</span> <span style="color: #FFD2A7;">main</span>(<span style="color: #CFCB90;">int</span> <span style="color: #c5c8c6; background-color: #1d1f21;">argc</span>, <span style="color: #CFCB90;">char</span> *<span style="color: #c5c8c6; background-color: #1d1f21;">argv</span>[])
+{
+  <span style="color: #CFCB90;">complex</span>&lt;<span style="color: #CFCB90;">double</span>&gt; <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex</span>(2.000,2);
+  _Complex <span style="color: #CFCB90;">double</span>  <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex2</span> = 2.000 + 3I;
+
+  <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">real_mycomplex</span> = mycomplex.real();
+  <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">imag_mycomplex</span> = mycomplex.imag();
+  <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">abs_mycomplex</span> = abs(mycomplex);
+  <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">norm_mycomplex</span> = norm(mycomplex);
+
+  <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">real_mycomplex2</span> =  creal(mycomplex2);
+  <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">imag_mycomplex2</span> = cimag(mycomplex2);
+  <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">abs_mycomplex2</span> =  cabs(mycomplex2);
+
+  cout &lt;&lt; <span style="color: #8AE234;">"real part of mycomplex: "</span> &lt;&lt; real_mycomplex &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #8AE234;">"image part of mycomplex: "</span> &lt;&lt; imag_mycomplex &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #8AE234;">"abs of mycomplex: "</span> &lt;&lt; abs_mycomplex &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #8AE234;">"norm of mycomplex: "</span> &lt;&lt; norm_mycomplex &lt;&lt; endl;
+
+  cout &lt;&lt; <span style="color: #8AE234;">"real part of mycomplex2: "</span> &lt;&lt; real_mycomplex2 &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #8AE234;">"image part of mycomplex2: "</span> &lt;&lt; imag_mycomplex2 &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #8AE234;">"abs of mycomplex2: "</span> &lt;&lt; abs_mycomplex2 &lt;&lt; endl;
+  <span style="color: #96CBFE;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+real part of mycomplex: 2
+image part of mycomplex: 2
+abs of mycomplex: 2.82843
+norm of mycomplex: 8
+real part of mycomplex2: 2
+image part of mycomplex2: 3
+abs of mycomplex2: 3.60555
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;iostream&gt;</span>
+<span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;complex.h&gt;</span>
+<span style="color: #8996A8;">#include</span> <span style="color: #8AE234;">&lt;complex&gt;</span>
+
+<span style="color: #96CBFE;">using</span> <span style="color: #96CBFE;">namespace</span> <span style="color: #99CC99;">std</span>;
+
+<span style="color: #CFCB90;">int</span> <span style="color: #FFD2A7;">main</span>(<span style="color: #CFCB90;">int</span> <span style="color: #c5c8c6; background-color: #1d1f21;">argc</span>, <span style="color: #CFCB90;">char</span> *<span style="color: #c5c8c6; background-color: #1d1f21;">argv</span>[])
+{
+  <span style="color: #CFCB90;">complex</span>&lt;<span style="color: #CFCB90;">double</span>&gt; <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex</span>(2.000,2);
+  <span style="color: #CFCB90;">complex</span>&lt;<span style="color: #CFCB90;">double</span>&gt; <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex3</span>(3.000,4);
+  _Complex <span style="color: #CFCB90;">double</span>  <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex2</span> = 2.000 + 3I;
+  _Complex <span style="color: #CFCB90;">double</span>  <span style="color: #c5c8c6; background-color: #1d1f21;">mycomplex4</span> = 2.000 + 5I;
+
+  _Complex <span style="color: #CFCB90;">double</span> <span style="color: #c5c8c6; background-color: #1d1f21;">plus</span> = mycomplex2 + mycomplex4;
+  <span style="color: #CFCB90;">complex</span>&lt;<span style="color: #CFCB90;">double</span>&gt; <span style="color: #c5c8c6; background-color: #1d1f21;">plus2</span> = mycomplex+mycomplex3;
+
+  cout &lt;&lt; <span style="color: #8AE234;">"("</span> &lt;&lt; creal(plus) &lt;&lt; <span style="color: #8AE234;">","</span> &lt;&lt; cimag(plus) &lt;&lt; <span style="color: #8AE234;">")"</span> &lt;&lt; endl;
+  cout &lt;&lt; plus2 &lt;&lt; endl;
+  <span style="color: #96CBFE;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+(4,8)
+(5,6)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeb8739c" class="outline-2">
+<h2 id="orgeb8739c"><span class="section-number-2">3</span>  <div style="color:#369">todo</div></h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>详细了解cpp中的function-&gt;return type的用法</li>
+<li>写一个管理markdown的博客vim插件(参考vim的vimwiki插件)</li>
+<li>了解C++中的异常的使用</li>
+<li>在emacs或者vim中实现一个小的智能程序</li>
+<li>写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)</li>
+<li>在vim移植emacs的org-mode(针对markdown)</li>
+<li>命令行的qq聊天(vim-plugin,emacs-plugin)</li>
+<li>探究真正意义上的人工智能</li>
+<li>学习黑客的思维</li>
+<li>写个备份Gentoo Linux的脚本(Live版本,iso格式)</li>
+<li>写个像Grammerly的功能的软件</li>
+<li>写方面绑定手机的各种账号更换</li>
+<li>看王垠的40行代码</li>
+<li>学习scheme语言</li>
+<li>详细看《Chapter 13. Copy contral》</li>
+<li>详细看《 Chapter 12. Dynamic Memory》</li>
+<li>详细看《13.1.4（p. 504）》</li>
+<li>了解C++里面的lamda表达式</li>
+<li>C++的线程相关操作</li>
+<li>看825页的dynamic<sub>cast</sub>(看完虚函数再看)</li>
+<li>《 CPP prime 》 看到Circumventing the Virtual Mechanism</li>
+<li>grub,UEFI,Legacy,Windows Loader,以及其他相关加载器的相关知识</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org12331a6" class="outline-2">
+<h2 id="org12331a6"><span class="section-number-2">4</span>  <div style="color:#369">明日计划</div></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2017-04-27 Thu 19:12</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

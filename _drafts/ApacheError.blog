@@ -1,0 +1,13 @@
+Apache配置ServerRoot和Apache所在目录不一致所出现的错误:
+
+    httpd.exe: Syntax error on line 73 of D:/Win10SoftWare/Apache/conf/httpd.conf: C
+    annot load modules/mod_access_compat.so into server: \xd5\xd2\xb2\xbb\xb5\xbd\xd
+    6\xb8\xb6\xa8\xb5\xc4\xc4\xa3\xbf\xe9\xa1\xa3
+
+解决来源信息:
+    http://www.tuicool.com/articles/MFvUVn
+
+吸取教训: 
+    尝试点击httpd.exe去验证apache的配置项错误
+
+

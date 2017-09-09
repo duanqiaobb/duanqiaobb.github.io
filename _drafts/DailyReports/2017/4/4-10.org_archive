@@ -1,0 +1,21 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /mnt/D/Developer/WorkPlace/Blog/DailyReports/2017/4/4-10.org
+
+
+* 自然梯度解法
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2017-04-10 Mon 22:01
+  :ARCHIVE_FILE: /mnt/D/Developer/WorkPlace/Blog/DailyReports/2017/4/4-10.org
+  :ARCHIVE_OLPATH: @@html:<div style="color:#369">今日收获</div>@@/盲源分离
+  :ARCHIVE_CATEGORY: 4-10
+  :END:
+
+@@html:&ensp;&ensp;@@自然梯度法的计算公式为:
+
+$W(n+1) = W(n) + \eta(n)[I - \phi(y(n))y^T(n)]W(n)$
+
+其中 $W$ 为我们需要估计的矩阵，$\eta(n)$ 为步长, $\phi(y)$ 是一个非线性变换，比如 $\eta(y)=\eta(y^3)$
+实际计算时 $y$ 为一个$m\timesk$的矩阵, $m$ 为原始信号个数，$k$ 为采样点个数。
+

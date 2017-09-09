@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-04-15 Sat 14:17 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style type="text/css">.src-sh {background-color: #222; color: #ccc}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge3dedcf">1. <div style="color:#369">今日计划</div></a></li>
+<li><a href="#orgd5a782a">2. <div style="color:#369">今日收获</div></a>
+<ul>
+<li><a href="#orge35ea57">2.1. 盲源分离</a>
+<ul>
+<li><a href="#orgcbf7b2f">2.1.1. 盲源分离的数学模型</a></li>
+<li><a href="#orga967573">2.1.2. 问题的基本假设</a></li>
+<li><a href="#org1d78103">2.1.3. 自然梯度解法</a></li>
+<li><a href="#orged9ec76">2.1.4. 算法描述</a></li>
+</ul>
+</li>
+<li><a href="#orge0e421a">2.2. <div style="color:#369"> 引用</div></a></li>
+<li><a href="#orge283721">2.3. <div style="color:#369"> 参考文献 </div></a></li>
+<li><a href="#org943a91a">2.4.  <div style="color:#369">CMake的使用</div></a></li>
+</ul>
+</li>
+<li><a href="#org26e37c9">3.  <div style="color:#369">todo</div></a></li>
+<li><a href="#org462395b">4.  <div style="color:#369">明日计划</div></a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge3dedcf" class="outline-2">
+<h2 id="orge3dedcf"><span class="section-number-2">1</span> <div style="color:#369">今日计划</div></h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>看盲源分离和神经网络方面的知识,以及查找其他代替方法</li>
+<li>15号将程序写出来以及论文弄好(还有五天)</li>
+<li>完成论文的第一章,图片基础知识的介绍</li>
+<li>有道口语一课（切记）</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgd5a782a" class="outline-2">
+<h2 id="orgd5a782a"><span class="section-number-2">2</span> <div style="color:#369">今日收获</div></h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orge35ea57" class="outline-3">
+<h3 id="orge35ea57"><span class="section-number-3">2.1</span> 盲源分离</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-orgcbf7b2f" class="outline-4">
+<h4 id="orgcbf7b2f"><span class="section-number-4">2.1.1</span> 盲源分离的数学模型</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+ &ensp;&ensp; 盲源分离是通信领域中的一个概念，它是一种能从来自多个传感器输出的混合信号，在混合信号之间并不线性相关，原始信号未知，信号混合方法也未知的情况下，分析出没有观测的原始信号。
+</p>
+
+<p>
+ &ensp;&ensp;  假设具有 \(m\) 个独立的信号源 \(s_1(t),...,s_m(t)\) 和 \(n\) 个独立的观察量 \(x_1(t),...,x_n(t)\) ,观察量和信号源的关系如下:
+</p>
+
+<p>
+\(x(t) = As(t)\)
+</p>
+
+<p>
+其中 \(x(t) = [x_1(t),....,x_n(t)]^T\) ,
+</p>
+
+<p>
+\(s(t) = [s_1(t),...,s_m(t)]^T\), \(A\) 是一个 \(n \times m\) 的系数矩阵，原问题变成了已知 \(x(t)\) 和 \(s(t)\) 的独立性，求对 \(s(t)\) 的估计问题。假定有如下公式
+</p>
+
+<p>
+\(y(t) = Wx(t)\)
+</p>
+
+<p>
+其中 \(y(t)\) 是对 \(s(t)\) 的估计, \(W\) 是一个 \(m \times n\) 的系数矩阵， 问题变成了如何有效的对矩阵 \(W\) 做出估计。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orga967573" class="outline-4">
+<h4 id="orga967573"><span class="section-number-4">2.1.2</span> 问题的基本假设</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+&ensp;&ensp; 各源信号 \(s_i(t)\) 均为零均值信号， 实随机变量，信号之间统计独立，如果源信号 \(s_i(t)\) 的概率面密度 \(p_i(s_i)\), 则 \(s(t)\) 的概率密度
+为: \(p(s) = \prod_{i=1}^np_i(s_i))\)
+</p>
+
+<p>
+&ensp;&ensp; 源信号数目 \(m\) 小于等于观察信号数目 \(n\), 即 \(m \leq n\) ,混合矩阵 \(A\) 是一个 \(n \times m\) 的矩阵。
+假定 \(A\) 满秩。
+</p>
+
+<p>
+&ensp;&ensp;  源信号中只允许有一个高斯分布，当多于一个高斯分布时，源信号变得不可分。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org1d78103" class="outline-4">
+<h4 id="org1d78103"><span class="section-number-4">2.1.3</span> 自然梯度解法</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+&ensp;&ensp;自然梯度法的计算公式为:
+</p>
+
+<p>
+\(W(n+1) = W(n) + \eta(n)[I - \phi(y(n))y^T(n)]W(n)\)
+</p>
+
+<p>
+其中 \(W\) 为我们需要估计的矩阵，\(\eta(n)\) 为步长, \(\phi(y)\) 是一个非线性变换，比如 \(\eta(y)=\eta(y^3)\)
+</p>
+
+<p>
+实际计算时 \(y\) 为一个\(m \times k\) 的矩阵, \(m\) 为原始信号个数，\(k\) 为采样点个数。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orged9ec76" class="outline-4">
+<h4 id="orged9ec76"><span class="section-number-4">2.1.4</span> 算法描述</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+&ensp;&ensp; 1)初始化 \(W(0)\) 为单位矩阵
+</p>
+
+<p>
+&ensp;&ensp; 2)循环执行如下的步骤，直到 \(W(n+1)\) 与 \(W(n)\) 差异小于规定值 \(\tau\) (计算矩阵差异的方法可以人为规定), 有时候也人为规定迭代次数
+</p>
+
+<p>
+&ensp;&ensp; 3)利用公式 \(y(n) = W(n)y(n-1)\), (其中 \(y(-1) = x\) )
+</p>
+
+<p>
+&ensp;&ensp; 4)利用公式 \(W(n+1) = W(n)+ \eta(n)[I - \phi(y(n))y^T(n)]W(n)\)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge0e421a" class="outline-3">
+<h3 id="orge0e421a"><span class="section-number-3">2.2</span> <div style="color:#369"> 引用</div></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<a href="https://zh.wikipedia.org/wiki/%E7%9B%B2%E4%BF%A1%E5%8F%B7%E5%88%86%E7%A6%BB">盲信号分离</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge283721" class="outline-3">
+<h3 id="orge283721"><span class="section-number-3">2.3</span> <div style="color:#369"> 参考文献 </div></h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+&ensp;&ensp; 1. JEAN-FRAN ¸ COIS CARDOSO, MEMBER, IEEE,Blind Signal Separation: Statistical Principles 
+</p>
+
+<p>
+&ensp;&ensp; 2. C. Jutten and J. Herault, “Blind separation of sources I. An adaptive algorithm based on neuromimetic architecture,” Signal Processing, vol. 24, no. 1, pp. 1–10, July 1991.
+</p>
+
+<p>
+&ensp;&ensp; 3. J.-C. Fort, “Stability of the source separation algorithm of Jutten and H´erault,” in Artificial Neural Networks, T. Kohonen, Makasira, Simula, and Kangas, Eds. Amsterdam, The Netherlands: Elsevier, 1991, pp. 937–941.
+</p>
+
+<p>
+&ensp;&ensp; 4. J. Deville, “A unified stability analysis of the H´erault–Jutten source separation neural network,” Signal Processing, vol. 51,no. 3, pp. 229–233, June 1996.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org943a91a" class="outline-3">
+<h3 id="org943a91a"><span class="section-number-3">2.4</span>  <div style="color:#369">CMake的使用</div></h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+<b><b>CMake目录结构</b></b>
+</p>
+
+<p>
+&ensp;&ensp; Cmake的目录结构主要有三部分组成
+</p>
+
+<ul class="org-ul">
+<li>CMakeLists.txt 文件</li>
+
+<li>以cmake文件扩展名的脚本文件</li>
+
+<li>以cmake文件扩展名的模块文件</li>
+</ul>
+
+
+<p>
+&ensp;&ensp;其中 <code>CMakeLists.txt</code> 文件是入口，一般放在源代码的顶目录中。
+脚本文件，可以使用 <code>CMake -P</code> 执行， 模块文件可以包含在脚本文件和 <code>CMakeLists.txt</code> 文件中。
+</p>
+
+
+
+<p>
+<b><b>CMake语法</b></b>
+</p>
+
+<p>
+&ensp;&ensp; <code>CMake</code> 的语法核心是命令，命令的格式:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"> &#21629;&#20196;&#21517; (&#21629;&#20196;&#21442;&#25968;...)
+</pre>
+</div>
+
+<p>
+命令参数
+</p>
+
+<p>
+&ensp;&ensp; <code>CMake</code> 中的命令参数有三种形式:
+</p>
+
+<ol class="org-ol">
+<li><code>[=..[参数内容]=..]</code></li>
+</ol>
+
+<p>
+&ensp;&ensp; 这种形式的命令参数不会解析参数内中的转义字符，以及变量，其中 <code>..</code> 表示我们可以使用不同的 <code>=</code> 的数量来表示长度. 不同长度可以互相内嵌。
+</p>
+
+<ol class="org-ol">
+<li><code>"参数内容"</code></li>
+</ol>
+
+<p>
+&ensp;&ensp; 这种形式的命令参数和上面的形式相反，会解析其中的转义字符，以及变量
+，但是不能内嵌。
+</p>
+
+<ol class="org-ol">
+<li><code>(参数内容)</code></li>
+</ol>
+
+<p>
+&ensp;&ensp; 这种形式的命令参数，不能包含任何空格， <code>(</code>  , <code>)</code> , 或者 <code>\</code> 符号,除非被转义,
+转义字符和变量都会被解析。
+</p>
+
+
+<p>
+变量
+</p>
+
+<p>
+&ensp;&ensp; CMake中允许定义和使用变量。
+</p>
+
+<p>
+<code>设置变量</code>
+</p>
+
+<p>
+&ensp;&ensp; CMake中可以使用 <code>set()</code> 命令来定义一个变量
+</p>
+
+<p>
+CMake中的变量名字是大小写敏感的。CMake中的变量命名可以是任意文本但是还是推荐使用字母， <code>_</code> , <code>-</code> ,进行命名。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #DAD085;">set</span> (Tutorial_VERSION_MAJOR 1)
+<span style="color: #DAD085;">set</span> (Tutorial_VERSION_MINOR 0)
+</pre>
+</div>
+
+
+<p>
+注释
+</p>
+
+<p>
+&ensp;&ensp; CMake中的注释有两种，方括号注释和行注释
+</p>
+
+<p>
+<code>方括号注释</code>
+</p>
+
+<p>
+&ensp;&ensp; 方括号注释主要使用在命令参数里面，用来注释命令参数
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">message</span>(<span style="color: #8AE234;">"First Argument\n"</span> <span style="color: #7C7C7C;">#</span><span style="color: #7C7C7C;">[[Bracket Comment]] "Second Argument")</span>
+</pre>
+</div>
+
+<p>
+&ensp;&ensp; 上面只是注释了 <code>Bracket Comment</code> 参数(这个特性只有版本大于等于3.0才支持)
+</p>
+
+<p>
+<code>行注释</code>
+</p>
+
+<p>
+&ensp;&ensp; 行注释经常用来注释单行代码
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">&#36825;&#26159;&#34892;&#27880;&#37322;</span>
+<span style="color: #FFD2A7;">message</span>(<span style="color: #8AE234;">"First Argument\n"</span> <span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">&#36825;&#26159;&#34892;&#27880;&#37322;</span>
+        <span style="color: #8AE234;">"Second Argument"</span>) <span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">&#36825;&#26159;&#34892;&#27880;&#37322;</span>
+</pre>
+</div>
+
+
+<p>
+作用域
+</p>
+
+<p>
+<code>变量的作用域</code>
+</p>
+
+<p>
+&ensp;&ensp; 变量的作用域分为三种，函数作用域，目录作用域，缓存作用域。
+</p>
+
+<p>
+&ensp;&ensp;&ensp; <code>函数作用域</code> : 在函数内定义的变量都是在函数作用域内
+</p>
+
+<p>
+&ensp;&ensp;&ensp; <code>目录作用域</code> : 凡是不是在函数内定义的都是在目录作用域内
+</p>
+
+<p>
+&ensp;&ensp;&ensp; <code>缓存作用域</code> : 一般Cmake项目第一次运行的时候会为相关的变量建立缓存，缓存变量是相对独立的，只能通过特定的 <code>set()</code> 或者 <code>unsert()</code> 的选项修改
+</p>
+
+
+<p>
+&ensp;&ensp; 当遇到一个变量的时候， <code>CMake</code> 首先以函数作用域，目录作用域，缓存作用域一次进行查找。
+</p>
+
+
+<p>
+CMake项目配置
+</p>
+
+<p>
+<code>基本的配置</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">cmake_minimum_required</span> (VERSION 2.6) 
+<span style="color: #FFD2A7;">project</span> (Tutorial)
+<span style="color: #FFD2A7;">add_executable</span>(Tutorial tutorial.cpp)
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>&ensp;&ensp; <code>cmake_minimum_required (VERSION 2.6)</code> 规定了CMake版本不能低于*2.6*</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">cmake_minimum_required</span>(VERSION major.minor[.[patch.tweak]][FATAL_ERROR])
+</pre>
+</div>
+
+
+
+<ul class="org-ul">
+<li>&ensp;&ensp; <code>project()</code> 定义了项目的名字，同时将项目的名字保存到 <code>PROJECT_NAME</code> 变量中。同时设置了 <code>PROJECT_SOURCE_DIR</code>  , <code>&lt;PROJECT-NAME&gt;_SOURCE_DIR</code> , <code>PROJECT_BINARY_DIR</code> , <code>&lt;PROJECT-NAME&gt;_BINARY_DIR</code> 等相关变量</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">project</span>(&lt;PROJECT-NAME&gt; [LANGUAGES] [&lt;language-name&gt;...])
+<span style="color: #FFD2A7;">project</span>(&lt;PROJECT-NAME&gt;
+        [VERSION &lt;major&gt;[.&lt;minor&gt;[.&lt;patch&gt;[.&lt;tweak&gt;]]]]
+        [LANGUAGES &lt;language-name&gt;...])
+</pre>
+</div>
+
+<p>
+&ensp;&ensp; 上面将项目的名字定义为 <code>Tutorial</code>
+</p>
+
+
+<ul class="org-ul">
+<li>&ensp;&ensp; <code>add_executable</code>  定义了将特定的源文件生成特定的执行文件</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">add_executable</span>(&lt;name&gt; [WIN32] [MACOSX_BUNDLE]
+               [EXCLUDE_FROM_ALL]
+               source1 [source2 ...])
+</pre>
+</div>
+
+<p>
+&ensp;&ensp; 上面将源目录的 <code>tutorial.cpp</code> 文件规定生成一个 <code>Tutorial</code> 的可执行文件。
+</p>
+
+<p>
+&ensp;&ensp; 我们也可以同时指定生成多个可执行文件
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">cmake_minimum_required</span> (VERSION 2.6) 
+<span style="color: #FFD2A7;">project</span> (Tutorial)
+<span style="color: #FFD2A7;">add_executable</span>(Tutorial tutorial.cpp)
+<span style="color: #FFD2A7;">add_executable</span>(Tutorial2 tutorial2.cpp)
+</pre>
+</div>
+
+<p>
+&ensp;&ensp;上面会同时将 <code>tutorial.cpp</code> 和 <code>tutorial2.cpp</code> 分别生成 <code>Tutorial</code> 和 <code>Tutorial2</code> 可执行文件
+</p>
+
+<p>
+<code>指定可执行文件的目录</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">cmake_minimum_required</span> (VERSION 2.6) 
+<span style="color: #FFD2A7;">project</span> (Tutorial)
+<span style="color: #DAD085;">set</span> (CMAKE_RUNTIME_OUTPUT_DIRECTORY <span style="color: #8AE234;">"../build/"</span>) //&#25351;&#23450;&#21487;&#25191;&#34892;&#25991;&#20214;&#30340;&#30446;&#24405;
+<span style="color: #FFD2A7;">add_executable</span>(Tutorial tutorial.cpp)
+<span style="color: #FFD2A7;">add_executable</span>(Tutorial2 tutorial2.cpp)
+</pre>
+</div>
+
+<p>
+<code>添加依赖库</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">cmake_minimum_required</span> (VERSION 2.6)
+<span style="color: #FFD2A7;">project</span> (Tutorial)
+
+<span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">The version number.</span>
+<span style="color: #DAD085;">set</span> (Tutorial_VERSION_MAJOR 1)
+<span style="color: #DAD085;">set</span> (Tutorial_VERSION_MINOR 0)
+
+<span style="color: #DAD085;">set</span> (CMAKE_RUNTIME_OUTPUT_DIRECTORY <span style="color: #8AE234;">"../build/"</span>)
+
+
+ <span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">configure a header file to pass some of the CMake settings</span>
+<span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">to the source code</span>
+<span style="color: #FFD2A7;">include_directories</span> (<span style="color: #8AE234;">"${PROJECT_SOURCE_DIR}/MathFunctions/"</span>)
+<span style="color: #FFD2A7;">add_subdirectory</span> (MathFunctions)
+<span style="color: #FFD2A7;">add_library</span>(MathFunctions  ./MathFunctions/mysqrt.cpp)
+
+<span style="color: #FFD2A7;">option</span> (USE_MYMATH  <span style="color: #8AE234;">"Use tutorial provided math implementation"</span> ON)
+
+<span style="color: #FFD2A7;">configure_file</span> (
+<span style="color: #8AE234;">"${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"</span>
+<span style="color: #8AE234;">"${PROJECT_BINARY_DIR}/TutorialConfig.h"</span>
+)
+
+
+
+<span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">add the binary tree to the search path for include files</span>
+<span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">so that we will find Tutorialconfig.h</span>
+<span style="color: #FFD2A7;">include_directories</span>(<span style="color: #8AE234;">"${PROJECT_BINARY_DIR}"</span>)
+
+<span style="color: #7C7C7C;">#</span><span style="color: #7C7C7C;">add the executable</span>
+<span style="color: #FFD2A7;">add_executable</span>(Tutorial tutorial.cpp)
+<span style="color: #FFD2A7;">target_link_libraries</span>(Tutorial MathFunctions)
+</pre>
+</div>
+
+
+<p>
+&ensp;&ensp; <code>include_directories</code>  将文件夹添加到头文件的搜索路径中。CMake中的头文件的搜索路径都包含在 <code>INCLUDE_DIRECTORY</code> 目录中
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">include_directories</span>([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])
+</pre>
+</div>
+
+
+<p>
+&ensp;&ensp; <code>add_subdirectory</code> 将文件夹添加到构建中来，子文件夹中必须包含相应的 <code>CMakeList.txt</code> 文件, 并且子构建中的 <code>CMakeList.txt</code> 的文件至少包含 <code>project()</code> 命令。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">add_subdirectory</span>(source_dir [binary_dir]
+                 [EXCLUDE_FROM_ALL])
+</pre>
+</div>
+
+<p>
+&ensp;&ensp; 上例就将子文件夹 <code>MathFunctions</code> 添加为一个子构建。
+</p>
+
+
+
+<p>
+&ensp;&ensp;  <code>add_library()</code> 用指定的源文件生成库添加到项目中。默认条件下，生成的库文件保存在运行 <code>CMake</code> 命令运行的目录下。
+但是可以通过 <code>CMAKE_ARCHIVE_OUTPUT_DIRECTORY</code> 选项指定修改。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">add_library</span>(&lt;name&gt; [STATIC | SHARED | MODULE]
+            [EXCLUDE_FROM_ALL]
+            source1 [source2 ...])
+</pre>
+</div>
+
+<p>
+&ensp;&ensp; 上面例子将 <code>MathFunctions~目录下的 ~mysqrt.cpp</code> 文件生成相应的库文件在 <code>CMake</code> 目录的下
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #DAD085;">set</span> (CMAKE_ARCHIVE_OUTPUT_DIRECTORY <span style="color: #8AE234;">"../build/"</span>) //&#23558;&#29983;&#25104;&#30340;&#24211;&#25991;&#20214;&#25918;&#21040;&#19978;&#32423;&#30446;&#24405;&#30340;build&#25991;&#20214;&#22841;&#19979;
+</pre>
+</div>
+
+
+<p>
+&ensp;&ensp; <code>option()</code> 指定一个可供用户选择的选项
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">option</span>(&lt;option_variable&gt; <span style="color: #8AE234;">"help string describing option"</span>
+       [initial value])
+</pre>
+</div>
+
+
+<p>
+&ensp;&ensp; <code>configure_file()</code> 命令本质上的工作，就是将输入文件复制，并进行一下修改，然后输出为输出文件
+</p>
+
+
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">configure_file</span>(&lt;input&gt; &lt;output&gt;
+               [COPYONLY] [ESCAPE_QUOTES] [@ONLY]
+               [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ])
+</pre>
+</div>
+
+<p>
+&ensp;&ensp;  <code>CMake</code> 会将输入文件进行一下转换
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #7C7C7C;">#</span><span style="color: #7C7C7C;">cmakedefine VAR ..  =&gt; #define VAR</span>
+</pre>
+</div>
+
+<p>
+&ensp;&ensp; 并且在输入文件中可以通过 <code>@变量名</code> 或者 <code>${变量名}</code> 的形式调用
+<code>CMakeList.txt</code> 文件中定义的变量。
+</p>
+
+<p>
+<b>例如</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">//foo.h.in &#25991;&#20214;&#20013;
+<span style="color: #7C7C7C;">#</span><span style="color: #7C7C7C;">cmakedefine FOO_ENABLE</span>
+<span style="color: #7C7C7C;">#</span><span style="color: #7C7C7C;">cmakedefine FOO_STRING "@FOO_STRING@"</span>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #7C7C7C;"># </span><span style="color: #7C7C7C;">CMakeLists.txt &#25991;&#20214;&#20013;</span>
+<span style="color: #FFD2A7;">option</span>(FOO_ENABLE <span style="color: #8AE234;">"Enable Foo"</span> ON)
+<span style="color: #96CBFE;">if</span>(FOO_ENABLE)
+  <span style="color: #DAD085;">set</span>(FOO_STRING <span style="color: #8AE234;">"foo"</span>)
+<span style="color: #FFD2A7;">endif</span>()
+<span style="color: #FFD2A7;">configure_file</span>(foo.h.in foo.h @ONLY)
+</pre>
+</div>
+
+<p>
+&ensp;&ensp; <code>foo.h</code> 文件会在构建文件夹中生成。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #7C7C7C;">#</span><span style="color: #7C7C7C;">define FOO_ENABLE</span>
+<span style="color: #7C7C7C;">#</span><span style="color: #7C7C7C;">define FOO_STRING "foo"</span>
+</pre>
+</div>
+
+
+<p>
+<code>定义宏命令</code> 
+</p>
+
+<p>
+在CMake中我们可以使用宏定义将一些复杂的步骤定义为宏，来简化和复用某些过程。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">macro</span>(&lt;name&gt; [arg1 [arg2 [arg3 ...]]])
+  COMMAND1(ARGS ...)
+  COMMAND2(ARGS ...)
+  ...
+<span style="color: #FFD2A7;">endmacro</span>(&lt;name&gt;)
+</pre>
+</div>
+
+<p>
+<code>CMake打包程序</code>
+</p>
+
+<p>
+在CMake中可以使用 <code>CPack</code> 对应用程序进行打包
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #FFD2A7;">include</span> (InstallRequiredSystemLibraries)
+<span style="color: #DAD085;">set</span> (CPACK_RESOURCE_FILE_LICENSE <span style="color: #8AE234;">"${CMAKE_CURRENT_SOURCE_DIR}/License.txt"</span>)
+<span style="color: #DAD085;">set</span> (CPACK_PACKAGE_VERSION_MAJOR <span style="color: #8AE234;">"${Tutorial_VERION_MAJOR}"</span>)
+<span style="color: #DAD085;">set</span> (CPACK_PACKAGE_VERSION_MINOR <span style="color: #8AE234;">"${Tutorial_VERION_MINOR}"</span>)
+<span style="color: #FFD2A7;">include</span> (CPack)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org26e37c9" class="outline-2">
+<h2 id="org26e37c9"><span class="section-number-2">3</span>  <div style="color:#369">todo</div></h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>详细了解cpp中的function-&gt;return type的用法</li>
+<li>写一个管理markdown的博客vim插件(参考vim的vimwiki插件)</li>
+<li>了解C++中的异常的使用</li>
+<li>在emacs或者vim中实现一个小的智能程序</li>
+<li>写一个类似Mac中的高亮当前鼠标位置的效果(Linux下)</li>
+<li>在vim移植emacs的org-mode(针对markdown)</li>
+<li>命令行的qq聊天(vim-plugin,emacs-plugin)</li>
+<li>探究真正意义上的人工智能</li>
+<li>学习黑客的思维</li>
+<li>写个备份Gentoo Linux的脚本(Live版本,iso格式)</li>
+<li>写个像Grammerly的功能的软件</li>
+<li>写方面绑定手机的各种账号更换</li>
+<li>看王垠的40行代码</li>
+<li>学习scheme语言</li>
+<li>详细看《Chapter 13. Copy contral》</li>
+<li>详细看《 Chapter 12. Dynamic Memory》</li>
+<li>详细看《13.1.4（p. 504）》</li>
+<li>了解C++里面的lamda表达式</li>
+<li>C++的线程相关操作</li>
+<li>看825页的dynamic<sub>cast</sub>(看完虚函数再看)</li>
+<li>《 CPP prime 》 看到Circumventing the Virtual Mechanism</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org462395b" class="outline-2">
+<h2 id="org462395b"><span class="section-number-2">4</span>  <div style="color:#369">明日计划</div></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2017-04-15 Sat 14:17</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
