@@ -16,8 +16,7 @@
 title: Johans's Blog 
 email:  2574580419@qq.com
 description: > # this means to ignore newlines until "baseurl:"
-    我始终相信一个程序员的价值并不是仅仅体现在他的coding能力上，更多的应该体现在他的创造力上。
-
+    我始终相信一个程序员的价值并不是仅仅体现在他的coding能力上，更多的应该体现在他的创造力上。</br>
     I belive that creativity is also an important thing for programmers,not only coding competency.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
