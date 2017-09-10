@@ -19,7 +19,7 @@ description: > # this means to ignore newlines until "baseurl:"
  &ensp;&ensp;我始终相信一个程序员的价值并不是仅仅体现在他的coding能力上，更多的应该体现在他的创造力上。</br>
  &ensp;&ensp;I belive that creativity is also an important thing for programmers,not only coding competency.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://duanqingbb.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://duanqiaobb.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  duanqingbb@163.com
 
