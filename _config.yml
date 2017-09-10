@@ -48,14 +48,3 @@ defaults:
     values:
       layout: post
       permalink: :categories/:title.html
-
-
-
-
-
-
-
-
-
-
-
