@@ -1,0 +1,42 @@
+- [Linux Shell 编程之变量](#org4fa936d)
+  - [shellscript-变量的定义](#org65f24ac)
+    - [通用](#orgee00ee3)
+    - [bash](#orgb67bd0b)
+
+
+<a id="org4fa936d"></a>
+
+# Linux Shell 编程之变量
+
+&ensp;&ensp; 在一门编程语言中，变量是不可缺少的元素，如果将程序比作是房子的话，那么变量就是构成房子的砖石。
+
+
+<a id="org65f24ac"></a>
+
+## shellscript-变量的定义
+
+
+<a id="orgee00ee3"></a>
+
+### 通用
+
+```shell
+a='test'
+```
+
+&ensp;&ensp; 上面的代码中，定义了一个 `a` 变量，并将字符串 `test` 传递给变量 `a`. `shellscript` 的变量 `定义` 和 `赋值` 是不需要 `类型修饰符号(int,double,...)` 和 `变量符号($,var,...)` 的。
+
+
+<a id="orgb67bd0b"></a>
+
+### bash
+
+&ensp;&ensp; 在 `bash` 中,我们还可以通过 `let` 和 `declare` 两个关键字来定义变量。效果一样。
+
+```shell
+let a='test'
+```
+
+```shell
+declare a='test'
+```

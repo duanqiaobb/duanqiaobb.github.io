@@ -4,6 +4,9 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
 ---
-{% for post in site.posts %}
-{{ post.date | date_to_string }} » <a href="{{post.url}}">{{ post.title }}</a>
+{% for collection in site.collections %}
+<h3> {{ collection.label }} </h3>
+{% for post in site[collection.label] %}
+<a href="{{ post.url }}">{{ post.title }} </a> &ensp;&ensp;{{ post.date | date_to_string }} 
+{% endfor %}
 {% endfor %}
